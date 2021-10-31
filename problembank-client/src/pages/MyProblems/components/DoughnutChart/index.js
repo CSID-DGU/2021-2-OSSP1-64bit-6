@@ -167,11 +167,11 @@ function DoughnutChart(props) {
                                     <td><Link to ={'codeproblems/view?id=12'}>12</Link>, 2, 34, 123, 554, 34, 123, 43, ....</td>
                                 </tr>
                                 <tr>
-                                    <td><span className="bull2">&bull;</span> <span className="tr2">객관식</span></td>
+                                    <td><span className="bull2">&bull;</span> <span className="tr1">객관식</span></td>
                                     <td>12, 2, 34, 123, 554, 34, 123, 43, ...</td>
                                 </tr>
                                 <tr>
-                                    <td><span className="bull3">&bull;</span> <span className="tr3">주관식</span></td>
+                                    <td><span className="bull3">&bull;</span> <span className="tr1">주관식</span></td>
                                     <td>12, 2, 34, 123, 554, 34, 123, 43, ..</td>
                                 </tr>
                             </tbody>
@@ -181,21 +181,21 @@ function DoughnutChart(props) {
                     </div>
                 </div>
                 <div className="chart-sub">
-                    <div className="sub1">
+                    <div className="sub">
                         <h3>프로그래밍</h3>
                         <Doughnut
                             data={subD}
                             options={optionsubD}
                         />
                     </div>
-                    <div className="sub2">
+                    <div className="sub">
                         <h3>객관식</h3>
                         <Doughnut
                             data={subD}
                             options={optionsubD}
                         />
                     </div>
-                    <div className="sub3">
+                    <div className="sub">
                         <h3>주관식</h3>
                         <Doughnut
                             data={subD}
@@ -212,17 +212,16 @@ const Wrapper = styled.div`
     flex: 0 0 1000px;
     .container{
         box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 1px;
-        border-radius: 4px;
+        border-radius: 40px;
         border: 1px solid #000;
+        background: #F5F5F5;
 
         .chart-header{
-            background: #F5F5F5;
             //display: flex;
             padding: 20px 30px;
             //justify-content: space-evenly;
         }
-        .chart-main{
-            background: #F5F5F5;
+        .chart-main{ 
             display: flex;
             justify-content: space-around;
             border-bottom:solid;
@@ -246,7 +245,7 @@ const Wrapper = styled.div`
                     }
                     .th-ID{
                         border-bottom:solid #c0c0c0;
-                        width:400px;
+                        width:350px;
                         text-align:left;
                     }
                     .tbody{
@@ -266,12 +265,7 @@ const Wrapper = styled.div`
                         .tr1{
                             font-weight:bold;
                         }
-                        .tr2{
-                            font-weight:bold;
-                        }
-                        .tr3{
-                            font-weight:bold;
-                        }
+                     
                     }
 
                 }
@@ -281,7 +275,7 @@ const Wrapper = styled.div`
             padding-top:30px;
             padding-bottom:30px;
             display:flex;
-            background: #F5F5F5;
+           
             justify-content: space-around;
 
             h3{
@@ -290,17 +284,10 @@ const Wrapper = styled.div`
                 padding-bottom:15px;
             }
 
-            .sub1{
+            .sub{
                 flex : 0 0 50px;
             }
-            .sub2{
-               
-                flex : 0 0 50px;
-            }
-            .sub3{
-               
-                flex : 0 0 50px;
-            }
+          
         }
 
     }

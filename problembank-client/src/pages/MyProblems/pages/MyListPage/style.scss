@@ -5,4 +5,8 @@
     justify-content: space-around;
 
     display: flex;
+    .middle{
+        flex-direction: column;
+
+    }
 }

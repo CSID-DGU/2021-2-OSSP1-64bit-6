@@ -4,6 +4,7 @@ import FavoritePanel from '../../components/FavoritePanel';
 import MyListContainer from '../../components/MyListContainer';
 import ProgressPanel from '../../components/ProgressPanel';
 import DoughnutChart from '../../components/DoughnutChart';
+import RadarChart from '../../components/RadarChart';
 import './style.scss';
 
 function MyListPage(props) {
@@ -11,7 +12,10 @@ function MyListPage(props) {
 		<MyListLayout>
 			<div className="mylist__container">
 				<MyListContainer />
-				<DoughnutChart/>
+				<div className="middle">
+					<DoughnutChart/>
+					<RadarChart/>
+				</div>
 				{/* <FavoritePanel /> */}
 				<ProgressPanel />
 			</div>
