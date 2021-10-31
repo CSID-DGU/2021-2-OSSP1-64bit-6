@@ -530,12 +530,15 @@ router.get('/status-problems', async function (req, res){
 
         let isCorrect = 0, noCorrect = 0;
         problem.map((item) => item.answer_status === 'true' ? ++isCorrect : ++noCorrect)
+        
+        // 배열로 정답/오답 problem id, categoryid 저장 카테고리는 추후 join으로 예정
+        let isCorrectArrayMul = [];
+        let noCorrectArrayMul = [];
+        multichoice.map((item) => item.answer_status === 'true' ? isCorrectArrayMul.push(item.problem_id) : noCorrectArrayMul.push(item.problem_id))
 
-        let isCorrectMul = 0, noCorrectMul = 0;
-        multichoice.map((item) => item.answer_status === 'true' ? ++isCorrectMul : ++noCorrectMul)
-
-        let isCorrectShortans = 0, noCorrectShortans = 0;
-        shortans.map((item) => item.answer_status === 'true' ? ++isCorrectShortans : ++noCorrectShortans)
+        let isCorrectArrayShortans = [];
+        let noCorrectArrayShortans = [];
+        shortans.map((item) => item.answer_status === 1 ? isCorrectArrayShortans.push(item.problem_id) : noCorrectArrayShortans.push(item.problem_id))
 
         //added isCorrectTest and noIncorrectTest
 
@@ -546,8 +549,8 @@ router.get('/status-problems', async function (req, res){
             result: true,
             data: {
                 problem: {isCorrect, noCorrect},
-                multichoice: {isCorrectMul, noCorrectMul},
-                shortans: {isCorrectShortans, noCorrectShortans},
+                multichoice: {isCorrectArrayMul, noCorrectArrayMul},
+                shortans: {isCorrectArrayShortans, noCorrectArrayShortans},
             },
             message: '자기 작업한 문제 현황'
         })
