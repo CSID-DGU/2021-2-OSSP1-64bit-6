@@ -110,4 +110,8 @@ module.exports = {
     //OTHER
     removeProblemMyList: "delete from plass_mylist_problem where user_id = ? and problem_id = ? and problem_type = ?",
     deleleMyProblem : "delete from plass_mylist_problem where id = ?",
+    
+    //==================JOIN====================
+    joinCategoryLevelProblem_mul : "select S.problem_id, S.answer_status, S.timestamp, C.category_id, P.level from plass_problem_multiplechoice_submit S left outer join plass_problem_multiplechoice_category C ON S.problem_id = C.problem_id left outer join plass_problem_multiplechoice P ON S.problem_id = P.id",
+    joinCategoryLevelProblem_shortans : "select S.problem_id, S.answer_status, S.timstamp, C.category_id, P.level from plass_problem_shortans_submit S left outer join plass_problem_shortanswer_category C ON S.problem_id = C.problem_id left outer join plass_problem_shortans P ON S.problem_id = P.id;",
 }

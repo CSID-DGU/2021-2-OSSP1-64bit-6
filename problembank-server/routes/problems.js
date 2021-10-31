@@ -525,20 +525,37 @@ router.get('/status-problems', async function (req, res){
     try {
         const { id } = req.user._user[0];
         const [problem] = await db.query(sql.problems.selectProblemSubmitByUserId, [id])
-        const [multichoice] = await db.query(sql.problems.selectMultiChoiceSubmitByUserId, [id])
-        const [shortans] = await db.query(sql.problems.selectShortansSubmit, [id])
+        const [multichoice] = await db.query(sql.problems.joinCategoryLevelProblem_mul, [id])
+        const [shortans] = await db.query(sql.problems.joinCategoryLevelProblem_shortans, [id])
+        let nothing;
 
+        // ----------pro
         let isCorrect = 0, noCorrect = 0;
         problem.map((item) => item.answer_status === 'true' ? ++isCorrect : ++noCorrect)
         
-        // 배열로 정답/오답 problem id, categoryid 저장 카테고리는 추후 join으로 예정
+        // ----------mul
+        // 배열로 정답/오답
         let isCorrectArrayMul = [];
         let noCorrectArrayMul = [];
         multichoice.map((item) => item.answer_status === 'true' ? isCorrectArrayMul.push(item.problem_id) : noCorrectArrayMul.push(item.problem_id))
-
+        // 정답인 것들 중 난이도별 개수
+        let levelMul=[0,0,0];
+        multichoice.map((item) => item.answer_status === 'true' ?
+                                  item.level.charCodeAt(0).toString(16) === 'd558' ? levelMul[0]++
+                                  : item.level.charCodeAt(0).toString(16) === 'c911' ? levelMul[1]++
+                                  : levelMul[2]++
+                                  : nothing=1)
+        //---------short        
         let isCorrectArrayShortans = [];
         let noCorrectArrayShortans = [];
         shortans.map((item) => item.answer_status === 1 ? isCorrectArrayShortans.push(item.problem_id) : noCorrectArrayShortans.push(item.problem_id))
+        
+        let levelShortans=[0,0,0];
+        shortans.map((item) => item.answer_status === 1 ?
+                                  item.level.charCodeAt(0).toString(16) === 'd558' ? levelShortans[0]++
+                                  : item.level.charCodeAt(0).toString(16) === 'c911' ? levelShortans[1]++
+                                  : levelShortans[2]++
+                                  : nothing=1)        
 
         //added isCorrectTest and noIncorrectTest
 
@@ -549,8 +566,8 @@ router.get('/status-problems', async function (req, res){
             result: true,
             data: {
                 problem: {isCorrect, noCorrect},
-                multichoice: {isCorrectArrayMul, noCorrectArrayMul},
-                shortans: {isCorrectArrayShortans, noCorrectArrayShortans},
+                multichoice: {isCorrectArrayMul, noCorrectArrayMul, levelMul},
+                shortans: {isCorrectArrayShortans, noCorrectArrayShortans, levelShortans},
             },
             message: '자기 작업한 문제 현황'
         })
