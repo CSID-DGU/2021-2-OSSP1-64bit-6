@@ -28,7 +28,7 @@ function ProblemDisplayTable(props) {
 								<th>{item.level}</th>
 								<th>{moment(item.created).format('YYYY-MM-DD')}</th>
 								<td>{item.tagInfo ? `${item.tagInfo.parent_name} - ${item.tagInfo.name}` : ''}</td>
-								<th style={item.submit.answer_status === 'true' ? {color: 'blue'} : {color: 'red'}}>{item.submit.length !== 0 ? item.submit.answer_status === 'true' ? '성공' : '실패' : '' }</th>
+								<th style={item.submit.answer_status === 1 ? {color: 'blue'} : {color: 'red'}}>{item.submit.length !== 0 ? item.submit.answer_status === 'true' ? '성공' : '실패' : '' }</th>
 							</tr>
 						);
 					})

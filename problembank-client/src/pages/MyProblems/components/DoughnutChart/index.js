@@ -12,13 +12,26 @@ function DoughnutChart(props) {
 	const user = useSelector((state) => state.user);
 	const [stateDoughnut, setStateDoughnut] = useState({});
     const [optionDoughnut, setOptionDoughnut] = useState({});
-    const [subD, setStateD] = useState({});
-    const [optionsubD, setOptionsubD] = useState({});
+
+    const [sub_programming, setStatesubP] = useState({});
+    const [sub_multiple, setStatesubM] = useState({});
+    const [sub_shortan, setStatesubS] = useState({});
+
+    const [option_sub, setOptionsub] = useState({});
+
+
+
+    const [sum_Problems, setsum] = useState();
+
 
     Chart.register(ChartDataLabels);
 
 	useEffect(() => {
 		const fetchData = async () => {
+            const res = await problemBankAPI.getStatusProblem();
+            const {data} = res;
+			const {problem, multichoice, shortans} = data;
+
 			let D_data = {
 				labels: ['프로그래밍', '객관식', '주관식'],
 				datasets: [{
@@ -33,7 +46,7 @@ function DoughnutChart(props) {
                         '#36A2EB',
                         '#FFCE56'
                     ],
-					data: [5,10,20],
+					data: [3,multichoice.isCorrectArrayMul.length,shortans.isCorrectArrayShortans.length],
 					}
 				]
 			};
@@ -73,10 +86,9 @@ function DoughnutChart(props) {
                     }
 
             };
-
             setOptionDoughnut(D_option);
 
-            let sub_data = {
+            let sub_programming = {
 				labels: ['상', '중', '하'],
 				datasets: [{
 					backgroundColor: [
@@ -94,7 +106,7 @@ function DoughnutChart(props) {
 					}
 				]
 			};
-			setStateD(sub_data);
+			setStatesubP(sub_programming);
 
             let sub_option = {
                 responsive:true,
@@ -127,17 +139,60 @@ function DoughnutChart(props) {
                 }
 
         };
+        setOptionsub(sub_option);
 
-        setOptionsubD(sub_option);
+        let sub_mul = {
+            labels: ['상', '중', '하'],
+            datasets: [{
+                backgroundColor: [
+                     '#FE88A0',
+                     '#74C9C6',
+                     '#C2E88D'
+                   
+                ],
+                hoverBackgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56'
+                ],
+                data: [multichoice.levelMul[2],multichoice.levelMul[1],multichoice.levelMul[0]],
+                }
+            ]
+        };
+        setStatesubM(sub_mul);
 
+
+        let sub_short = {
+            labels: ['상', '중', '하'],
+            datasets: [{
+                backgroundColor: [
+                    '#FE88A0',
+                    '#74C9C6',
+                    '#C2E88D'
+                
+                ],
+                hoverBackgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56'
+                ],
+                data: [shortans.levelShortans[2],shortans.levelShortans[1],shortans.levelShortans[0]],
+                }
+            ]
+        };
+        setStatesubS(sub_short);
+
+        let sum = multichoice.isCorrectArrayMul.length + shortans.isCorrectArrayShortans.length+3;
+        setsum(String(sum));
 		};
 		fetchData();
 	}, []);
+
 	return (
 		<Wrapper>
 			<div className="container">
                 <div className ="chart-header">
-                 <h2>&bull; 총 풀이 문제 수 : 7</h2>
+                 <h2>&bull; 총 풀이 문제 수 : {sum_Problems} </h2>
                  </div>
                 <div className="chart-main">
                     <div className="chart">
@@ -184,22 +239,22 @@ function DoughnutChart(props) {
                     <div className="sub">
                         <h3>프로그래밍</h3>
                         <Doughnut
-                            data={subD}
-                            options={optionsubD}
+                            data={sub_programming}
+                            options={option_sub}
                         />
                     </div>
                     <div className="sub">
                         <h3>객관식</h3>
                         <Doughnut
-                            data={subD}
-                            options={optionsubD}
+                            data={sub_multiple}
+                            options={option_sub}
                         />
                     </div>
                     <div className="sub">
                         <h3>주관식</h3>
                         <Doughnut
-                            data={subD}
-                            options={optionsubD}
+                            data={sub_shortan}
+                            options={option_sub}
                         />
                     </div>
                 </div>   
