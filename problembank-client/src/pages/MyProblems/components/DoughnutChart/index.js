@@ -221,7 +221,7 @@ function DoughnutChart(props) {
                                     <td><span className="bull2">&bull;</span> <span className="tr1">객관식</span></td>
                                     <td>
                                     {
-                                         multiple_list.map((item,idx)=>{
+                                         multiple_list.slice(0).reverse().map((item,idx)=>{
 
                                             if (idx > 10) return false;
 
@@ -239,7 +239,7 @@ function DoughnutChart(props) {
                                     <td><span className="bull3">&bull;</span> <span className="tr1">주관식</span></td>
                                     <td>
                                     {
-                                         shortan_list.map((item,idx)=>{
+                                         shortan_list.slice(0).reverse().map((item,idx)=>{
 
                                             if (idx > 10) return false;
 
