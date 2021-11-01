@@ -16,13 +16,12 @@ function DoughnutChart(props) {
     const [sub_programming, setStatesubP] = useState({});
     const [sub_multiple, setStatesubM] = useState({});
     const [sub_shortan, setStatesubS] = useState({});
-
     const [option_sub, setOptionsub] = useState({});
-
-
 
     const [sum_Problems, setsum] = useState();
 
+    const [multiple_list,setMulList] = useState([]);
+    const [shortan_list,setShorList] = useState([]);
 
     Chart.register(ChartDataLabels);
 
@@ -31,6 +30,9 @@ function DoughnutChart(props) {
             const res = await problemBankAPI.getStatusProblem();
             const {data} = res;
 			const {problem, multichoice, shortans} = data;
+
+            setMulList(multichoice.isCorrectArrayMul);
+            setShorList(shortans.isCorrectArrayShortans);
 
 			let D_data = {
 				labels: ['프로그래밍', '객관식', '주관식'],
@@ -188,6 +190,7 @@ function DoughnutChart(props) {
 		fetchData();
 	}, []);
 
+    
 	return (
 		<Wrapper>
 			<div className="container">
@@ -202,13 +205,6 @@ function DoughnutChart(props) {
                     />
                     </div>
                     <div className="difficulty">
-                        {/* <ul>
-                        <li> 상 &nbsp; : &nbsp; 192, 123, 125, 1, 3</li>
-                        <br/>
-                        <li> 중 &nbsp; : &nbsp; 200, 213, 342, 123, 5, 323</li>
-                        <br/>
-                        <li> 하 &nbsp; : &nbsp; 24, 126, 341, 100, 200, 300, 500</li>
-                        </ul> */}
                         <table>
                             <thead className="thead">
                                 <tr>
@@ -219,15 +215,43 @@ function DoughnutChart(props) {
                             <tbody className="tbody">
                                 <tr>
                                     <td><span className="bull1">&bull;</span> <span className="tr1">프로그래밍</span></td>
-                                    <td><Link to ={'codeproblems/view?id=12'}>12</Link>, 2, 34, 123, 554, 34, 123, 43, ....</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td><span className="bull2">&bull;</span> <span className="tr1">객관식</span></td>
-                                    <td>12, 2, 34, 123, 554, 34, 123, 43, ...</td>
+                                    <td>
+                                    {
+                                         multiple_list.map((item,idx)=>{
+
+                                            if (idx > 10) return false;
+
+                                            return(
+                                                <Link to = {`multiplechoice/view?id=${item}`}> 
+                                                    {item} &nbsp;
+                                                </Link>
+                                            );
+                                         })
+                    
+                                    }
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><span className="bull3">&bull;</span> <span className="tr1">주관식</span></td>
-                                    <td>12, 2, 34, 123, 554, 34, 123, 43, ..</td>
+                                    <td>
+                                    {
+                                         shortan_list.map((item,idx)=>{
+
+                                            if (idx > 10) return false;
+
+                                            return(
+                                                <Link to = {`shortans/view?id=${item}`}> 
+                                                    {item} &nbsp;
+                                                </Link>
+                                            );
+                                         })
+                    
+                                    }
+                                    </td>
                                 </tr>
                             </tbody>
 
@@ -290,6 +314,7 @@ const Wrapper = styled.div`
                 align-items: center;
                 table{
                     border-collapse: collapse;
+                  
                     .thead{
                         height:50px;
                     }
