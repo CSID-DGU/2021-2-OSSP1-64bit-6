@@ -5,6 +5,7 @@ import MyListContainer from '../../components/MyListContainer';
 import ProgressPanel from '../../components/ProgressPanel';
 import DoughnutChart from '../../components/DoughnutChart';
 import RadarChart from '../../components/RadarChart';
+import Heatmap from '../../components/HeatMap';
 import './style.scss';
 
 function MyListPage(props) {
@@ -13,6 +14,7 @@ function MyListPage(props) {
 			<div className="mylist__container">
 				<MyListContainer />
 				<div className="middle">
+					<Heatmap/>
 					<DoughnutChart/>
 					<RadarChart/>
 				</div>
