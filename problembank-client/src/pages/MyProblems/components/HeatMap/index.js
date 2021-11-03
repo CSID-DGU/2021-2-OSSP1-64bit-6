@@ -19,11 +19,9 @@ function Heatmap(props) {
 		const fetchData = async () => {
             const res = await problemBankAPI.getStatusProblem();
             const {data} = res;
-			const {problem, multichoice, shortans, heatmap} = data;
-            
+            const {heatmap} = data;
+     
             set_max_date(heatmap.con_heat[0].maxcon);
-
-			console.log(heatmap.count_heat);
 
             let value =[];
             for(let i = 0; i < heatmap.count_heat.length; i++){
