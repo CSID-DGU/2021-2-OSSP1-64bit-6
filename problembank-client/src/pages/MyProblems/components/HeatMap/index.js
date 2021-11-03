@@ -4,37 +4,37 @@ import {useState} from 'react';
 import {useSelector} from 'react-redux';
 import HeatMap from '@uiw/react-heat-map';
 import Tooltip from '@uiw/react-tooltip';
+import problemBankAPI from '../../../../apis/problemsBank';
 
 
 function Heatmap(props) {
 	const user = useSelector((state) => state.user);
 	const [date_count_state, set_date_count] = useState([]);
+    const [max_date_count, set_max_date] = useState();
+
     const [today_date, set_today] = useState();
     const [old_date, set_old] = useState();
 
 	useEffect(() => {
 		const fetchData = async () => {
-        
-            let value = [
-                { date: '2021/01/11', count: 2 },
-                { date: '2021/01/12', count: 20 },
-                { date: '2021/01/13', count: 10 },
-                ...[...Array(17)].map((_, idx) => ({ date: `2021/02/${idx + 10}`, count: idx, content: '' })),
-                { date: '2021/06/11', count: 2 },
-                { date: '2021/07/01', count: 5 },
-                { date: '2021/09/01', count: 5 },
-                { date: '2021/09/02', count: 9 },
-
-                { date: '2021/09/03', count: 11 },
-                { date: '2021/10/02', count: 11 },
-                { date: '2021/10/11', count: 11 },
-                { date: '2021/11/02', count: 11 }
-            ]
+            const res = await problemBankAPI.getStatusProblem();
+            const {data} = res;
+			const {problem, multichoice, shortans, heatmap} = data;
             
+            set_max_date(heatmap.con_heat[0].maxcon);
+
+			console.log(heatmap.count_heat);
+
+            let value =[];
+            for(let i = 0; i < heatmap.count_heat.length; i++){
+                value.push({date: heatmap.count_heat[i].submit_time2, count:parseInt(heatmap.count_heat[i].cnt)});
+            }
+           
             set_date_count(value);
 
             let today = new Date();
             let todayString =  today.getFullYear() + '/' + ('0' + (today.getMonth() + 1)).slice(-2) +'/' + ('0' + today.getDate()).slice(-2);
+            console.log(todayString);
             set_today(todayString);
             let oldString;
 
@@ -54,7 +54,7 @@ function Heatmap(props) {
 	return (
         <Wrapper>
             <div className="contanier">
-                <h2 className="header">&bull; 최대 문제 해결 일수 : </h2>
+                <h2 className="header">&bull; 최대 문제 해결 일수 : {max_date_count}</h2>
                 <div className="heatmap">
                     <HeatMap 
                         value={date_count_state} 
