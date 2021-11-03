@@ -527,6 +527,8 @@ router.get('/status-problems', async function (req, res){
         const [problem] = await db.query(sql.problems.selectProblemSubmitByUserId, [id])
         const [multichoice] = await db.query(sql.problems.joinCategoryLevelProblem_mul, [id])
         const [shortans] = await db.query(sql.problems.joinCategoryLevelProblem_shortans, [id])
+        const [count_heat] = await db.query(sql.problems.countTime, [id])
+        const [con_heat] = await db.query(sql.problems.conTime, [id])
         let nothing;
 
         // ----------pro
@@ -555,19 +557,15 @@ router.get('/status-problems', async function (req, res){
                                   item.level.charCodeAt(0).toString(16) === 'd558' ? levelShortans[0]++
                                   : item.level.charCodeAt(0).toString(16) === 'c911' ? levelShortans[1]++
                                   : levelShortans[2]++
-                                  : nothing=1)        
+                                  : nothing=1) 
 
-        //added isCorrectTest and noIncorrectTest
-
-        //let isCorrectTest=0, noCorrectTest=0;
-        //test.map((item) => item.answer_status ==='true' ? ++isCorrectTest: ++noCorrectTest)
-        
         res.status(200).send({
             result: true,
             data: {
                 problem: {isCorrect, noCorrect},
                 multichoice: {isCorrectArrayMul, noCorrectArrayMul, levelMul},
                 shortans: {isCorrectArrayShortans, noCorrectArrayShortans, levelShortans},
+                heatmap: {count_heat, con_heat},
             },
             message: '자기 작업한 문제 현황'
         })
