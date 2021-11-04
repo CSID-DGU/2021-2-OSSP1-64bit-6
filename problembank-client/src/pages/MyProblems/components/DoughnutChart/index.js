@@ -291,8 +291,8 @@ const Wrapper = styled.div`
     flex: 0 0 1000px;
     .container{
         box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 1px;
-        border-radius: 40px;
-        border: 1px solid #000;
+        border-radius: 20px;
+        border: 5px solid #a0a0a0;
         background: #F5F5F5;
 
         .chart-header{
@@ -303,7 +303,7 @@ const Wrapper = styled.div`
         .chart-main{ 
             display: flex;
             justify-content: space-around;
-            border-bottom:solid;
+            border-bottom:solid #a0a0a0;
             padding-bottom:20px;
             .chart{
                 flex:0 0 400px;

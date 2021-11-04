@@ -52,7 +52,7 @@ function Heatmap(props) {
 	return (
         <Wrapper>
             <div className="contanier">
-                <h2 className="header">&bull; 최대 문제 해결 일수 : {max_date_count}</h2>
+                <h2 className="header">&bull; 최대 연속 문제 해결 일수 : {max_date_count}</h2>
                 <div className="heatmap">
                     <HeatMap 
                         value={date_count_state} 
@@ -87,8 +87,8 @@ const Wrapper = styled.div`
     .contanier{
         padding-top:30px;
         margin-bottom:50px;
-        border-radius: 40px;
-        border: 1px solid #000;
+        border-radius: 20px;
+        border: 5px solid #a0a0a0;
         background: #F5F5F5;
 
         .heatmap{
