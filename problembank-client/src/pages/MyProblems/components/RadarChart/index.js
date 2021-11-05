@@ -19,44 +19,35 @@ function RadarChart(props) {
 		const fetchData = async () => {
 			let data ={
                 labels:[
-                    'Dynamic Programming',
-                    'Graph',
-                    'Math',
                     'Implementaion',
+                    'Math',
                     'Data Structure',
+                    'Algorithm',
                     'String'
                 ],
                 datasets: [{
                     label : '프로그래밍',
-                    data : [4,1,10,3,2,8],
+                    data : [4,1,10,3,2],
                     fill : true,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgb(255, 99, 132)',
-                    pointBackgroundColor: 'rgb(255, 99, 132)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgb(255, 99, 132)'
+                    backgroundColor: 'rgba(254, 136, 160, 0.2)',
+                    borderColor: 'rgb(254, 136, 160)',
+                   
+                  
                 }, {
                     label : '객관식',
-                    data : [10,2,3,8,8,5],
+                    data : [10,2,3,8,8],
                     fill : true,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgb(54, 162, 235)',
-                    pointBackgroundColor: 'rgb(54, 162, 235)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgb(54, 162, 235)'
+                    backgroundColor: 'rgba(116, 201, 198, 0.2)',
+                    borderColor: 'rgb(116, 201, 198)',
+                    
+                 
                 },{
                     label : '단답형',
-                    data : [1,10,2,9,9,2],
+                    data : [1,10,2,9,9],
                     fill : true,
-                    backgroundColor: 'rgba(255, 153, 51, 0.2)',
-                    borderColor: 'rgb(255, 153, 51)',
-                    pointBackgroundColor: 'rgb(54, 162, 235)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgb(54, 162, 235)'
-
+                    backgroundColor: 'rgba(194, 232, 141, 0.2)',
+                    borderColor: 'rgb(194, 232, 141)',
+                    
                 }]
             };
             setStateRadar(data);
@@ -67,7 +58,12 @@ function RadarChart(props) {
                     legend:{
                         position:'bottom',
                         fontSize: 15
-
+                    }
+                },
+                scales: {
+                    r: {
+                        suggestedMin: 0,
+                        suggestedMax: 10
                     }
                 }
             }
@@ -101,25 +97,21 @@ function RadarChart(props) {
                             </thead>
                             <tbody className="tbody">
                                 <tr>
-                                    <td><span className="bull">&bull;</span> <span className="tr1">D.P</span></td>
+                                    <td><span className="bull">&bull;</span> <span className="tr1">Implementaion</span></td>
                                     <td><Link to ={'codeproblems/view?id=12'}><span className="programming">12</span></Link>, 
                                     <Link to ={'multiplechoice/view?id=2'}><span className="multiple"> 2</span></Link>, 
                                      34, 123, 554, 34, 123, 43, ....</td>
                                 </tr>
                                 <tr>
-                                    <td><span className="bull">&bull;</span> <span className="tr1">Graph</span></td>
+                                    <td><span className="bull">&bull;</span> <span className="tr1">Math</span></td>
                                     <td>12, 2, 34, 123, 554, 34, 123, 43, ...</td>
                                 </tr>
                                 <tr>
-                                    <td><span className="bull">&bull;</span> <span className="tr1">Math</span></td>
-                                    <td>12, 2, 34, 123, 554, 34, 123, 43, ..</td>
-                                </tr>
-                                <tr>
-                                    <td><span className="bull">&bull;</span> <span className="tr1">Implementaion</span></td>
-                                    <td>12, 2, 34, 123, 554, 34, 123, 43, ..</td>
-                                </tr>
-                                <tr>
                                     <td><span className="bull">&bull;</span> <span className="tr1">Data Structure</span></td>
+                                    <td>12, 2, 34, 123, 554, 34, 123, 43, ..</td>
+                                </tr>
+                                <tr>
+                                    <td><span className="bull">&bull;</span> <span className="tr1">Algorithm</span></td>
                                     <td>12, 2, 34, 123, 554, 34, 123, 43, ..</td>
                                 </tr>
                                 <tr>
@@ -183,7 +175,7 @@ const Wrapper = styled.div`
                         text-align:left;
                     }
                     .tbody{
-                        height:300px;
+                        height:250px;
                         .bull{
                             color:#cc0000;
                             font-size:20px;

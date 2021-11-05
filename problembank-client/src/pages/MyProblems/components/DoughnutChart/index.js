@@ -72,11 +72,9 @@ function DoughnutChart(props) {
                                   });
                                   let percentage = (val*100 / sum).toFixed(0)+"%";
                   
-                              //return ctx.chart.data.labels[ctx.dataIndex] + ' (' +percentage +')';
                               return '(' +percentage +')';
                             },
                             color: '#fff',
-                           // backgroundColor: '#fff',
                             backgroundColor: ['#FE88A0',
                                              '#74C9C6',
                                             '#C2E88D'],
@@ -236,7 +234,7 @@ function DoughnutChart(props) {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><span className="bull3">&bull;</span> <span className="tr1">주관식</span></td>
+                                    <td><span className="bull3">&bull;</span> <span className="tr1">단답형</span></td>
                                     <td>
                                     {
                                          shortan_list.slice(0).reverse().map((item,idx)=>{
@@ -275,7 +273,7 @@ function DoughnutChart(props) {
                         />
                     </div>
                     <div className="sub">
-                        <h3>주관식</h3>
+                        <h3>단답형</h3>
                         <Doughnut
                             data={sub_shortan}
                             options={option_sub}
