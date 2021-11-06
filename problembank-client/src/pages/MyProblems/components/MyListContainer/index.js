@@ -66,7 +66,7 @@ const Wrapper = styled.div`
         }
 		.active{
             font-weight: bold;
-            backgrond: #F5F5F5;
+           
         }
         
         
