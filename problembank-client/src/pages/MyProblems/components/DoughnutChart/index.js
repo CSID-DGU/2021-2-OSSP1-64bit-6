@@ -22,6 +22,7 @@ function DoughnutChart(props) {
 
     const [multiple_list,setMulList] = useState([]);
     const [shortan_list,setShorList] = useState([]);
+    const [coding_list,setCoding] = useState([]);
 
     Chart.register(ChartDataLabels);
 
@@ -29,10 +30,11 @@ function DoughnutChart(props) {
 		const fetchData = async () => {
             const res = await problemBankAPI.getStatusProblem();
             const {data} = res;
-			const {problem, multichoice, shortans} = data;
+			const {coding, multichoice, shortans} = data;
 
             setMulList(multichoice.isCorrectArrayMul);
             setShorList(shortans.isCorrectArrayShortans);
+            setCoding(coding.isCorrectArrayCoding);
 
 			let D_data = {
 				labels: ['프로그래밍', '객관식', '주관식'],
@@ -48,7 +50,7 @@ function DoughnutChart(props) {
                         '#36A2EB',
                         '#FFCE56'
                     ],
-					data: [3,multichoice.isCorrectArrayMul.length,shortans.isCorrectArrayShortans.length],
+					data: [coding.isCorrectArrayCoding.length,multichoice.isCorrectArrayMul.length,shortans.isCorrectArrayShortans.length],
 					}
 				]
 			};
@@ -102,7 +104,7 @@ function DoughnutChart(props) {
                         '#36A2EB',
                         '#FFCE56'
                     ],
-					data: [10,20,30],
+					data: [coding.levelCoding[2],coding.levelCoding[1],coding.levelCoding[0]],
 					}
 				]
 			};
@@ -213,7 +215,21 @@ function DoughnutChart(props) {
                             <tbody className="tbody">
                                 <tr>
                                     <td><span className="bull1">&bull;</span> <span className="tr1">프로그래밍</span></td>
-                                    <td></td>
+                                    <td>
+                                    {
+                                         coding_list.slice(0).reverse().map((item,idx)=>{
+
+                                            if (idx > 10) return false;
+
+                                            return(
+                                                <Link to = {`codeproblems/view?id=${item}`}> 
+                                                    {item} &nbsp;
+                                                </Link>
+                                            );
+                                         })
+                    
+                                    }
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><span className="bull2">&bull;</span> <span className="tr1">객관식</span></td>

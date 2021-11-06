@@ -16,7 +16,10 @@ function ProgressPanel(props) {
 		const fetchData = async () => {
 			const res = await problemBankAPI.getStatusProblem();
 			const {data} = res;
-			const {problem, multichoice, shortans, imp,math,str,dat,algo} = data;
+
+			const {coding, multichoice, shortans, imp,math,str,dat,algo} = data;
+			
+
 
 			let CodingProblem = {
 				labels: ['해결', '실패'],
@@ -31,7 +34,7 @@ function ProgressPanel(props) {
 							'#1FA000',
 							'#35014F',
 						],
-						data: [problem.isCorrect, problem.noCorrect],
+						data: [coding.isCorrectCoding, coding.noCorrectCoding],
 					},
 				],
 			};
