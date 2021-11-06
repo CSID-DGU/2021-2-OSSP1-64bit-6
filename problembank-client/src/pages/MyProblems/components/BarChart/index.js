@@ -73,7 +73,9 @@ function BarChart(props) {
             </div>
            
             <div className="list">
-                  {/*favoritepanel 활용하기*/}
+                  {/*favoritepanel 활용하기
+                    문제 번호,이름 유형, 틀린거 확인할 값
+                  */}
                     <div className="list-header">
                         <h2>틀린 문제 list</h2>
                     </div>
