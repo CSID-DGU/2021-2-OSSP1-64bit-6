@@ -521,6 +521,7 @@ router.get('/status-problem', async function (req, res){
         })
     }
 })
+
 router.get('/status-problems', async function (req, res){
     try {
         const { id } = req.user._user[0];
@@ -529,6 +530,30 @@ router.get('/status-problems', async function (req, res){
         const [shortans] = await db.query(sql.problems.joinCategoryLevelProblem_shortans, [id])
         const [count_heat] = await db.query(sql.problems.countTime, [id])
         const [con_heat] = await db.query(sql.problems.conTime, [id])
+	        //implementation
+        const [imp_multi] = await db.query(sql.problems.selectImpMulti,[id])
+        const [imp_short] = await db.query(sql.problems.selectImpShort,[id])
+        const [imp_prog] = await db.query(sql.problems.selectImpProg,[id])
+
+        //math
+        const [mat_multi] = await db.query(sql.problems.selectMathMulti,[id])
+        const [mat_short] = await db.query(sql.problems.selectMathShort,[id])
+        const [mat_prog] = await db.query(sql.problems.selectMathProg,[id])
+
+        //String
+        const [str_multi] = await db.query(sql.problems.selectStrMulti,[id])
+        const [str_short] = await db.query(sql.problems.selectStrShort,[id])
+        const [str_prog] = await db.query(sql.problems.selectStrProg,[id])
+
+        //Data Structure
+        const [dat_multi] = await db.query(sql.problems.selectDataMulti,[id])
+        const [dat_short] = await db.query(sql.problems.selectDataShort,[id])
+        const [dat_prog] = await db.query(sql.problems.selectDataProg,[id])
+
+        //Algorithm
+        const [alg_multi] = await db.query(sql.problems.selectAlgoMulti,[id])
+        const [alg_short] = await db.query(sql.problems.selectAlgoShort,[id])
+        const [alg_prog] = await db.query(sql.problems.selectAlgoProg,[id])    
         let nothing;
 
         // ----------pro
@@ -558,6 +583,10 @@ router.get('/status-problems', async function (req, res){
                                   : item.level.charCodeAt(0).toString(16) === 'c911' ? levelShortans[1]++
                                   : levelShortans[2]++
                                   : nothing=1) 
+        
+	
+	   
+	
 
         res.status(200).send({
             result: true,
@@ -566,6 +595,11 @@ router.get('/status-problems', async function (req, res){
                 multichoice: {isCorrectArrayMul, noCorrectArrayMul, levelMul},
                 shortans: {isCorrectArrayShortans, noCorrectArrayShortans, levelShortans},
                 heatmap: {count_heat, con_heat},
+		imp: {imp_multi, imp_short,imp_prog},
+                math: {mat_multi,mat_short,mat_prog},
+                str: {str_multi,str_short,str_prog},
+                dat: {dat_multi,dat_short,dat_prog},
+                algo : {alg_multi,alg_short,alg_prog},
             },
             message: '자기 작업한 문제 현황'
         })

@@ -37,8 +37,7 @@ module.exports = {
     selectMultiChoiceSubmit: "select * from plass_problem_multiplechoice_submit where user_id = ? and problem_id = ?",
     selectSubmitMultiChoiceProblem: "select * from plass_problem_multiplechoice_answer where problem_id =? and id = ?",
     getCountMultiChoiceProblem: "SELECT COUNT(id) as count FROM plass_problem_multiplechoice",
-    selectMultiChoiceSubmitByUserId: "SELECT * FROM plass_problem_multiplechoice_submit where user_id = ?",
-    
+    selectMultiChoiceSubmitByUserId: "SELECT * FROM plass_problem_multiplechoice_submit where user_id = ?",    
     //SHORTANS PROBLEM
     selectShortProblem: "select * from plass_problem_shortans where name = ? and content = ?",
     getMyListProblem: "select mp.*, p.name, p.content  from plass_mylist_problem as mp, plass_problems as p where mp.user_id = ? and mp.problem_id = p.id order by problem_type desc",
@@ -55,6 +54,29 @@ module.exports = {
     checkLikeProblem: "select * from plass_mylist_problem where user_id = ? and problem_id = ?",
     setProblemMyList: "insert into plass_mylist_problem(user_id, problem_id, problem_type) values (?, ?, ?)",
     
+	
+       //Category Imp
+    selectImpMulti : "select problem_id from plass_problem_multiplechoice_submit WHERE (( problem_id BETWEEN 1 AND 22) OR (problem_id BETWEEN 24 AND 26) OR (problem_id BETWEEN 28 AND 30) OR (problem_id BETWEEN 33 AND 50 )) AND answer_status = 'true' AND user_id = ?" ,
+    selectImpShort : "select problem_id from plass_problem_shortans_submit where ((problem_id BETWEEN 1 AND 4) OR (problem_id BETWEEN 7 AND 13) OR (problem_id BETWEEN 15 AND 20) OR (problem_id BETWEEN 22 AND 24) OR (problem_id BETWEEN 26 AND 36) OR (problem_id BETWEEN 38 AND 45)) AND answer_status = 1 AND user_id = ?",
+    selectImpProg : "select problem_id from plass_problem_submit where ((problem_id BETWEEN 1 AND 4) OR (problem_id BETWEEN 11 AND 22) OR (problem_id BETWEEN 25 AND 26) OR (problem_id BETWEEN 29 AND 30 ) OR (problem_id = 33) OR (problem_id BETWEEN 39 AND 40) OR (problem_id = 43) OR  (problem_id BETWEEN 48 AND 50)) AND answer_status = 1 AND user_id = ?",
+    //Category Math
+    selectMathMulti : "select problem_id from plass_problem_multiplechoice_submit WHERE (problem_id = 23) or (problem_id = 27) AND answer_status = 'true' AND user_id = ?",
+    selectMathShort : "select problem_id from plass_problem_shortans_submit where (problem_id = 14)  AND answer_status = 1 AND user_id = ?",
+    selectMathProg : "select problem_id from plass_problem_submit where ((problem_id = 24 ) OR (problem_id BETWEEN 27 AND 28) OR (problem_id BETWEEN 41 AND 42)OR (problem_id BETWEEN 44 AND 47)) AND answer_status = 1 AND user_id = ?",
+    //Category String
+    selectStrMulti : "select problem_id from plass_problem_multiplechoice_submit where problem_id = 500",
+    selectStrShort : "select problem_id from plass_problem_shortans_submit where ((problem_id BETWEEN 5 AND 6) or (problem_id = 21)or (problem_id = 25) or (problem_id = 37)) AND answer_status = 1 AND user_id = ?",
+    selectStrProg : "select problem_id from plass_problem_submit where ((problem_id BETWEEN 9 AND 10) OR (problem_id = 32) or (problem_id BETWEEN 36 AND 37)) AND answer_status = 1 AND user_id = ?",
+    //Category Data Structure
+    selectDataMulti: "select problem_id from plass_problem_multiplechoice_submit WHERE (problem_id BETWEEN 31 AND 32 ) AND answer_status = 'true' AND user_id = ?",
+    selectDataShort: "select problem_id from plass_problem_shortans_submit where (problem_id = 50) AND answer_status = 1 AND user_id = ? ",
+    selectDataProg : "select problem_id from plass_problem_submit where ((problem_id BETWEEN 5 AND 8) OR ( problem_id  = 32) OR (problem_id = 31) OR (problem_id BETWEEN 34 AND 35))  AND answer_status = 1 AND user_id = ? ",
+    //Category Algorithm
+    selectAlgoMulti : "select problem_id from plass_problem_multiplechoice_submit where problem_id = 500",
+    selectAlgoShort : "select problem_id from plass_problem_shortans_submit where (problem_id BETWEEN 46 AND 49) AND answer_status = 1 AND user_id = ? ",
+    selectAlgoProg : "select problem_id from plass_problem_submit where (problem_id = 38)AND answer_status = 1 AND user_id = ? ",
+    
+
 
     //==================INSERT==================== 
     //PROBLEM
