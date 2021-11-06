@@ -599,7 +599,47 @@ router.get('/status-problems', async function (req, res){
 	
                                      
         
+	let proArray = [];
+        let proDate = [];
+        let proCategory = [];
+        imp_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi") ))
+        imp_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short")))
+        imp_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog")))
 
+
+        mat_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi") ))
+        mat_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short")))
+        mat_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timsetamp),proCategory.push("prog")))
+
+
+
+        str_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi") ))
+        str_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short")))
+        str_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog")))
+
+
+
+        dat_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi") ))
+        dat_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short")))
+        dat_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog")))
+
+
+        alg_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi") ))
+        alg_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short")))
+        alg_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog")))
+
+
+        
+        console.log(proArray);
+        console.log(proDate);
+        console.log(proCategory);  
+
+
+        
+        
+        
+        
+  
         res.status(200).send({
             result: true,
             data: {
@@ -607,11 +647,7 @@ router.get('/status-problems', async function (req, res){
                 multichoice: {isCorrectArrayMul, noCorrectArrayMul, levelMul},
                 shortans: {isCorrectArrayShortans, noCorrectArrayShortans, levelShortans},
                 heatmap: {count_heat, con_heat},
-		imp: {imp_multi, imp_short,imp_prog},
-                math: {mat_multi,mat_short,mat_prog},
-                str: {str_multi,str_short,str_prog},
-                dat: {dat_multi,dat_short,dat_prog},
-                algo : {alg_multi,alg_short,alg_prog},
+		proCate: {proArray,proDate,proCategory},
             },
             message: '자기 작업한 문제 현황'
         })
