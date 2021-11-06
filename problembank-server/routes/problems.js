@@ -625,9 +625,9 @@ router.get('/status-problems', async function (req, res){
         dat_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog"),proType.push("data")))
 
 
-        alg_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi"),proType("algo") ))
-        alg_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short"),proType("algo")))
-        alg_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog"),proType("algo")))
+        alg_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi"),proType.push("algo") ))
+        alg_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short"),proType.push("algo")))
+        alg_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog"),proType.push("algo")))
 
 
         
