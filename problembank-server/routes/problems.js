@@ -602,36 +602,37 @@ router.get('/status-problems', async function (req, res){
 	let proArray = [];
         let proDate = [];
         let proCategory = [];
-        imp_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi") ))
-        imp_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short")))
-        imp_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog")))
+	let proType = [];    
+        imp_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi"),proType.push("imp") ))
+        imp_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short"), proType.push("imp")))
+        imp_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog"),proType.push("imp")))
 
 
-        mat_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi") ))
-        mat_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short")))
-        mat_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timsetamp),proCategory.push("prog")))
-
-
-
-        str_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi") ))
-        str_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short")))
-        str_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog")))
+        mat_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi"),proType.push("math") ))
+        mat_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short"),proType.push("math")))
+        mat_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timsetamp),proCategory.push("prog"),proType.push("math")))
 
 
 
-        dat_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi") ))
-        dat_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short")))
-        dat_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog")))
+        str_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi"),proType.push("str") ))
+        str_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short"),proType.push("str")))
+        str_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog"),proType.push("str")))
 
 
-        alg_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi") ))
-        alg_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short")))
-        alg_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog")))
+
+        dat_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi"),proType.push("data") ))
+        dat_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short"),proType.push("data")))
+        dat_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog"),proType.push("data")))
+
+
+        alg_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi"),proType("algo") ))
+        alg_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short"),proType("algo")))
+        alg_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog"),proType("algo")))
 
 
         
           
-
+	
 
         
         
@@ -645,7 +646,7 @@ router.get('/status-problems', async function (req, res){
                 multichoice: {isCorrectArrayMul, noCorrectArrayMul, levelMul},
                 shortans: {isCorrectArrayShortans, noCorrectArrayShortans, levelShortans},
                 heatmap: {count_heat, con_heat},
-		proCate: {proArray,proDate,proCategory},
+		proCate: {proArray,proDate,proCategory,proType},
             },
             message: '자기 작업한 문제 현황'
         })
