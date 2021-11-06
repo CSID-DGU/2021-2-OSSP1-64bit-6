@@ -599,7 +599,46 @@ router.get('/status-problems', async function (req, res){
 	
                                      
         
+	let proArray = [];
+        let proDate = [];
+        let proCategory = [];
+	let proType = [];    
+        imp_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi"),proType.push("imp") ))
+        imp_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short"), proType.push("imp")))
+        imp_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog"),proType.push("imp")))
 
+
+        mat_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi"),proType.push("math") ))
+        mat_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short"),proType.push("math")))
+        mat_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timsetamp),proCategory.push("prog"),proType.push("math")))
+
+
+
+        str_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi"),proType.push("str") ))
+        str_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short"),proType.push("str")))
+        str_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog"),proType.push("str")))
+
+
+
+        dat_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi"),proType.push("data") ))
+        dat_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short"),proType.push("data")))
+        dat_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog"),proType.push("data")))
+
+
+        alg_multi.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("multi"),proType.push("algo") ))
+        alg_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short"),proType.push("algo")))
+        alg_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog"),proType.push("algo")))
+
+
+        
+          
+	
+
+        
+        
+        
+        
+  
         res.status(200).send({
             result: true,
             data: {
@@ -607,11 +646,7 @@ router.get('/status-problems', async function (req, res){
                 multichoice: {isCorrectArrayMul, noCorrectArrayMul, levelMul},
                 shortans: {isCorrectArrayShortans, noCorrectArrayShortans, levelShortans},
                 heatmap: {count_heat, con_heat},
-		imp: {imp_multi, imp_short,imp_prog},
-                math: {mat_multi,mat_short,mat_prog},
-                str: {str_multi,str_short,str_prog},
-                dat: {dat_multi,dat_short,dat_prog},
-                algo : {alg_multi,alg_short,alg_prog},
+		proCate: {proArray,proDate,proCategory,proType},
             },
             message: '자기 작업한 문제 현황'
         })

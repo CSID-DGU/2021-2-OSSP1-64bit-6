@@ -12,7 +12,13 @@ function RadarChart(props) {
 	const user = useSelector((state) => state.user);
 	const [stateRadar, setStateRadar] = useState({});
     const [radarOption, setRadarOption] = useState({});
+    const [impproblem, setImp] = useState([]);
+    const [dataproblem, setData] = useState([]);
+    const [mathproblem, setMath] = useState([]);
+    const [algoproblem, setAlgo] = useState([]);
+    const [strproblem, setStr] = useState([]);
 
+    
     Chart.register(ChartDataLabels);
 
 	useEffect(() => {
@@ -20,22 +26,133 @@ function RadarChart(props) {
 
             const res = await problemBankAPI.getStatusProblem();
             const {data} = res;
-			const {imp,math,str,dat,algo} = data;
+			const {proCate} = data;
 
-            console.log(imp);
+            console.log(proCate);
 
+            let sum_pro = proCate.proArray.length;
+
+            let multi_category = [0,0,0,0,0]; let shortan_category = [0,0,0,0,0]; let programming_category = [0,0,0,0,0];
+            let multi_sum = 0; let shortan_sum = 0; let programming_sum = 0;
+
+            let Imp_arr = []; let Data_arr = []; let Math_arr = []; let Algo_arr = []; let Str_arr = [];
+
+            for(let i = 0; i < sum_pro; i++)
+            {
+                let Cate = proCate.proCategory[i];
+                let Type = proCate.proType[i];
+                if(Cate === 'multi'){
+                    multi_sum++;
+                    if(Type === 'imp') {
+                        multi_category[0]++;
+                        Imp_arr.push({ID:proCate.proArray[i], type:'multi', time:proCate.proDate[i]})
+                    }
+                    else if(Type === 'data') {
+                        multi_category[1]++;
+                        Data_arr.push({ID:proCate.proArray[i], type:'multi', time:proCate.proDate[i]})
+                    }
+                    else if(Type === 'math')  {
+                        multi_category[2]++;
+                        Math_arr.push({ID:proCate.proArray[i], type:'multi', time:proCate.proDate[i]})
+                    }
+                    else if(Type === 'algo') {
+                        multi_category[3]++;
+                        Algo_arr.push({ID:proCate.proArray[i], type:'multi', time:proCate.proDate[i]})
+                    }
+                    else if(Type === 'str') {
+                        multi_category[4]++;
+                        Str_arr.push({ID:proCate.proArray[i], type:'multi', time:proCate.proDate[i]})
+                    }
+                }
+                else if(Cate === 'short'){
+                    shortan_sum++;
+                    if(Type === 'imp') {
+                        shortan_category[0]++;
+                        Imp_arr.push({ID:proCate.proArray[i], type:'shortan', time:proCate.proDate[i]})
+                    }
+                    else if(Type === 'data') {
+                        shortan_category[1]++;
+                        Data_arr.push({ID:proCate.proArray[i], type:'shortan', time:proCate.proDate[i]})
+                    }
+                    else if(Type === 'math') {
+                        shortan_category[2]++;
+                        Math_arr.push({ID:proCate.proArray[i], type:'shortan', time:proCate.proDate[i]})
+                    }
+                    else if(Type === 'algo') {
+                        shortan_category[3]++;
+                        Algo_arr.push({ID:proCate.proArray[i], type:'shortan', time:proCate.proDate[i]})
+                    }
+                    else if(Type === 'str') {
+                        shortan_category[4]++;
+                        Str_arr.push({ID:proCate.proArray[i], type:'shortan', time:proCate.proDate[i]})
+                    }
+                }
+                else if(Cate === 'prog'){
+                    programming_sum++;
+                    if(Type === 'imp') {
+                        programming_category[0]++;
+                        Imp_arr.push({ID:proCate.proArray[i], type:'programming', time:proCate.proDate[i]})
+                    }
+                    else if(Type === 'data') {
+                        programming_category[1]++;
+                        Data_arr.push({ID:proCate.proArray[i], type:'programming', time:proCate.proDate[i]})
+                    }
+                    else if(Type === 'math') {
+                        programming_category[2]++;
+                        Math_arr.push({ID:proCate.proArray[i], type:'programming', time:proCate.proDate[i]})
+                    }
+                    else if(Type === 'algo') {
+                        programming_category[3]++;
+                        Algo_arr.push({ID:proCate.proArray[i], type:'programming', time:proCate.proDate[i]})
+                    }
+                    else if(Type === 'str') {
+                        programming_category[4]++;
+                        Str_arr.push({ID:proCate.proArray[i], type:'programming', time:proCate.proDate[i]})
+                    }
+                }
+            }
+            Imp_arr = Imp_arr.sort((a,b)=>{
+                if(a.time>b.time) return -1;
+                if(a.time<b.time) return 1;
+                return 0;
+            })
+            Data_arr = Data_arr.sort((a,b)=>{
+                if(a.time>b.time) return -1;
+                if(a.time<b.time) return 1;
+                return 0;
+            })
+            Math_arr = Math_arr.sort((a,b)=>{
+                if(a.time>b.time) return -1;
+                if(a.time<b.time) return 1;
+                return 0;
+            })
+            Algo_arr = Algo_arr.sort((a,b)=>{
+                if(a.time>b.time) return -1;
+                if(a.time<b.time) return 1;
+                return 0;
+            })
+            Str_arr = Str_arr.sort((a,b)=>{
+                if(a.time>b.time) return -1;
+                if(a.time<b.time) return 1;
+                return 0;
+            })
+            setImp(Imp_arr); setAlgo(Algo_arr); setData(Data_arr); setMath(Math_arr); setStr(Str_arr);
+            
+            let ratio_multi = multi_category.map((item)=> Math.round(item/multi_sum*10));
+            let ratio_shortan = shortan_category.map((item)=> Math.round(item/shortan_sum*10));
+            let ratio_programming = programming_category.map((item)=> Math.round(item/programming_sum*10));
 
 			let R_data ={
                 labels:[
                     'Implementaion',
-                    'Math',
                     'Data Structure',
+                    'Math',
                     'Algorithm',
                     'String'
                 ],
                 datasets: [{
                     label : '프로그래밍',
-                    data : [4,1,10,3,2],
+                    data : [ratio_programming[0],ratio_programming[1],ratio_programming[2],ratio_programming[3],ratio_programming[4]],
                     fill : true,
                     backgroundColor: 'rgba(254, 136, 160, 0.2)',
                     borderColor: 'rgb(254, 136, 160)',
@@ -43,7 +160,7 @@ function RadarChart(props) {
                   
                 }, {
                     label : '객관식',
-                    data : [10,2,3,8,8],
+                    data : [ratio_multi[0], ratio_multi[1],ratio_multi[2],ratio_multi[3],ratio_multi[4]],
                     fill : true,
                     backgroundColor: 'rgba(116, 201, 198, 0.2)',
                     borderColor: 'rgb(116, 201, 198)',
@@ -51,7 +168,7 @@ function RadarChart(props) {
                  
                 },{
                     label : '단답형',
-                    data : [1,10,2,9,9],
+                    data : [ratio_shortan[0], ratio_shortan[1] ,ratio_shortan[2], ratio_shortan[3], ratio_shortan[4]],
                     fill : true,
                     backgroundColor: 'rgba(194, 232, 141, 0.2)',
                     borderColor: 'rgb(194, 232, 141)',
@@ -59,7 +176,6 @@ function RadarChart(props) {
                 }]
             };
             setStateRadar(R_data);
-
 
             let options = {
                 plugins:{
@@ -80,6 +196,7 @@ function RadarChart(props) {
 		};
 		fetchData();
 	}, []);
+    
 	return (
 		<Wrapper>
 			<div className="container">
@@ -106,36 +223,171 @@ function RadarChart(props) {
                             <tbody className="tbody">
                                 <tr>
                                     <td><span className="bull">&bull;</span> <span className="tr1">Implementaion</span></td>
-                                    <td><Link to ={'codeproblems/view?id=12'}><span className="programming">12</span></Link>, 
-                                    <Link to ={'multiplechoice/view?id=2'}><span className="multiple"> 2</span></Link>, 
-                                     34, 123, 554, 34, 123, 43, ....</td>
-                                </tr>
-                                <tr>
-                                    <td><span className="bull">&bull;</span> <span className="tr1">Math</span></td>
-                                    <td>12, 2, 34, 123, 554, 34, 123, 43, ...</td>
+                                    <td>
+                                    {
+                                        impproblem.map((item,idx)=>{
+                                            if (idx > 8) return false;
+
+                                            if(item.type === 'programming'){
+                                                return(
+                                                    <Link to = {`codeproblems/view?id=${item.ID}`}> 
+                                                       <span style ={{color:'#FE88A0'}}> {item.ID} &nbsp; </span>
+                                                    </Link>
+                                                );
+                                            }
+                                            else if(item.type === 'shortan'){
+                                                return(
+                                                    <Link to = {`shortans/view?id=${item.ID}`}> 
+                                                       <span style ={{color:'#66cc00'}}> {item.ID} &nbsp; </span>
+                                                    </Link>
+                                                );
+                                            }
+                                            else if(item.type === 'multi'){
+                                                return(
+                                                    <Link to = {`multiplechoice/view?id=${item.ID}`}> 
+                                                       <span style ={{color:'#0080ff'}}> {item.ID} &nbsp; </span>
+                                                    </Link>
+                                                );
+                                            }
+                                        })
+                                    }
+
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><span className="bull">&bull;</span> <span className="tr1">Data Structure</span></td>
-                                    <td>12, 2, 34, 123, 554, 34, 123, 43, ..</td>
+                                    <td>
+                                    {
+                                        dataproblem.map((item,idx)=>{
+                                            if (idx > 8) return false;
+
+                                            if(item.type === 'programming'){
+                                                return(
+                                                    <Link to = {`codeproblems/view?id=${item.ID}`}> 
+                                                       <span style ={{color:'#FE88A0'}}> {item.ID} &nbsp; </span>
+                                                    </Link>
+                                                );
+                                            }
+                                            else if(item.type === 'shortan'){
+                                                return(
+                                                    <Link to = {`shortans/view?id=${item.ID}`}> 
+                                                       <span style ={{color:'#66cc00'}}> {item.ID} &nbsp; </span>
+                                                    </Link>
+                                                );
+                                            }
+                                            else if(item.type === 'multi'){
+                                                return(
+                                                    <Link to = {`multiplechoice/view?id=${item.ID}`}> 
+                                                       <span style ={{color:'#0080ff'}}> {item.ID} &nbsp; </span>
+                                                    </Link>
+                                                );
+                                            }
+                                        })
+                                    }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span className="bull">&bull;</span> <span className="tr1">Math</span></td>
+                                    <td>
+                                    {
+                                        mathproblem.map((item,idx)=>{
+                                            if (idx > 8) return false;
+
+                                            if(item.type === 'programming'){
+                                                return(
+                                                    <Link to = {`codeproblems/view?id=${item.ID}`}> 
+                                                       <span style ={{color:'#FE88A0'}}> {item.ID} &nbsp; </span>
+                                                    </Link>
+                                                );
+                                            }
+                                            else if(item.type === 'shortan'){
+                                                return(
+                                                    <Link to = {`shortans/view?id=${item.ID}`}> 
+                                                       <span style ={{color:'#66cc00'}}> {item.ID} &nbsp; </span>
+                                                    </Link>
+                                                );
+                                            }
+                                            else if(item.type === 'multi'){
+                                                return(
+                                                    <Link to = {`multiplechoice/view?id=${item.ID}`}> 
+                                                       <span style ={{color:'#0080ff'}}> {item.ID} &nbsp; </span>
+                                                    </Link>
+                                                );
+                                            }
+                                        })
+                                    }
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><span className="bull">&bull;</span> <span className="tr1">Algorithm</span></td>
-                                    <td>12, 2, 34, 123, 554, 34, 123, 43, ..</td>
+                                    <td>
+                                    {
+                                        algoproblem.map((item,idx)=>{
+                                            if (idx > 8) return false;
+
+                                            if(item.type === 'programming'){
+                                                return(
+                                                    <Link to = {`codeproblems/view?id=${item.ID}`}> 
+                                                       <span style ={{color:'#FE88A0'}}> {item.ID} &nbsp; </span>
+                                                    </Link>
+                                                );
+                                            }
+                                            else if(item.type === 'shortan'){
+                                                return(
+                                                    <Link to = {`shortans/view?id=${item.ID}`}> 
+                                                       <span style ={{color:'#66cc00'}}> {item.ID} &nbsp; </span>
+                                                    </Link>
+                                                );
+                                            }
+                                            else if(item.type === 'multi'){
+                                                return(
+                                                    <Link to = {`multiplechoice/view?id=${item.ID}`}> 
+                                                       <span style ={{color:'#0080ff'}}> {item.ID} &nbsp; </span>
+                                                    </Link>
+                                                );
+                                            }
+                                        })
+                                    }
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><span className="bull">&bull;</span> <span className="tr1">String</span></td>
-                                    <td>12, 2, 34, 123, 554, 34, 123, 43, ..</td>
+                                    <td>
+                                    {
+                                        strproblem.map((item,idx)=>{
+                                            if (idx > 8) return false;
+
+                                            if(item.type === 'programming'){
+                                                return(
+                                                    <Link to = {`codeproblems/view?id=${item.ID}`}> 
+                                                       <span style ={{color:'#FE88A0'}}> {item.ID} &nbsp; </span>
+                                                    </Link>
+                                                );
+                                            }
+                                            else if(item.type === 'shortan'){
+                                                return(
+                                                    <Link to = {`shortans/view?id=${item.ID}`}> 
+                                                       <span style ={{color:'#66cc00'}}> {item.ID} &nbsp; </span>
+                                                    </Link>
+                                                );
+                                            }
+                                            else if(item.type === 'multi'){
+                                                return(
+                                                    <Link to = {`multiplechoice/view?id=${item.ID}`}> 
+                                                       <span style ={{color:'#0080ff'}}> {item.ID} &nbsp; </span>
+                                                    </Link>
+                                                );
+                                            }
+                                        })
+                                    }
+                                    </td>
                                 </tr>
                             </tbody>
-
                         </table>
-                       
-
-                      
                     </div>
                 </div>
-               
-                
             </div>
 		</Wrapper>
 	);

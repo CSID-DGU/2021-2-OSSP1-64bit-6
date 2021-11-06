@@ -17,7 +17,7 @@ function ProgressPanel(props) {
 			const res = await problemBankAPI.getStatusProblem();
 			const {data} = res;
 
-			const {coding, multichoice, shortans, imp,math,str,dat,algo} = data;
+			const {coding, multichoice, shortans, heatmap, proCate} = data;
 			
 
 
@@ -58,7 +58,9 @@ function ProgressPanel(props) {
 			};
 			setStateMulti(MultiChoiceProblem);
 
-			
+			console.log(proCate.proArray);
+			console.log(proCate.proDate);
+			console.log(proCate.proCategory);
 			
 			let ShortansProblem = {
 				labels: ['해결', '실패'],
