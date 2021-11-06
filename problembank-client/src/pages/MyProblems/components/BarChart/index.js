@@ -22,23 +22,23 @@ function BarChart(props) {
                     '프로그래밍',
                     '객관식',
                     '단답형',
-                    
                 ],
                 datasets: [{
-                    
                       label: '틀린문제 수',
+                      maxBarThickness: 50,
                       data: [4, 5, 1],
-                      backgroundColor: 'rgb(255, 99, 132)',
+                      backgroundColor: ['#FE88A0', '#74C9C6',  '#C2E88D'],
                     }]
             };
             setStateBar(data);
 
             let options ={
                 indexAxis: 'y',
+                plugins:{
                     legend:{
-                    display:true,
-                    position:'right'
-                    }
+                    display:false,
+                }}
+                
             }
             setBarOption(options);
         };
@@ -48,70 +48,76 @@ function BarChart(props) {
         <Wrapper>
             <div className="container">
                 <div className="chart-header">
-                    <h2>&bull; 틀린 문제</h2>
+                    <h2> 틀린 문제</h2>
                 </div>
 
                 <div className="chart-main">
                     <div className="chart">
-                    <Bar 
-                        data = {stateBar}
-                        options={BarOption}
-                    />
+                        <Bar 
+                            data = {stateBar}
+                            options={BarOption}
+                        />
                     </div>
                 </div>
-
             </div>
-            <div><br></br></div>
+           
             <div className="list">
-                  
                   {/*favoritepanel 활용하기*/}
-  
-                    <h1>&bull; 틀린 문제 list</h1>
-                       <h2><small>1.프로그래밍 문제</small></h2>  
-                       <Link to ={'codeproblems/view?id=12'}>12.집합 만들기</Link>
-                       <h2><small>2.객관식 문제</small></h2>
-                       <Link to ={'multiplechoice/view?id=25'}>25.반복문 출력 결과</Link>
-                      
+                    <div className="list-header">
+                        <h2>틀린 문제 list</h2>
+                    </div>
+                    <div className="list-main">
+                        <h2><small>1.프로그래밍 문제</small></h2>  
+                        <Link to ={'codeproblems/view?id=12'}>12.집합 만들기</Link>
+                        <h2><small>2.객관식 문제</small></h2>
+                        <Link to ={'multiplechoice/view?id=25'}>25.반복문 출력 결과</Link>
+                    </div>
              </div>
         </Wrapper>
     );
 }
 const Wrapper = styled.div`
-    margin-top : 50px;
-    margin-bottom:30px;
     flex: 0 0 1000px;
-    box-sizing: border-box;
-
     .container{
-        box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 1px;
-        border: 5px solid #a0a0a0;
-        border-radius: 20px;
-        background: #F5F5F5;
+        border: 5px solid #F5F5F5;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
 
         .chart-header{
+            background: #F5F5F5;
             padding: 20px 30px;
+            border-bottom: 5px solid #F5F5F5;
         }
+
         .chart-main{
             display: flex;
             justify-content: space-around;
             padding-bottom:20px;
             .chart{
-                flex:0 0 800px;
+                padding-top : 20px;
+                padding-left : 10px;
+                padding-right : 30px;
+                flex:0 0 1000px;
             }
-           
         }
-      
-
     }
 
     .list{
-      
-        box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 1px;
-        border: 5px solid #a0a0a0;
-        border-radius: 20px;
-        background: #F5F5F5;
-        
-        padding:20px;
+        //margin-top:10px;
+        border: 5px solid #F5F5F5;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+
+        .list-header{
+            background: #F5F5F5;
+            border-bottom: 5px solid #F5F5F5;
+            padding-left:20px;
+            padding-top : 10px;
+            padding-bottom : 10px;
+        }
+        .list-main{
+            padding:20px;
+        }
     }
     
    
