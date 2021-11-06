@@ -26,7 +26,7 @@ function BarChart(props) {
                 datasets: [{
                       label: '틀린문제 수',
                       maxBarThickness: 50,
-                      data: [4, 5, 1],
+                      data: [4, 3, 1],
                       backgroundColor: ['#FE88A0', '#74C9C6',  '#C2E88D'],
                     }]
             };
@@ -34,11 +34,22 @@ function BarChart(props) {
 
             let options ={
                 indexAxis: 'y',
-                plugins:{
-                    legend:{
-                    display:false,
-                }}
-                
+                responsive: false,
+                scales: {
+                   
+                    x: 
+                       {
+
+                            ticks:{
+                                min: 0,
+                                stepSize : 1,
+                                fontSize : 14,
+                               }
+                       }
+                           
+                },
+ 
+               
             }
             setBarOption(options);
         };
@@ -82,13 +93,11 @@ const Wrapper = styled.div`
         border: 5px solid #F5F5F5;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
-
         .chart-header{
             background: #F5F5F5;
             padding: 20px 30px;
             border-bottom: 5px solid #F5F5F5;
         }
-
         .chart-main{
             display: flex;
             justify-content: space-around;
@@ -101,13 +110,11 @@ const Wrapper = styled.div`
             }
         }
     }
-
     .list{
         //margin-top:10px;
         border: 5px solid #F5F5F5;
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
-
         .list-header{
             background: #F5F5F5;
             border-bottom: 5px solid #F5F5F5;

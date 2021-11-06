@@ -7,17 +7,20 @@ function MyListContainer(props) {
 	return (
 		<Wrapper className="all__lists">
 			<div className="container">
-				<div className="all__lists--header">
+                <div className="all__lists--header">
 					<h3>마이 리스트</h3>
 					{/* <button><i className="fa fa-fw fa-plus-circle"></i></button> */}
 				</div>
+		
 				<div className="all__list--listgroup">
 					<ul>
-						<li><NavLink to ="/mylist">개요</NavLink></li>
-						<li><NavLink to ="/mylist/Wrong">틀린문제</NavLink></li>
+                       
+						<li><NavLink exact activeClassName="active"  to ="/mylist">개요</NavLink></li>
+						<li><NavLink activeClassName="active"  to ="/mylist/Wrong">틀린문제</NavLink></li>
 						{/* <li><NavLink to="/mypage/mytest" className="navLink">시험 결과 조회</NavLink></li>
                         <li><NavLink to="/mypage/mytest/manage" className="navLink">시험 수정</NavLink></li>
                         <li><NavLink to="/mypage/mytest/create" className="navLink">시험 생성</NavLink></li> */}
+                        
 					</ul>
 					{/* props.user.userData.roleId == 1 ||  // manager
           				props.user.userData.roleId == 2 ||        // coursecreator
@@ -54,10 +57,25 @@ const Wrapper = styled.div`
             }
         }
         .all__list--listgroup{
-            background: #fff;
-            padding: 10px 20px;
+            
+            background: #FFFFFF;
+            padding: 10px 20px ;
+            text-align: center;
+            line-height: 30px;
+           
         }
+		.active{
+            font-weight: bold;
+        }
+        
+        
+       
     }
+   
 `;
+
+
+
+
 export default MyListContainer;
 
