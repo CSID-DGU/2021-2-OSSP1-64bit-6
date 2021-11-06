@@ -524,16 +524,24 @@ router.get('/status-problem', async function (req, res){
 router.get('/status-problems', async function (req, res){
     try {
         const { id } = req.user._user[0];
-        const [problem] = await db.query(sql.problems.selectProblemSubmitByUserId, [id])
+        const [coding] = await db.query(sql.problems.joinCategoryLevelProblem_coding, [id])
         const [multichoice] = await db.query(sql.problems.joinCategoryLevelProblem_mul, [id])
         const [shortans] = await db.query(sql.problems.joinCategoryLevelProblem_shortans, [id])
-        const [count_heat] = await db.query(sql.problems.countTime, [id])
-        const [con_heat] = await db.query(sql.problems.conTime, [id])
+        const [count_heat] = await db.query(sql.problems.countTime, [id,id,id])
+        const [con_heat] = await db.query(sql.problems.conTime, [id,id,id])
         let nothing;
-
+        
         // ----------pro
-        let isCorrect = 0, noCorrect = 0;
-        problem.map((item) => item.answer_status === 'true' ? ++isCorrect : ++noCorrect)
+        let isCorrectArrayCoding = [];
+        let noCorrectArrayCoding = [];
+        coding.map((item) => item.answer_status === 1 ? isCorrectArrayCoding.push(item.problem_id) : noCorrectArrayCoding.push(item.problem_id))
+
+        let levelCoding=[0,0,0];
+        coding.map((item) => item.answer_status === 1 ?
+                                  item.level.charCodeAt(0).toString(16) === 'd558' ? levelCoding[0]++
+                                  : item.level.charCodeAt(0).toString(16) === 'c911' ? levelCoding[1]++
+                                  : levelCoding[2]++
+                                  : nothing=1)   
         
         // ----------mul
         // 배열로 정답/오답
@@ -557,12 +565,13 @@ router.get('/status-problems', async function (req, res){
                                   item.level.charCodeAt(0).toString(16) === 'd558' ? levelShortans[0]++
                                   : item.level.charCodeAt(0).toString(16) === 'c911' ? levelShortans[1]++
                                   : levelShortans[2]++
-                                  : nothing=1) 
+                                  : nothing=1)   
+        
 
         res.status(200).send({
             result: true,
             data: {
-                problem: {isCorrect, noCorrect},
+                coding: {isCorrectArrayCoding, noCorrectArrayCoding, levelCoding},
                 multichoice: {isCorrectArrayMul, noCorrectArrayMul, levelMul},
                 shortans: {isCorrectArrayShortans, noCorrectArrayShortans, levelShortans},
                 heatmap: {count_heat, con_heat},
