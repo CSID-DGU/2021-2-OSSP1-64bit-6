@@ -13,7 +13,8 @@ function MyListContainer(props) {
 				</div>
 				<div className="all__list--listgroup">
 					<ul>
-						<li><NavLink to ="/">Favorite Problem List</NavLink></li>
+						<li><NavLink to ="/mylist">개요</NavLink></li>
+						<li><NavLink to ="/mylist/Wrong">틀린문제</NavLink></li>
 						{/* <li><NavLink to="/mypage/mytest" className="navLink">시험 결과 조회</NavLink></li>
                         <li><NavLink to="/mypage/mytest/manage" className="navLink">시험 수정</NavLink></li>
                         <li><NavLink to="/mypage/mytest/create" className="navLink">시험 생성</NavLink></li> */}

@@ -17,7 +17,15 @@ function RadarChart(props) {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			let data ={
+
+            const res = await problemBankAPI.getStatusProblem();
+            const {data} = res;
+			const {imp,math,str,dat,algo} = data;
+
+            console.log(imp);
+
+
+			let R_data ={
                 labels:[
                     'Implementaion',
                     'Math',
@@ -50,7 +58,7 @@ function RadarChart(props) {
                     
                 }]
             };
-            setStateRadar(data);
+            setStateRadar(R_data);
 
 
             let options = {
