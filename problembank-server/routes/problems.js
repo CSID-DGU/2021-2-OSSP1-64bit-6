@@ -630,9 +630,7 @@ router.get('/status-problems', async function (req, res){
 
 
         
-        console.log(proArray);
-        console.log(proDate);
-        console.log(proCategory);  
+          
 
 
         
