@@ -156,8 +156,6 @@ function RadarChart(props) {
                     fill : true,
                     backgroundColor: 'rgba(254, 136, 160, 0.2)',
                     borderColor: 'rgb(254, 136, 160)',
-                   
-                  
                 }, {
                     label : '객관식',
                     data : [ratio_multi[0], ratio_multi[1],ratio_multi[2],ratio_multi[3],ratio_multi[4]],
@@ -182,13 +180,24 @@ function RadarChart(props) {
                     legend:{
                         position:'bottom',
                         fontSize: 15
+                    },
+                    datalabels:{
+                        display:false
                     }
                 },
                 scales: {
+                    angleLines: {
+                        display: false
+                    },
+                  
                     r: {
-                        suggestedMin: 0,
-                        suggestedMax: 10
-                    }
+                        ticks:{
+                            display:false,
+                            stepSize:2
+                        },
+                      
+                    },
+                    
                 }
             }
             setRadarOption(options);
@@ -410,6 +419,7 @@ const Wrapper = styled.div`
         .chart-main{
             display: flex;
             justify-content: space-around;
+            padding-left:20px;
             padding-bottom:20px;
             .chart{
                 flex:0 0 400px;

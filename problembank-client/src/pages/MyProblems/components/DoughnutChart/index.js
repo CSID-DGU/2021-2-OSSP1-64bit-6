@@ -310,9 +310,7 @@ const Wrapper = styled.div`
         background: #F5F5F5;
 
         .chart-header{
-            //display: flex;
             padding: 20px 30px;
-            //justify-content: space-evenly;
         }
         .chart-main{ 
             display: flex;
