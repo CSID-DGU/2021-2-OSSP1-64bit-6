@@ -8,44 +8,26 @@ function MyListContainer(props) {
 		<Wrapper className="all__lists">
 			<div className="container">
                 <div className="all__lists--header">
-					<h3>마이 리스트</h3>
-					{/* <button><i className="fa fa-fw fa-plus-circle"></i></button> */}
+					<h3>마이 페이지</h3>
 				</div>
-		
 				<div className="all__list--listgroup">
 					<ul>
                        
-						<li><NavLink exact activeClassName="active"  to ="/mylist">개요</NavLink></li>
+						<li className="first"><NavLink exact activeClassName="active"  to ="/mylist">개요</NavLink></li>
 						<li><NavLink activeClassName="active"  to ="/mylist/Wrong">틀린문제</NavLink></li>
-						{/* <li><NavLink to="/mypage/mytest" className="navLink">시험 결과 조회</NavLink></li>
-                        <li><NavLink to="/mypage/mytest/manage" className="navLink">시험 수정</NavLink></li>
-                        <li><NavLink to="/mypage/mytest/create" className="navLink">시험 생성</NavLink></li> */}
-                        
 					</ul>
-					{/* props.user.userData.roleId == 1 ||  // manager
-          				props.user.userData.roleId == 2 ||        // coursecreator
-          				props.user.userData.roleId == 3 ||        // professor
-		  				props.user.userData.roleId == 10          // ta ? (
-							<li>
-								<NavLink to="/mypage/mytest/manage" className="navLink">시험 조회 및 수정</NavLink>
-                                <NavLink to="/mypage/mytest/create" className="navLink">시험 생성</NavLink>
-                            </li>
-						) : (
-							<li>
-								<NavLink to="/mypage/mytest/apply" className="navLink">신청 시험 조회</NavLink>
-							</li>
-                        )*/}
 				</div>
 			</div>
 		</Wrapper>
 	);
 }
 const Wrapper = styled.div`
-    flex: 0 0 240px;
+    flex: 0 0 200px;
     .container{
         box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 1px;
         border-radius: 4px;
         border: 1px solid #ddd;
+
         .all__lists--header{
             background: #F5F5F5;
             display: flex;
@@ -59,18 +41,20 @@ const Wrapper = styled.div`
         .all__list--listgroup{
             
             background: #FFFFFF;
-            padding: 10px 20px ;
             text-align: center;
             line-height: 30px;
            
         }
-		.active{
-            font-weight: bold;
-           
+        .first{
+            border-bottom:  1px solid #ddd;
         }
-        
-        
-       
+        li{
+            .active{
+                font-weight: bold;
+            }
+            padding-top:10px;
+            padding-bottom:10px;
+        }
     }
    
 `;

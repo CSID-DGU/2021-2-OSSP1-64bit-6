@@ -409,7 +409,7 @@ const Wrapper = styled.div`
 
     .container{
         box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 1px;
-        border: 5px solid #a0a0a0;
+        border: 3px solid #a0a0a0;
         border-radius: 20px;
         background: #F5F5F5;
 

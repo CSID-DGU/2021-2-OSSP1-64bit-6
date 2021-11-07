@@ -13,7 +13,7 @@ function WrongProblem(props) {
 				<div className="middle">
 					<BarChart />
 				</div>
-				<ProgressPanel />
+				{/* <ProgressPanel /> */}
 			</div>
 		</MyListLayout>
 	);

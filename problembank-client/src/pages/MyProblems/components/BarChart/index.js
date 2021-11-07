@@ -108,7 +108,7 @@ const Wrapper = styled.div`
                 padding-top : 20px;
                 padding-left : 10px;
                 padding-right : 30px;
-                flex:0 0 1000px;
+                flex:0 0 956px;
             }
         }
     }

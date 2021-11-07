@@ -306,12 +306,13 @@ const Wrapper = styled.div`
     .container{
         box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 1px;
         border-radius: 20px;
-        border: 5px solid #a0a0a0;
+        border: 3px solid #a0a0a0;
         background: #F5F5F5;
 
         .chart-header{
             padding: 20px 30px;
         }
+
         .chart-main{ 
             display: flex;
             justify-content: space-around;

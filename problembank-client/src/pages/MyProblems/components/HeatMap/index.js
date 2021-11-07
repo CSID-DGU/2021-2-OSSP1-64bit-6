@@ -86,7 +86,7 @@ const Wrapper = styled.div`
     .contanier{
         margin-bottom:50px;
         border-radius: 20px;
-        border: 5px solid #a0a0a0;
+        border: 3px solid #a0a0a0;
         background: #F5F5F5;
 
         .heatmap{
