@@ -563,7 +563,7 @@ router.get('/status-problems', async function (req, res){
         // ----------pro
         let isCorrectArrayCoding = [];
         let noCorrectArrayCoding = [];
-        coding.map((item) => item.answer_status === 1 ? isCorrectArrayCoding.push(item.problem_id) : noCorrectArrayCoding.push(item.problem_id))
+        coding.map((item) => item.answer_status === 1 ? isCorrectArrayCoding.push(item.problem_id) : noCorrectArrayCoding.push(item.problem_id) && noCorrectArrayCoding.push(item.name))
 
         let levelCoding=[0,0,0];
         coding.map((item) => item.answer_status === 1 ?
@@ -573,11 +573,9 @@ router.get('/status-problems', async function (req, res){
                                   : nothing=1)   
         
         // ----------mul
-        // 배열로 정답/오답
         let isCorrectArrayMul = [];
         let noCorrectArrayMul = [];
-        multichoice.map((item) => item.answer_status === 'true' ? isCorrectArrayMul.push(item.problem_id) : noCorrectArrayMul.push(item.problem_id))
-        // 정답인 것들 중 난이도별 개수
+        multichoice.map((item) => item.answer_status === 'true' ? isCorrectArrayMul.push(item.problem_id) : noCorrectArrayMul.push(item.problem_id) && noCorrectArrayMul.push(item.name))
         let levelMul=[0,0,0];
         multichoice.map((item) => item.answer_status === 'true' ?
                                   item.level.charCodeAt(0).toString(16) === 'd558' ? levelMul[0]++
@@ -587,7 +585,7 @@ router.get('/status-problems', async function (req, res){
         //---------short        
         let isCorrectArrayShortans = [];
         let noCorrectArrayShortans = [];
-        shortans.map((item) => item.answer_status === 1 ? isCorrectArrayShortans.push(item.problem_id) : noCorrectArrayShortans.push(item.problem_id))
+        shortans.map((item) => item.answer_status === 1 ? isCorrectArrayShortans.push(item.problem_id) : noCorrectArrayShortans.push(item.problem_id) && noCorrectArrayShortans.push(item.name))
         
         let levelShortans=[0,0,0];
         shortans.map((item) => item.answer_status === 1 ?
@@ -595,7 +593,6 @@ router.get('/status-problems', async function (req, res){
                                   : item.level.charCodeAt(0).toString(16) === 'c911' ? levelShortans[1]++
                                   : levelShortans[2]++
                                   : nothing=1) 
-        
 	
                                      
         
