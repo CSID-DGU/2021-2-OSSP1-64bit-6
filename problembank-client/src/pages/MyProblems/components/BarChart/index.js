@@ -4,16 +4,12 @@ import {Bar} from 'react-chartjs-2';
 import {useState} from 'react';
 import problemBankAPI from '../../../../apis/problemsBank';
 import {useSelector} from 'react-redux';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
-import {Chart} from 'chart.js';
 import {Link} from 'react-router-dom'
 
 function BarChart(props) {
     const user = useSelector((state) => state.user);
     const [stateBar, setStateBar] = useState({});
     const [BarOption, setBarOption] = useState({});
-
-    Chart.register(ChartDataLabels);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -34,9 +30,7 @@ function BarChart(props) {
 
             let options ={
                 indexAxis: 'y',
-                responsive: false,
                 scales: {
-                   
                     x: 
                        {
 
@@ -46,9 +40,12 @@ function BarChart(props) {
                                 fontSize : 14,
                                }
                        }
-                           
                 },
- 
+                plugins:{
+                    legend:{
+                        display:false
+                    }
+                }
                
             }
             setBarOption(options);

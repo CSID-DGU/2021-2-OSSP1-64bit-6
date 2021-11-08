@@ -14,7 +14,8 @@ function MyListContainer(props) {
 					<ul>
                        
 						<li className="first"><NavLink exact activeClassName="active"  to ="/mylist">개요</NavLink></li>
-						<li><NavLink activeClassName="active"  to ="/mylist/Wrong">틀린문제</NavLink></li>
+						<li className="first"><NavLink activeClassName="active"  to ="/mylist/Wrong">틀린 문제</NavLink></li>
+                        <li><NavLink activeClassName="active"  to ="/mylist/Favorite">다시 볼 문제</NavLink></li>
 					</ul>
 				</div>
 			</div>

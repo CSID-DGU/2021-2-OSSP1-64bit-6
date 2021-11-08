@@ -1,0 +1,12 @@
+.mylist__container{
+    max-width: 1400px;
+    margin-left:  150px;
+    margin-top: 3rem;
+    justify-content: space-evenly;
+    display: flex;
+
+    .middle{
+        margin-left:60px;
+        flex-direction: column;
+    }
+}
