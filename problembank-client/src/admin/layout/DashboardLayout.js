@@ -9,6 +9,7 @@ function DashboardLayout(props) {
     const [activeClass, setActiveClass] = useState(false);
     const [enableClass, setEnableClass] = useState(false);
     const [examClass, setExamClass] = useState(false);
+    const [DashboardClass, setDashboardclass] = useState(false);
 
     return (
         <Wrapper className="row">
@@ -40,6 +41,8 @@ function DashboardLayout(props) {
                                 </ul>
                             }
                         </li>
+
+                        <li onClick={() => setDashboardclass(!DashboardClass)}><Link to="/admin/dashboard"><i className="fa fa-line-chart"></i> 관리자 대시보드 </Link> </li>
                     </ul>
                 </div>
             </div>

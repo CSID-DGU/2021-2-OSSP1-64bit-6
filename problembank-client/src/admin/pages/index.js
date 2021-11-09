@@ -12,6 +12,7 @@ import EditMultiChoiceProblem from './Problem/EditMultiChoiceProblem';
 import EditShortChoiceProblem from './Problem/EditShortProblem';
 import NotFound from '../../components/404NotFound';
 import {useSelector} from 'react-redux';
+import Analystic from './Analystic';
 
 
 // ! URL 너무 길어음
@@ -39,6 +40,8 @@ function AdminPage(props) {
 			{/* 객관식 문제 수정 */}
 			<Route exact path = {`${match.url}/editmulti`} render={(props) => <EditMultiChoiceProblem {...props} /> } />
 			<Route exact path = {`${match.url}/editshort`} render={(props) => <EditShortChoiceProblem {...props} /> } />
+			{/* 관리자 대시보드*/ }
+			<Route exact path = {`${match.url}/dashboard`} render={(props) => <Analystic {...props} /> } />
 		</Switch>
 	);
 }
