@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import {Bar} from 'react-chartjs-2';
 import {useState} from 'react';
 import problemBankAPI from '../../../../apis/problemsBank';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import {Chart} from 'chart.js';
 import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom'
 
@@ -10,6 +12,7 @@ function BarChart(props) {
     const user = useSelector((state) => state.user);
     const [stateBar, setStateBar] = useState({});
     const [BarOption, setBarOption] = useState({});
+    Chart.register(ChartDataLabels);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -44,7 +47,10 @@ function BarChart(props) {
                 plugins:{
                     legend:{
                         display:false
-                    }
+                    },
+                    datalabels: {
+                        display: false,
+                      },
                 }
                
             }
@@ -110,7 +116,6 @@ const Wrapper = styled.div`
         }
     }
     .list{
-        //margin-top:10px;
         border: 5px solid #F5F5F5;
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;

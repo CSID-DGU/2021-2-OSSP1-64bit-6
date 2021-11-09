@@ -3,11 +3,14 @@ import {Link, NavLink} from 'react-router-dom';
 import styled from 'styled-components';
 import problemsBank from '../../../../apis/problemsBank';
 import {Bar} from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import {Chart} from 'chart.js';
 
 function FavoritePanel() {
 	const [listProblem, setListProblem] = useState([]);
 	const [stateBar, setStateBar] = useState({});
     const [BarOption, setBarOption] = useState({});
+    Chart.register(ChartDataLabels);
 
 	useEffect(() => {
 		
@@ -16,7 +19,7 @@ function FavoritePanel() {
 				const res = await problemsBank.getProblemFromMyList();
 				const problems = res.data;
 				setListProblem(problems);
-
+			
 				let category_num = [0,0,0];
 				for(let i = 0; i < problems.length; i++){
 					if(problems[i].problem_type === 1){
@@ -56,7 +59,10 @@ function FavoritePanel() {
 					plugins:{
 						legend:{
 							display:false
-						}
+						},
+						datalabels: {
+                            display: false,
+                          },
 					}
 				}
 				setBarOption(options);
@@ -131,7 +137,7 @@ function FavoritePanel() {
 									let url;
 									if (problem_type === 1) {
 										categoryName = '프로그래밍 문제';
-										url = 'problem';
+										url = 'codeproblems';
 									}
 									else if (problem_type === 2) {
 										categoryName = '객관식 문제';
@@ -146,8 +152,8 @@ function FavoritePanel() {
 												<p><span className="idx">{idx + 1} </span><span className="category">({categoryName})</span></p>
 											</div>
 											<div className="body">
-												<Link to={`/${url}/view?id=${item.id}`} key={idx} className="problem">
-													ID : {item.id} <br/> Title : {item.name} 
+												<Link to={`/${url}/view?id=${item.problem_id}`} key={idx} className="problem">
+													ID : {item.problem_id} <br/> Title : {item.name} 
 												</Link>
 												<span onClick={() => handleDeleteMyProblem(item.id)} className="del-problem"><i className="fa fa-trash-o"></i></span>
 											</div>
@@ -163,7 +169,6 @@ function FavoritePanel() {
 }
 const Wrapper = styled.div`
 	flex: 0 0 1000px;
-   
 	.chart-container{
 		border: 5px solid #F5F5F5;
 		border-top-left-radius: 15px;
@@ -178,11 +183,12 @@ const Wrapper = styled.div`
 			justify-content: space-around;
 			padding-bottom:20px;
 			.chart{
-				padding-top : 20px;
-				padding-left : 10px;
-				padding-right : 30px;
-				flex:0 0 956px;
-			}
+                padding-top : 20px;
+                padding-left : 10px;
+                padding-right : 30px;
+                flex:0 0 956px;
+            }
+			
 		}
 	}
 	.list-container{
@@ -197,10 +203,10 @@ const Wrapper = styled.div`
             padding-bottom : 10px;
         }
 		.list-problem{
-            padding: 10px 10px;
-            display: flex;
-            //flex-direction: column;
-			flex-wrap: wrap;
+            padding-top: 20px; 
+            display: grid;
+			grid-template-columns: 450px 450px;
+			
             row-gap: 5px;
 			justify-content: space-around;
 			
@@ -209,10 +215,8 @@ const Wrapper = styled.div`
     margin-bottom:20px;   
 `;
 const ColComponent = styled.div`
-	flex:0 0 450px;
 	border : 3px solid #F5F5F5;
 	border-radius:10px;
-	//padding:10px;
     margin-bottom: 10px;
 	
     .head{
