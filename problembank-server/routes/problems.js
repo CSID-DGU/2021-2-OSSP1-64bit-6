@@ -161,7 +161,7 @@ router.get('/shortans', async function (req, res) {
 router.get('/getmyproblems', async function (req, res) {
     try {
         const { id } = req.user._user[0];
-        const [rows] = await db.query(sql.problems.getMyListProblem, [id])
+        const [rows] = await db.query(sql.problems.getMyListProblem, [id,id,id])
         res.status(200).send({
             result: true,
             data: rows,

@@ -40,7 +40,7 @@ module.exports = {
     selectMultiChoiceSubmitByUserId: "SELECT * FROM plass_problem_multiplechoice_submit where user_id = ?",    
     //SHORTANS PROBLEM
     selectShortProblem: "select * from plass_problem_shortans where name = ? and content = ?",
-    getMyListProblem: "select mp.*, p.name, p.content  from plass_mylist_problem as mp, plass_problems as p where mp.user_id = ? and mp.problem_id = p.id order by problem_type desc",
+    getMyListProblem: "select mp.*, p.name, p.content from plass_mylist_problem as mp, plass_problems as p where mp.user_id = ? and mp.problem_id = p.id and problem_type = 1 UNION ALL select mp.*, p.name, p.content from plass_mylist_problem as mp, plass_problem_multiplechoice as p where mp.user_id = ? and mp.problem_id = p.id and problem_type = 2 UNION ALL select mp.*, p.name, p.content from plass_mylist_problem as mp, plass_problem_shortans AS p where mp.user_id = ? and mp.problem_id = p.id and problem_type = 3 ORDER BY id ASC",
     selectCategoryFromShortantsProblems: "select * from plass_total_categories where id = (select category_id FROM plass_problem_shortanswer_category where problem_id = ?)" ,
     selectShortansProblems: "select * from plass_problem_shortans",
     selectAnswerByShortansPro: "select * from plass_problem_shortans_answer where problem_id = ?",
