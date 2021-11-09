@@ -1,0 +1,63 @@
+.Full_container{
+    margin-left:150px;
+    display:grid;
+    grid-template-rows: 250px 250px 250px 250px;
+    grid-template-columns: 500px 300px 300px 500px;
+
+    grid-template-areas: 
+        "A A B B"
+        "C C D D"
+        "E F F G"
+        "E H H G";
+    text-align:center;
+    font-size: 50px;
+
+    .User_Num_Card{
+        grid-area: A;
+        border:solid;
+    }
+
+    .Accessor_Num_Card{
+        grid-area: B;
+        border:solid;
+
+    }
+
+    .User_Graph_Card{
+        grid-area: C;
+        border:solid;
+
+    }
+
+    .Accessor_Graph_Card{
+        grid-area: D;
+        border:solid;
+
+    }
+
+    .User_Rank_Card{
+        grid-area: E;
+        border:solid;
+
+    }
+
+    .Correct_Rate_Card{
+        grid-area: F;
+        border:solid;
+
+    }
+
+    .Wrong_Rate_Card{
+        grid-area: H;
+        border:solid;
+
+
+    }
+   
+    .Problem_Per_Day{
+        grid-area: G;
+        border:solid;
+
+    }
+
+}
