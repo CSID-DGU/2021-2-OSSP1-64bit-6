@@ -64,7 +64,7 @@ const Wrapper = styled.div`
     flex-direction: row;
     width: 100%;
     min-height: 100vh;
-    
+  
     .left-body{    
         width: 10%;
         display: flex;
@@ -116,6 +116,7 @@ const Wrapper = styled.div`
             height: 95%;
             height: auto;
             padding: 10px 10px 0 10px;
+            background-color:#F7F7F7;
         }
     }
 

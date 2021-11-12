@@ -2,7 +2,6 @@ import React, {Suspense} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import './assets/styles/grid.css';
 
-
 import Auth from './hocs/Authentication';
 import NotFound from './components/404NotFound';
 import Loading from './components/Loading/Loading';

@@ -2,19 +2,19 @@
     margin-left:150px;
     display:grid;
     grid-template-rows: 250px 250px 250px 250px;
-    grid-template-columns: 500px 300px 300px 500px;
-
+    grid-template-columns: 400px 300px 300px 400px;
+    
     grid-template-areas: 
         "A A B B"
         "C C D D"
         "E F F G"
         "E H H G";
-    text-align:center;
-    font-size: 50px;
+  
 
     .User_Num_Card{
         grid-area: A;
-        border:solid;
+        place-self: center center;
+
     }
 
     .Accessor_Num_Card{
