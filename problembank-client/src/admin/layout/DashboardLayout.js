@@ -20,11 +20,12 @@ function DashboardLayout(props) {
                 <div className="left-body__nav">
                     <ul>
                         {/* <li onClick={() => { }}><Link to="/admin"><i className="fa fa-search" ></i> 문제 조회</Link></li> */}
+                        <li onClick={() => setDashboardclass(!DashboardClass)}><Link to="/admin/"><i className="fa fa-line-chart"></i> 관리자 대시보드 </Link> </li>
                         <li onClick={() => setEnableClass(!enableClass)}><Link to="#"><i className="fa fas fa-search" ></i> 문제 조회 </Link>
                             {
                                 enableClass &&
                                 <ul style={{ marginLeft: '15px' }}>
-                                    <li onClick={() => setEnableClass(!enableClass)}><Link to="/admin/"><i className="fa fas fa-laptop"></i> 프로그래밍 문제</Link></li>
+                                    <li onClick={() => setEnableClass(!enableClass)}><Link to="/admin/programming"><i className="fa fas fa-laptop"></i> 프로그래밍 문제</Link></li>
                                     <li onClick={() => setEnableClass(!enableClass)}><Link to="/admin/multiple"><i className="fa fas fa-list-ol"></i> 객관식 문제</Link></li>
                                     <li onClick={() => setEnableClass(!enableClass)}><Link to="/admin/short"><i className="fa fa-check-square-o"></i> 단답형 문제</Link></li>
                                 </ul>
@@ -42,7 +43,7 @@ function DashboardLayout(props) {
                             }
                         </li>
 
-                        <li onClick={() => setDashboardclass(!DashboardClass)}><Link to="/admin/dashboard"><i className="fa fa-line-chart"></i> 관리자 대시보드 </Link> </li>
+                      
                     </ul>
                 </div>
             </div>

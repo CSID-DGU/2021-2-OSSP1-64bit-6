@@ -24,7 +24,11 @@ function AdminPage(props) {
 	}
 	return (
 		<Switch>
-			<Route exact path = {`${match.url}`} render={(props) => <Problem {...props} />} />
+
+			{/* 관리자 대시보드 */}
+			<Route exact path = {`${match.url}`} render={(props) => <Analystic {...props} />} />
+			{/* 문제 조회 */}
+			<Route exact path = {`${match.url}/programming`} render={(props) => <Problem {...props} />} />
 			<Route exact path = {`${match.url}/multiple`} render={(props) => <Multiple {...props} />} />
 			<Route exact path = {`${match.url}/short`} render={(props) => <Short {...props}/>} />
 			{/* <Route exact path = {`${match.url}`} component = {Dashboard} />         */}
@@ -40,8 +44,7 @@ function AdminPage(props) {
 			{/* 객관식 문제 수정 */}
 			<Route exact path = {`${match.url}/editmulti`} render={(props) => <EditMultiChoiceProblem {...props} /> } />
 			<Route exact path = {`${match.url}/editshort`} render={(props) => <EditShortChoiceProblem {...props} /> } />
-			{/* 관리자 대시보드*/ }
-			<Route exact path = {`${match.url}/dashboard`} render={(props) => <Analystic {...props} /> } />
+		
 		</Switch>
 	);
 }
