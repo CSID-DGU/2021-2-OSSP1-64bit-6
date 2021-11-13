@@ -23,6 +23,7 @@ router.post('/compile-problem', async function (req, res) {
     try {
         const { sourceCode, language, problemId } = req.body
         const { id: userId } = req.user._user[0];
+        let flag=0;
 
         logger.setLogData({ userId, data: req.body })
         let [testCases] = await db.query(sql.problems.selectTestCaseByProblemId, [problemId]);
@@ -67,11 +68,12 @@ router.post('/compile-problem', async function (req, res) {
                         correctCount++;
                     }
                     const [problemSubmit] = await db.query(sql.problems.selectProblemSubmit, [userId, problemId]);
+                    flag = flag+1;
                     //제출했으면 업데이트
-                    if (problemSubmit.length !== 0) {
+                    if (problemSubmit.length !== 0) {                        
                         await db.query(sql.problems.updateProblemSubmit, [1, correctCount === testCases.length, `${correctCount}/${testCases.length}`, `${userId}\/${problemId}`, problemId, userId])
-                    } else {
-                        await db.query(sql.problems.insertProblemSubmit, [userId, problemId, 1, correctCount === testCases.length, `${correctCount}/${testCases.length}`, `${userId}\/${problemId}`, 1])
+                    } else if(flag===1) {
+                        await db.query(sql.problems.insertProblemSubmit, [userId, problemId, 1, correctCount === testCases.length, `${correctCount}/${testCases.length}`, `${userId}\/${problemId}`, 1])                  
                     }
                     resolve("successful");
                 } catch (error) {
