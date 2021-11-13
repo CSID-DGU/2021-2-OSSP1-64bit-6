@@ -57,7 +57,7 @@ function Heatmap(props) {
                         value={date_count_state} 
                         startDate={new Date(old_date)} 
                         endDate={new Date(today_date)} 
-                        width={900}
+                        width={850}
                         height={200}
                         rectSize = {18}
                         legendCellSize={0}
@@ -90,7 +90,7 @@ const Wrapper = styled.div`
         background: #F5F5F5;
 
         .heatmap{
-            padding-left:60px;
+            padding-left:40px;
         }
         .header{
             padding : 20px 30px;
