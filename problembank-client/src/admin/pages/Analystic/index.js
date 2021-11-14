@@ -7,6 +7,7 @@ import './style.scss';
 import UserNumCard from '../../components/UserNumCard';
 import ProblemNumCard from '../../components/ProblemNumCard';
 import UserGraphCard from '../../components/UserGraphCard';
+import ProblemGraphCard from '../../components/ProblemGraphCard';
 
 function Analystic(props) {
 	return (
@@ -17,7 +18,7 @@ function Analystic(props) {
                 <div className="User_Num_Card"> <UserNumCard/></div>
                 <div className="Problem_Num_Card"> <ProblemNumCard/></div>
                 <div className="User_Graph_Card"> <UserGraphCard/> </div>
-                <div className="Accessor_Graph_Card"></div>
+                <div className="Problem_Graph_Card"><ProblemGraphCard/></div>
                 <div className="User_Rank_Card"></div>
                 <div className="Correct_Rate_Card"></div>
                 <div className="Problem_Per_Day"></div>

@@ -6,7 +6,7 @@ import {Line} from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import {Chart} from 'chart.js';
 
-function UserGraphCard(props) {
+function ProblemGraphCard(props) {
     const [LineState,setLineState] = useState({});
     const [LineOption,setLineOption] = useState({});
     Chart.register(ChartDataLabels);
@@ -15,21 +15,21 @@ function UserGraphCard(props) {
 
         const fetchData = async () => {
           
-            var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            let months = [];
-            let today = new Date().getMonth();
-            
+            let days = [];
             for(let i = 5; i >= 0; i--){
-                months.push(monthNames[today-i]);
+                let day = new Date();
+                day.setDate(day.getDate()-i);
+                let dayString = ('0' + (day.getMonth() + 1)).slice(-2) +'/' + ('0' + day.getDate()).slice(-2);
+                days.push(dayString);
             }
 
             let L_Date = {
-                labels : months,
+                labels : days,
                 datasets: [{
-                    data: [65, 10, 80, 56, 55, 40],
+                    data: [10, 70, 60, 90, 50, 30],
                     fill: true,
-                    backgroundColor : 'rgb(255, 128, 0,0.5)',
-                    borderColor: 'rgb(255, 128, 0 ,0.5)',
+                    backgroundColor : 'rgb(250, 219, 15,0.5)',
+                    borderColor: 'rgb(250, 219, 15 ,0.5)',
                     tension: 0.5
                 }]
             }
@@ -73,7 +73,7 @@ function UserGraphCard(props) {
 	return (
         <Wrapper>
             <div className='Card'>
-                <div className = 'Title'>Monthly User Change</div>
+                <div className = 'Title'>Daily Solved Problem</div>
                 <div ClassName = 'Chart'>
                     <Line
                         data={LineState}
@@ -124,4 +124,4 @@ const Wrapper = styled.div`
 
 `
 
-export default UserGraphCard;
+export default ProblemGraphCard;

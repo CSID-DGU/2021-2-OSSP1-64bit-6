@@ -31,14 +31,15 @@
 
     .User_Graph_Card{
         grid-area: C;
-        place-self: center center;
+        place-self: center start;
 
 
     }
 
-    .Accessor_Graph_Card{
+    .Problem_Graph_Card{
         grid-area: D;
-      
+        place-self: center end;
+
 
     }
 
