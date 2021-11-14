@@ -90,7 +90,8 @@ const Wrapper = styled.div`
         background: #F5F5F5;
 
         .heatmap{
-            padding-left:40px;
+            padding-top:5px;
+            padding-left:65px;
         }
         .header{
             padding : 20px 30px;

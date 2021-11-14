@@ -6,7 +6,7 @@
 .Full_container{
     margin-left:150px;
     display:grid;
-    grid-template-rows: 250px 250px 250px 250px;
+    grid-template-rows: 250px 350px 250px 250px;
     grid-template-columns: 400px 300px 300px 400px;
     
     grid-template-areas: 
@@ -31,13 +31,14 @@
 
     .User_Graph_Card{
         grid-area: C;
-        border:solid;
+        place-self: center center;
+
 
     }
 
     .Accessor_Graph_Card{
         grid-area: D;
-        border:solid;
+      
 
     }
 

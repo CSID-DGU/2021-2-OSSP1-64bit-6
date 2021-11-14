@@ -302,7 +302,6 @@ function DoughnutChart(props) {
 }
 
 const Wrapper = styled.div`
-    flex: 0 0 1000px;
     .container{
         box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 1px;
         border-radius: 20px;
@@ -314,6 +313,7 @@ const Wrapper = styled.div`
         }
 
         .chart-main{ 
+            padding-top:10px;
             display: flex;
             justify-content: space-around;
             border-bottom:solid #a0a0a0;

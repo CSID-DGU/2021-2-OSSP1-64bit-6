@@ -6,7 +6,7 @@ import DashboardLayout from '../../layout/DashboardLayout';
 import './style.scss';
 import UserNumCard from '../../components/UserNumCard';
 import ProblemNumCard from '../../components/ProblemNumCard';
-
+import UserGraphCard from '../../components/UserGraphCard';
 
 function Analystic(props) {
 	return (
@@ -16,7 +16,7 @@ function Analystic(props) {
             <div className="Full_container">
                 <div className="User_Num_Card"> <UserNumCard/></div>
                 <div className="Problem_Num_Card"> <ProblemNumCard/></div>
-                <div className="User_Graph_Card"> </div>
+                <div className="User_Graph_Card"> <UserGraphCard/> </div>
                 <div className="Accessor_Graph_Card"></div>
                 <div className="User_Rank_Card"></div>
                 <div className="Correct_Rate_Card"></div>

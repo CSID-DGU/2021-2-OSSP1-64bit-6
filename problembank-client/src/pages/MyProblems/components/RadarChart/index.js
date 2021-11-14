@@ -405,7 +405,7 @@ function RadarChart(props) {
 const Wrapper = styled.div`
     margin-top : 50px;
     margin-bottom:30px;
-    flex: 0 0 1000px;
+    width:965px;
 
     .container{
         box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 1px;

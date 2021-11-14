@@ -229,23 +229,22 @@ const Wrapper = styled.div`
             padding-top : 10px;
             padding-bottom : 10px;
         }
-        .list-main{
-            padding:20px;
+        .list-problem{
+            padding-top: 20px; 
+            display: grid;
+			grid-template-columns: 450px 450px;
+			
+            row-gap: 5px;
+			justify-content: space-around;
         }
     }
     
-   
+    margin-bottom:20px;   
 `;
 const ColComponent = styled.div`
 	border : 3px solid #F5F5F5;
 	border-radius:10px;
     margin-bottom: 10px;
-    width:49%;
-    margin-left:5px;
-    margin-right:5px;
-    margin-top:5px;
-    display:inline-block;
-
     
     .head{
 		padding-left:10px;
