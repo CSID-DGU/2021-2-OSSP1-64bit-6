@@ -240,8 +240,12 @@ const ColComponent = styled.div`
 	border : 3px solid #F5F5F5;
 	border-radius:10px;
     margin-bottom: 10px;
-    width:50%;
+    width:49%;
+    margin-left:5px;
+    margin-right:5px;
+    margin-top:5px;
     display:inline-block;
+
     
     .head{
 		padding-left:10px;
