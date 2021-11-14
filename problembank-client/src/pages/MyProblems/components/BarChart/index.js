@@ -12,24 +12,88 @@ function BarChart(props) {
     const user = useSelector((state) => state.user);
     const [stateBar, setStateBar] = useState({});
     const [BarOption, setBarOption] = useState({});
+
+    const [listProblem, setListProblem] = useState([]);
+    const [multiple_list,setMulList] = useState([]);
+    const [shortan_list,setShorList] = useState([]);
+    const [coding_list,setCoding] = useState([]);
+
+    
+
     Chart.register(ChartDataLabels);
 
     useEffect(() => {
         const fetchData = async () => {
-            let data ={
-                labels:[
-                    '프로그래밍',
-                    '객관식',
-                    '단답형',
-                ],
+            const res = await problemBankAPI.getStatusProblem();
+            const {data} = res;
+			const {coding, multichoice, shortans} = data;
+            
+            
+            let wrong_list= [];
+            
+            let wrong_list1= [];
+            let wrong_problem1= {};
+            let wrong_list2= [];
+            let wrong_problem2= {};
+            let wrong_list3= [];
+            let wrong_problem3= {};
+
+            for(let i =0; i< multichoice.noCorrectArrayMul.length; i++){
+                if(i%2 == 0){
+                    wrong_problem1.type='multi';
+                    wrong_problem1.problem_id = multichoice.noCorrectArrayMul[i];
+                }
+                else if(i%2 != 0){
+                    wrong_problem1.title = multichoice.noCorrectArrayMul[i]
+                    wrong_list1.push(wrong_problem1);
+                    wrong_problem1=new Object();
+                }
+            }
+            
+            for(let i =0; i< coding.noCorrectArrayCoding.length; i++){
+                
+                if(i%2 == 0){
+                    wrong_problem2.type='coding';
+                    wrong_problem2.problem_id = coding.noCorrectArrayCoding[i];
+                }
+                else if(i%2 != 0){
+                    wrong_problem2.title = coding.noCorrectArrayCoding[i]
+                    wrong_list2.push(wrong_problem2);
+                    wrong_problem2=new Object();
+                }
+                
+            }
+
+
+            for(let i =0; i< shortans.noCorrectArrayShortans.length; i++){
+                if(i%2 == 0){
+                    wrong_problem3.type='shortans';
+                    wrong_problem3.problem_id = shortans.noCorrectArrayShortans[i];
+                }
+                else if(i%2 != 0){
+                    wrong_problem3.title = shortans.noCorrectArrayShortans[i]
+                    wrong_list3.push(wrong_problem3);
+                    wrong_problem3=new Object();
+                }
+            }
+
+            wrong_list = wrong_list1.concat(wrong_list2,wrong_list3);
+           
+
+            setListProblem(wrong_list);
+
+            let B_data ={
+                labels:['프로그래밍','객관식','단답형',],
                 datasets: [{
                       label: '틀린문제 수',
                       maxBarThickness: 50,
-                      data: [4, 3, 1],
+                      data: [coding.noCorrectArrayCoding.length/2 , multichoice.noCorrectArrayMul.length/2, shortans.noCorrectArrayShortans.length/2],
                       backgroundColor: ['#FE88A0', '#74C9C6',  '#C2E88D'],
                     }]
             };
-            setStateBar(data);
+            setStateBar(B_data);
+
+            
 
             let options ={
                 indexAxis: 'y',
@@ -57,14 +121,19 @@ function BarChart(props) {
             setBarOption(options);
         };
         fetchData();
+     
     }, []);
+
+    
+   
     return(
         <Wrapper>
             <div className="container">
                 <div className="chart-header">
                     <h2> 틀린 문제</h2>
+                 
                 </div>
-
+               
                 <div className="chart-main">
                     <div className="chart">
                         <Bar 
@@ -82,12 +151,44 @@ function BarChart(props) {
                     <div className="list-header">
                         <h2>틀린 문제 list</h2>
                     </div>
-                    <div className="list-main">
-                        <h2><small>1.프로그래밍 문제</small></h2>  
-                        <Link to ={'codeproblems/view?id=12'}>12.집합 만들기</Link>
-                        <h2><small>2.객관식 문제</small></h2>
-                        <Link to ={'multiplechoice/view?id=25'}>25.반복문 출력 결과</Link>
-                    </div>
+                    <div className="list-problem">
+                    {
+                        listProblem.length !== 0 &&
+                        listProblem.map((item, idx) =>{
+                            let {problem_type} = item;
+                            let categoryName;
+                            let url;
+                                if(item.type == 'multi'){
+                                categoryName = '객관식 문제';
+                                url = 'multiplechoice';
+                                }
+                                else if(item.type == 'shortans'){
+                                categoryName = '단답형 문제';
+                                url = 'shortans';
+                                }
+                                else{
+                                categoryName = '프로그래밍 문제';
+                                url = 'codeproblems';
+                                }
+                            return (
+                                <ColComponent>
+                                    <div className="head">
+                                        <p><span className="idx">{idx + 1} </span><span className="category">({categoryName})</span></p>
+                                    </div>
+                                    <div className="body">
+                                        <Link to={`/${url}/view?id=${item.problem_id}`} key={idx} className="problem">
+                                            ID : {item.problem_id} <br/> Title : {item.title} 
+                                        </Link>
+                                        
+                                    </div>
+                                </ColComponent>
+                            );
+                        },
+                        )
+                        
+                    }
+                    
+					</div>
              </div>
         </Wrapper>
     );
@@ -132,6 +233,51 @@ const Wrapper = styled.div`
     }
     
    
+`;
+const ColComponent = styled.div`
+	border : 3px solid #F5F5F5;
+	border-radius:10px;
+    margin-bottom: 10px;
+	
+    .head{
+		padding-left:10px;
+		margin-bottom:5px;
+		border-bottom: 3px solid #F5F5F5;
+		background: #F5F5F5;
+		.idx{
+			font-weight: bold;
+			font-size:25px;
+		}
+		.category{
+			font-size:15px;
+		}
+    }
+	
+	.body{
+		padding-left:10px;
+		padding-bottom:5px;
+
+		.problem{
+			font-size:18px;
+			font-weight: bold;
+		}
+		.del-problem{
+			cursor: pointer;
+			opacity: 0;
+			margin-left: 10px;
+			border: 1px solid black;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			display: inline-block;
+			text-align: center;
+		}
+	}	
+    :hover{
+        .del-problem{
+            opacity: 1
+        }
+    }
 `;
 
 export default BarChart;

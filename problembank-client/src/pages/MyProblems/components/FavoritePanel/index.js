@@ -236,7 +236,6 @@ const ColComponent = styled.div`
 	.body{
 		padding-left:10px;
 		padding-bottom:5px;
-
 		.problem{
 			font-size:18px;
 			font-weight: bold;
