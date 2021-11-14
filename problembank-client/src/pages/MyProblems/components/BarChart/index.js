@@ -172,6 +172,7 @@ function BarChart(props) {
                                 }
                             return (
                                 <ColComponent>
+                               
                                     <div className="head">
                                         <p><span className="idx">{idx + 1} </span><span className="category">({categoryName})</span></p>
                                     </div>
@@ -181,6 +182,7 @@ function BarChart(props) {
                                         </Link>
                                         
                                     </div>
+                                
                                 </ColComponent>
                             );
                         },
@@ -238,7 +240,9 @@ const ColComponent = styled.div`
 	border : 3px solid #F5F5F5;
 	border-radius:10px;
     margin-bottom: 10px;
-	
+    width:50%;
+    display:inline-block;
+    
     .head{
 		padding-left:10px;
 		margin-bottom:5px;
@@ -256,22 +260,13 @@ const ColComponent = styled.div`
 	.body{
 		padding-left:10px;
 		padding-bottom:5px;
-
+       
 		.problem{
 			font-size:18px;
 			font-weight: bold;
+            border-width:50%     
 		}
-		.del-problem{
-			cursor: pointer;
-			opacity: 0;
-			margin-left: 10px;
-			border: 1px solid black;
-			width: 20px;
-			height: 20px;
-			border-radius: 50%;
-			display: inline-block;
-			text-align: center;
-		}
+		
 	}	
     :hover{
         .del-problem{
