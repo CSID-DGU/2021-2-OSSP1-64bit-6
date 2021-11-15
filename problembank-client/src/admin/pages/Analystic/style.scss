@@ -7,7 +7,7 @@
     margin-left:150px;
     display:grid;
     grid-template-rows: 250px 350px 250px 250px;
-    grid-template-columns: 400px 300px 300px 400px;
+    grid-template-columns: 460px 235px 235px 460px;
     
     grid-template-areas: 
         "A A B B"
@@ -39,14 +39,12 @@
     .Problem_Graph_Card{
         grid-area: D;
         place-self: center end;
-
-
     }
 
     .User_Rank_Card{
         grid-area: E;
-        border:solid;
-
+        place-self: end start;
+        z-index : 1;
     }
 
     .Correct_Rate_Card{
