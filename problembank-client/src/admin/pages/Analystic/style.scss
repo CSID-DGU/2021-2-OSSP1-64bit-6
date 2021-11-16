@@ -1,8 +1,22 @@
-.Title_dashboard{
+.Header{
+    display:flex;
     margin-top:30px;
     margin-left:150px;
-}
+    
+    .Refresh_Icon{
+        margin-top:15px;
+        margin-left:20px;
+        cursor:pointer;
+    }
 
+    .Refresh_Time{
+        margin-top:17px;
+        margin-left:5px;
+        font-weight: bold;
+        color:grey;
+    }
+    
+}
 .Full_container{
     margin-left:150px;
     display:grid;
