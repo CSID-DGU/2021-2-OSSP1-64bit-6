@@ -34,13 +34,8 @@ function Heatmap(props) {
             let todayString =  today.getFullYear() + '/' + ('0' + (today.getMonth() + 1)).slice(-2) +'/' + ('0' + today.getDate()).slice(-2);
             set_today(todayString);
             
-            let oldString;
-            if(today.getMonth() + 1 >= 10){
-                oldString = today.getFullYear() + '/' + ('0' + (today.getMonth() + 1 - 9)).slice(-2) +'/' + ('0' + today.getDate()).slice(-2);
-            }
-            else{
-                oldString = (today.getFullYear()-1) + '/' + ('0' + (today.getMonth() + 13 - 9)).slice(-2) +'/' + ('0' + today.getDate()).slice(-2);
-            }
+            today.setMonth(today.getMonth()-9);
+            let oldString = today.getFullYear() + '/' + ('0' + (today.getMonth() + 1)).slice(-2) +'/' + ('0' + today.getDate()).slice(-2);
             set_old(oldString);
 
 		};

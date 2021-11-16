@@ -18,9 +18,11 @@ function UserGraphCard(props) {
             var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
             let months = [];
             let today = new Date().getMonth();
-            
+          
             for(let i = 5; i >= 0; i--){
-                months.push(monthNames[today-i]);
+                let temp = today - i;
+                if(temp < 0) temp = temp + 12; 
+                months.push(monthNames[temp]);
             }
 
             let L_Date = {
