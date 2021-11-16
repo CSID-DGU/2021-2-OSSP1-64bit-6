@@ -13,6 +13,29 @@ import { HiOutlineRefresh} from "react-icons/hi";
 
 function Analystic(props) {
     const [timeState,setTime] = useState();
+    const [timerState,setTimer] = useState();
+
+    const timeFunc = (func, dateTime) => {
+        var year = Number(dateTime.substring(0,4));
+        var month = Number(dateTime.substring(4,6));
+        var day = Number(dateTime.substring(6,8));
+        var time = Number(dateTime.substring(8,10));
+        var minute = Number(dateTime.substring(10,12));
+        var second = Number(dateTime.substring(12,14));
+
+        var oprDate = new Date(year, month-1, day, time, minute, second); //동작을 원하는 시간의 Date 객체를 생성합니다.
+        console.log(oprDate);
+        var nowDate = new Date();
+        
+        var timer = oprDate.getTime() - nowDate.getTime(); //동작시간의 밀리세컨과 현재시간의 밀리세컨의 차이를 계산합니다.
+        console.log(timer);
+        if(timer < 0){ //타이머가 0보다 작으면 함수를 종료합니다.
+            return;
+        }
+        else{
+            setTimeout(func, timer);
+        }
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,10 +43,20 @@ function Analystic(props) {
             let time_string =  present_date.getFullYear() + '/'+ ('0' + (present_date.getMonth() + 1)).slice(-2) +'/' + ('0' + present_date.getDate()).slice(-2) + " "
                              + ('0'+present_date.getHours()).slice(-2) + ":"+('0'+present_date.getMinutes()).slice(-2);
             setTime(time_string);
+
+            let oneHourPlus = ''+ present_date.getFullYear() + ('0' + (present_date.getMonth() + 1)).slice(-2) + ('0' + present_date.getDate()).slice(-2) 
+                            + ('0' + (present_date.getHours()+1)).slice(-2) + ('0000') ;
+            
+            // 매분 마다 relodad
+            // let oneMinutePlus = ''+ present_date.getFullYear() + ('0' + (present_date.getMonth() + 1)).slice(-2) + ('0' + present_date.getDate()).slice(-2) 
+            //                 + ('0' + (present_date.getHours())).slice(-2) + ('0' + (present_date.getMinutes()+1)).slice(-2) + ('00');
+            
+            timeFunc(function(){window.location.reload()}, oneHourPlus);
         };
         fetchData();
     }, []);
 
+    
 
 	return (
 		<DashboardLayout>
