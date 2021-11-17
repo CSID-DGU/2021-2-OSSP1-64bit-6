@@ -39,11 +39,13 @@
     .Visitor_Num_Card{
         grid-area: B;
         place-self: center center;
+        padding-left:30px;
     }
 
     .Total_Problem_Card{
         grid-area: I;
-
+        place-self: center center;
+        padding-right:30px;
     }
 
     .Problem_Num_Card{

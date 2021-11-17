@@ -28,9 +28,9 @@ function UserGraphCard(props) {
             let L_Date = {
                 labels : months,
                 datasets: [{
-                    data: [65, 10, 80, 56, 55, 40],
+                    data: [10, 23, 70, 77, 80, 89],
                     fill: true,
-                    backgroundColor : 'rgb(255, 128, 0,0.5)',
+                    backgroundColor : 'rgb(255, 128, 0,0.1)',
                     borderColor: 'rgb(255, 128, 0 ,0.5)',
                     tension: 0.5
                 }]

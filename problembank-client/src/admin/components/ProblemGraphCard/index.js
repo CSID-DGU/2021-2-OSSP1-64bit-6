@@ -28,7 +28,7 @@ function ProblemGraphCard(props) {
                 datasets: [{
                     data: [10, 70, 60, 90, 50, 30],
                     fill: true,
-                    backgroundColor : 'rgb(250, 219, 15,0.5)',
+                    backgroundColor : 'rgb(250, 166, 0,0.1)',
                     borderColor: 'rgb(250, 219, 15 ,0.5)',
                     tension: 0.5
                 }]

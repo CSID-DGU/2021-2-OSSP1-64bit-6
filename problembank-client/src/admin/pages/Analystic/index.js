@@ -10,6 +10,7 @@ import UserGraphCard from '../../components/UserGraphCard';
 import ProblemGraphCard from '../../components/ProblemGraphCard';
 import UserRankCard from '../../components/UserRankCard';
 import VisitorNumCard from '../../components/VisitorNumCard';
+import TotalProblemCard from '../../components/TotalProblemCard';
 import {HiOutlineRefresh} from "react-icons/hi";
 
 function Analystic(props) {
@@ -69,7 +70,7 @@ function Analystic(props) {
             <div className="Full_container">
                 <div className="User_Num_Card"> <UserNumCard/></div>
                 <div className="Visitor_Num_Card"><VisitorNumCard/></div>
-                <div className="Total_Problem_Card"></div>
+                <div className="Total_Problem_Card"><TotalProblemCard/></div>
                 <div className="Problem_Num_Card"> <ProblemNumCard/></div>
                 <div className="User_Graph_Card"> <UserGraphCard/> </div>
                 <div className="Problem_Graph_Card"><ProblemGraphCard/></div>
