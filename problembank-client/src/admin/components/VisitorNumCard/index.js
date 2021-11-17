@@ -1,24 +1,25 @@
 import React from 'react';
-import { IoMdArrowRoundUp, IoMdArrowRoundDown } from "react-icons/io";
+import { IoMdArrowRoundUp } from "react-icons/io";
 import { GrUserAdd } from "react-icons/gr";
-import { FcOk } from "react-icons/fc";
+import { GrDocumentUser } from "react-icons/gr";
 import styled from 'styled-components';
 
-function ProblemNumCard(props) {
+function VisitorNumCard(props) {
 	
 	return (
         <Wrapper>
             <div className='Card'>
             
-                <div className = "Title">Solved Problem</div> 
-                <div className = "solvedIcon"><FcOk size="45"/></div>
+                <div className = "Title">Today Visitor</div> 
+                <div className = "addIcon"><GrDocumentUser size="45"/></div>
               
-                <div className='Card-body1'>234 </div>
-                <div className='Card-body2'>today</div>
+                <div className='Card-body'>
+                    168
+                </div>
 
-                <div className='ArrowIcon'> <IoMdArrowRoundDown size= "30" color="blue"/> </div>
-                <div className='percentage'> 5.24%</div>
-                <div className='sincefrom'> Since Last Month </div>
+                <div className='ArrowIcon'> <IoMdArrowRoundUp size= "30" color="red"/> </div>
+                <div className='percentage'> 5.2%</div>
+                <div className='sincefrom'> Since Last Day </div>
             </div>
         </Wrapper>
 	);
@@ -37,7 +38,7 @@ const Wrapper = styled.div`
         grid-template-areas: 
         "A A A B"
         "C C . B"
-        "C C H ."
+        "C C . ."
         "D E G G";
 
         grid-template-rows: 40px 40px 40px 40px;
@@ -52,22 +53,17 @@ const Wrapper = styled.div`
              padding-top:13px;
         }
  
-        .solvedIcon{
+        .addIcon{
              grid-area: B;
-             padding-left:15px;
              padding-top:10px;
 
         }
         
-        .Card-body1{
+        .Card-body{
             grid-area: C;
             font-size:50px;
             padding-top:5px;
             padding-left:30px;
-        }
-        .Card-body2{
-            grid-area: H;
-            font-size:20px;
         }
 
         .ArrowIcon{
@@ -77,7 +73,7 @@ const Wrapper = styled.div`
 
         .percentage{
             grid-area: E;
-            color:blue;
+            color:red;
             font-weight:bold;
             padding-top:5px;
             padding-left:20px;
@@ -94,4 +90,4 @@ const Wrapper = styled.div`
 
 `
 
-export default ProblemNumCard;
+export default VisitorNumCard;

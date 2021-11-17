@@ -18,7 +18,7 @@ function UserNumCard(props) {
 
                 <div className='ArrowIcon'> <IoMdArrowRoundUp size= "30" color="red"/> </div>
                 <div className='percentage'> 7.68%</div>
-                <div className='sincefrom'> Since From Month </div>
+                <div className='sincefrom'> Since Last Month </div>
             </div>
         </Wrapper>
 	);

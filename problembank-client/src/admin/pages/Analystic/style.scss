@@ -20,24 +20,34 @@
 .Full_container{
     margin-left:150px;
     display:grid;
-    grid-template-rows: 250px 350px 250px 250px;
-    grid-template-columns: 460px 235px 235px 460px;
+    grid-template-rows: 250px 380px 250px 250px;
+    grid-template-columns: 300px 160px 235px 235px 160px 300px;
     
     grid-template-areas: 
-        "A A B B"
-        "C C D D"
-        "E F F G"
-        "E H H G";
+        "A B B I I J"
+        "C C C D D D"
+        "E E F F G G"
+        "E E H H G G";
   
 
     .User_Num_Card{
         grid-area: A;
+        place-self: center start;
+
+    }
+
+    .Visitor_Num_Card{
+        grid-area: B;
         place-self: center center;
+    }
+
+    .Total_Problem_Card{
+        grid-area: I;
 
     }
 
     .Problem_Num_Card{
-        grid-area: B;
+        grid-area: J;
         place-self: center center;
 
 
@@ -45,14 +55,14 @@
 
     .User_Graph_Card{
         grid-area: C;
-        place-self: center start;
+        place-self: start start;
 
 
     }
 
     .Problem_Graph_Card{
         grid-area: D;
-        place-self: center end;
+        place-self: start end;
     }
 
     .User_Rank_Card{
