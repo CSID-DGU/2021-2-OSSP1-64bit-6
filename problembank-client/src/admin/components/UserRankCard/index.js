@@ -8,8 +8,8 @@ function UserRankCard(props) {
     const [userRank, setUserRank] = useState([]); 
     useEffect(() => {
         const fetchData = async () => {
-          let user_name = ['adsf', 'hsadf', 'grgd', 'qwegf', 'rhkswnd', 'bvkfb', 'ewjrhkg'];
-          let solved_num = [54, 48, 35, 33, 31, 22, 15];
+          let user_name = ['adsf', 'hsadf', 'grgd', 'qwegf', 'rhkswnd', 'bvkfb', 'ewjrhkg', 'gfhfg'];
+          let solved_num = [54, 48, 35, 33, 31, 22, 15, 7];
 
           let temp_user = [];
           for(let i = 1; i <= user_name.length; i++){
@@ -42,11 +42,11 @@ function UserRankCard(props) {
                   : <BiListMinus size="40"/>
                 }
                 </span>
-                <div className = 'Table'>
+                <div className = 'Body'>
                     {
                         isActive === true
                         ? 
-                            <table>
+                            <table className="Table">
                                 <thead className ="thead">
                                     <tr>
                                         <th className='rank'>Rank</th><th className='userid'>User ID</th><th className='problem'>Num of Solved Problem</th> 
@@ -57,7 +57,7 @@ function UserRankCard(props) {
                                         userRank.map((item)=>{
                                             return(
                                                 <tr>
-                                                    <td>{item.rank}</td><td>{item.id}</td><td>{item.problem}</td>
+                                                    <td className='lowRank'>{item.rank}</td><td>{item.id}</td><td className='lowProblem'>{item.problem}</td>
                                                 </tr>
                                             );
                                         })
@@ -66,63 +66,69 @@ function UserRankCard(props) {
                             </table>
                         :
                             <>
-                            <div className="programming">&bull; 프로그래밍 &bull;</div>
-                            <table className ='table1'>
-                                <thead className ="thead">
-                                    <tr>
-                                        <th className='rank'>Rank</th><th className='userid'>User ID</th><th className='problem'>Num of Solved Problem</th> 
-                                    </tr>
-                                </thead>
-                                <tbody className="tbody">
-                                    {
-                                        userRank.map((item)=>{
-                                            return(
-                                                <tr>
-                                                    <td>{item.rank}</td><td>{item.id}</td><td>{item.problem}</td>
-                                                </tr>
-                                            );
-                                        })
-                                    }
-                                </tbody>
-                            </table>
-                            <div className="multiple">&bull; 객관식 &bull;</div>
-                            <table className ='table2'>
-                                <thead className ="thead">
-                                    <tr>
-                                        <th className='rank'>Rank</th><th className='userid'>User ID</th><th className='problem'>Num of Solved Problem</th> 
-                                    </tr>
-                                </thead>
-                                <tbody className="tbody">
-                                    {
-                                        userRank.map((item)=>{
-                                            return(
-                                                <tr>
-                                                    <td>{item.rank}</td><td>{item.id}</td><td>{item.problem}</td>
-                                                </tr>
-                                            );
-                                        })
-                                    }
-                                </tbody>
-                            </table>
-                            <div className="shortan">&bull; 단답형 &bull;</div>
-                            <table className ='table3'>
-                                <thead className ="thead">
-                                    <tr>
-                                        <th className='rank'>Rank</th><th className='userid'>User ID</th><th className='problem'>Num of Solved Problem</th> 
-                                    </tr>
-                                </thead>
-                                <tbody className="tbody">
-                                    {
-                                        userRank.map((item)=>{
-                                            return(
-                                                <tr>
-                                                    <td>{item.rank}</td><td>{item.id}</td><td>{item.problem}</td>
-                                                </tr>
-                                            );
-                                        })
-                                    }
-                                </tbody>
-                            </table>
+                            <div className='table1_container'>
+                                <div className="programming">&bull; 프로그래밍 &bull;</div>
+                                <table className ='table1'>
+                                    <thead className ="thead">
+                                        <tr>
+                                            <th className='rank'>Rank</th><th className='userid'>User ID</th><th className='problem'>Num of Solved Problem</th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody className="tbody">
+                                        {
+                                            userRank.map((item)=>{
+                                                return(
+                                                    <tr>
+                                                        <td>{item.rank}</td><td>{item.id}</td><td>{item.problem}</td>
+                                                    </tr>
+                                                );
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className='table2_container'>
+                                <div className="multiple">&bull; 객관식 &bull;</div>
+                                <table className ='table2'>
+                                    <thead className ="thead">
+                                        <tr>
+                                            <th className='rank'>Rank</th><th className='userid'>User ID</th><th className='problem'>Num of Solved Problem</th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody className="tbody">
+                                        {
+                                            userRank.map((item)=>{
+                                                return(
+                                                    <tr>
+                                                        <td>{item.rank}</td><td>{item.id}</td><td>{item.problem}</td>
+                                                    </tr>
+                                                );
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className='table3_container'>
+                                <div className="shortan">&bull; 단답형 &bull;</div>
+                                <table className ='table3'>
+                                    <thead className ="thead">
+                                        <tr>
+                                            <th className='rank'>Rank</th><th className='userid'>User ID</th><th className='problem'>Num of Solved Problem</th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody className="tbody">
+                                        {
+                                            userRank.map((item)=>{
+                                                return(
+                                                    <tr>
+                                                        <td>{item.rank}</td><td>{item.id}</td><td>{item.problem}</td>
+                                                    </tr>
+                                                );
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                             </>
                     }
                 </div>
@@ -148,31 +154,61 @@ const Wrapper = styled.div`
         grid-template-rows: 40px 450px; 
         grid-template-columns: 95px 95px 190px 50px; 
 
-        .Table
+        .Body
         {
             text-align:center;
             padding-left:13px;
             padding-top:30px;
             grid-area : C;
 
-            .tbody{
-                height:300px;
-            }
-            .thead{
-                height:30px;
-                .rank{
-                    width:50px;
+           .Table{
+                border-collapse: collapse;
+                width:420px;
+                
+                th{
+                    color:white;
+                    font-weight:500;
+                    border-top:none;
+                    background-color:#1A1351;
+                    border-bottom:3px solid #1A1351;
                 }
-                .userid{
-                    width:150px;
+
+                .thead{
+                    height:30px;
+                    .rank{
+                        width:85px;
+                        border-top-left-radius:5px;
+                    }
+                    .userid{
+                        width:130px;
+                    }
+                    .problem{
+                        width:205px;
+                        border-top-right-radius:5px;
+                    }
                 }
-                .problem{
-                    width:250px;
+    
+                .tbody{
+                    height:350px;
+                }
+                .tbody tr:nth-child(2n){
+                    background-color:#f7f7f7;
+                    cursor:default;
+                }
+                .tbody tr:nth-child(2n+1){
+                    background-color:#fff;
+                    cursor:default;
+                }
+                .tbody tr:nth-child(8) .lowRank {
+                    border-bottom-left-radius:5px;
+                }
+                .tbody tr:nth-child(8) .lowPank {
+                    border-bottom-right-radius:5px;
                 }
             }
         }
-       
     }
+
     .Big-Card{
         z-index : 99;
         display:grid;
@@ -189,71 +225,126 @@ const Wrapper = styled.div`
         grid-template-rows: 40px 450px; 
         grid-template-columns: 500px 620px 180px 90px; 
        
-        .Table
+        .Body
         {
-            text-align:center;
+            text-align: center;
             grid-area : C;
 
             display:grid;
             grid-template-areas: 
-            "a b c"
             "A B C";
-            grid-template-rows: 30px;
+            border
             grid-template-columns: 463px 463px 463px;  
             
-            .programming {
-                padding-top:20px;
-                grid-area:a;
-                font-size:22px;
-                font-weight:bold;
-               
-            }
-            .multiple{
-                padding-top:20px;
-                grid-area:b;
-                font-size:22px;
-                font-weight:bold;
-            }
-            .shortan{
-                padding-top:20px;
-                grid-area:c;
-                font-size:22px;
-                font-weight:bold;
-            }
-            .table1{
+            .table1_container{
+                height:445px;
                 gird-area:A;
-                place-self: center center;
-                width:400px;
+                
+                display:flex;
+                flex-direction:column;
+                justify-content: center;
+                align-items: center;
+                border-right: #a0a0a0 solid;
+               
+                .programming {
+                    font-size:20px;
+                    font-weight:bold;
+                    padding-bottom:10px;
+                }
+               
+                .table1{
+                    width:420px;
+                    border-collapse: collapse;
+                }
             }
-            .table2{
-                gird-area:B;
-                place-self: center center;
-                width:400px;
+           
+            .table2_container{
+                height:445px;
+                grid-area:B;
 
+                display:flex;
+                flex-direction:column;
+                justify-content: center;
+                align-items: center;
+                border-right: #a0a0a0 solid;
+
+                .multiple{
+                    font-size:20px;
+                    font-weight:bold;
+                    padding-bottom:10px;
+                }
+                .table2{
+                    width:420px;
+                    border-collapse: collapse;
+    
+                }
             }
-            .table3{
+           
+            .table3_container{
                 gird-area:C;
-                place-self: center center;
-                width:400px;
+                height:445px;
 
-            }
+                display:flex;
+                flex-direction:column;
+                justify-content: center;
+                align-items: center;
 
-            .tbody{
-                height:300px;
+                .shortan{
+                    font-size:20px;
+                    font-weight:bold;
+                    padding-bottom:10px;
+                }
+
+                .table3{
+                    width:420px;
+                    border-collapse: collapse;
+                }
             }
+           
+        
+            th{
+                color:white;
+                font-weight:500;
+                border-top:none;
+                background-color:#1A1351;
+                border-bottom:3px solid #1A1351;
+            }
+        
             .thead{
                 height:30px;
                 .rank{
-                    width:50px;
+                    width:100px;
+                    border-top-left-radius:5px;
+                    
                 }
                 .userid{
                     width:150px;
                 }
                 .problem{
                     width:250px;
+                    border-top-right-radius:5px;
                 }
             }
+
+            .tbody{
+                height:300px;
+            }
+            .tbody tr:nth-child(2n){
+                background-color:#f7f7f7;
+                cursor:default;
+            }
+            .tbody tr:nth-child(2n+1){
+                background-color:#fff;
+                cursor:default;
+            }
+            .tbody tr:nth-child(8) .lowRank {
+                border-bottom-left-radius:5px;
+            }
+            .tbody tr:nth-child(8) .lowPank {
+                border-bottom-right-radius:5px;
+            }
         }
+    
     }
 
     
