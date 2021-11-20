@@ -79,7 +79,7 @@ function Analystic(props) {
                 <div className="Problem_Graph_Card"><ProblemGraphCard/></div>
                 <div className="User_Rank_Card"><UserRankCard/></div>
                 <div className="Correct_Rate_Card"><CorrectRateCard/></div>
-                <div className="Diffyculty_Graph_Card"></div>
+                <div className="Diffyculty_Graph_Card"><DifficultyGraphCard/></div>
                 <div className="Wrong_Rate_Card"><WrongRateCard/></div>
             </div>
         </DashboardLayout>

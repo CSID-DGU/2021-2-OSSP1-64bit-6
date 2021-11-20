@@ -55,7 +55,7 @@ function CorrectRateCard(props) {
                                 <tbody className="tbody">
                                     {
                                         userRank.map((item,idx)=>{
-                                            if(idx<3)
+                                            if(idx<4)
                                             {
                                             return(
                                                 <tr>
@@ -219,11 +219,16 @@ const Wrapper = styled.div`
                     border-top:none;
                     background-color:#1A1351;
                     border-bottom:3px solid #1A1351;
+                    
                 }
 
                 .thead{
-                    height:10px;
+                    height:5px;
                     font-size:15px;
+
+                    tr{
+                        height:30px;
+                    }
                     .rank{
                         width:85px;
                         border-top-left-radius:5px;
@@ -275,7 +280,7 @@ const Wrapper = styled.div`
         "C C C C C";
      
         grid-template-rows: 40px 450px; 
-        grid-template-columns: 360px 360px 360px 180px 70px; 
+        grid-template-columns: 360px 360px 360px 200px 90px; 
        
         .Body
         {

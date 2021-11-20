@@ -146,6 +146,7 @@ const Wrapper = styled.div`
         background-color:#fff;
         border: 3px solid #a0a0a0;
         border-radius:5px;
+        position: relative;
 
         grid-template-areas: 
         "A A B D"
@@ -217,6 +218,7 @@ const Wrapper = styled.div`
         background-color:#fff;
         border: 3px solid #a0a0a0;
         border-radius:5px;
+        position: relative;
 
         grid-template-areas: 
         "A A B D"

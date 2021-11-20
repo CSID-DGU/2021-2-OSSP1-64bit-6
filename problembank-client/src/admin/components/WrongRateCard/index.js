@@ -55,7 +55,7 @@ function WrongRateCard(props) {
                                 <tbody className="tbody">
                                     {
                                         userRank.map((item,idx)=>{
-                                            if(idx<3)
+                                            if(idx<4)
                                             {
                                             return(
                                                 <tr>
@@ -205,7 +205,7 @@ const Wrapper = styled.div`
         .Body
         {
             text-align:center;
-            padding-left:13px;
+            padding-left:10px;
             padding-top:20px;
             grid-area : C;
 
@@ -224,6 +224,9 @@ const Wrapper = styled.div`
                 .thead{
                     height:10px;
                     font-size:15px;
+                    tr{
+                        height:30px;
+                    }
                     .rank{
                         width:85px;
                         border-top-left-radius:5px;
@@ -275,7 +278,7 @@ const Wrapper = styled.div`
         "C C C C C";
      
         grid-template-rows: 40px 450px; 
-        grid-template-columns: 360px 360px 360px 180px 70px; 
+        grid-template-columns: 360px 360px 360px 200px 90px; 
        
         .Body
         {
@@ -307,7 +310,7 @@ const Wrapper = styled.div`
                
                 .table1{
                    
-                    width:250px;
+                    width:260px;
                     border-collapse: collapse;
                 }
             }
@@ -330,7 +333,7 @@ const Wrapper = styled.div`
                     padding-bottom:10px;
                 }
                 .table2{
-                    width:250px;
+                    width:260px;
                     border-collapse: collapse;
     
                 }
@@ -355,7 +358,7 @@ const Wrapper = styled.div`
                 }
 
                 .table3{
-                    width:250px;
+                    width:260px;
                     border-collapse: collapse;
                 }
             }
@@ -379,7 +382,7 @@ const Wrapper = styled.div`
                 }
 
                 .table4{
-                    width:250px;
+                    width:260px;
                     border-collapse: collapse;
                 }
             }
@@ -402,7 +405,7 @@ const Wrapper = styled.div`
                 }
 
                 .table5{
-                    width:250px;
+                    width:260px;
                     border-collapse: collapse;
                 }
             }
