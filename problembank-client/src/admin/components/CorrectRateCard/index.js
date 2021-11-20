@@ -38,8 +38,8 @@ function CorrectRateCard(props) {
                 <span onClick={() => handleSize(isActive)} className = 'PlusIcon'> 
                 {
                   isActive === true
-                  ? <BiListPlus size="30"/>
-                  : <BiListMinus size="30"/>
+                  ? <BiListPlus size="40"/>
+                  : <BiListMinus size="40"/>
                 }
                 </span>
                 <div className = 'Body'>
@@ -134,7 +134,7 @@ function CorrectRateCard(props) {
                             </div>
                             <div className='table4_container'>
                                 <div className="algorithm">&bull; Algorithm &bull;</div>
-                                <table className ='table1'>
+                                <table className ='table4'>
                                     <thead className ="thead">
                                         <tr>
                                              <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct Answer Rate</th>
@@ -155,7 +155,7 @@ function CorrectRateCard(props) {
                             </div>
                             <div className='table5_container'>
                                 <div className="string">&bull; String &bull;</div>
-                                <table className ='table1'>
+                                <table className ='table5'>
                                     <thead className ="thead">
                                         <tr>
                                              <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct Answer Rate</th>
@@ -186,7 +186,7 @@ const Wrapper = styled.div`
     .Card{
         z-index : 0;
         display:grid;
-        width:450px;
+        width:470px;
         height:240px;
         background-color:#fff;
         border: 3px solid #a0a0a0;
@@ -200,18 +200,18 @@ const Wrapper = styled.div`
         "C C C C";
      
         grid-template-rows: 40px 450px; 
-        grid-template-columns: 95px 95px 190px 50px; 
+        grid-template-columns: 95px 95px 220px 50px; 
 
         .Body
         {
             text-align:center;
-            padding-left:13px;
-            padding-top:20px;
+            padding-left:16px;
+            padding-top:11px;
             grid-area : C;
 
            .Table{
                 border-collapse: collapse;
-                width:420px;
+                width:430px;
                 
                 th{
                     color:white;
@@ -223,11 +223,9 @@ const Wrapper = styled.div`
                 }
 
                 .thead{
-                    height:5px;
                     font-size:15px;
-
                     tr{
-                        height:30px;
+                        height:40px;
                     }
                     .rank{
                         width:85px;
@@ -280,7 +278,7 @@ const Wrapper = styled.div`
         "C C C C C";
      
         grid-template-rows: 40px 450px; 
-        grid-template-columns: 360px 360px 360px 200px 90px; 
+        grid-template-columns: 360px 360px 360px 230px 70px; 
        
         .Body
         {
@@ -302,8 +300,7 @@ const Wrapper = styled.div`
                 justify-content: center;
                 align-items: center;
                 border-right: #a0a0a0 solid;
-                padding-right:5px;
-                padding-left:15px;
+               
                 .implementation {
                     font-size:20px;
                     font-weight:bold;
@@ -311,7 +308,6 @@ const Wrapper = styled.div`
                 }
                
                 .table1{
-                   
                     width:250px;
                     border-collapse: collapse;
                 }
@@ -326,9 +322,7 @@ const Wrapper = styled.div`
                 justify-content: center;
                 align-items: center;
                 border-right: #a0a0a0 solid;
-                padding-right:5px;
-                padding-left:5px;
-
+               
                 .datastructure{
                     font-size:20px;
                     font-weight:bold;
@@ -350,9 +344,7 @@ const Wrapper = styled.div`
                 justify-content: center;
                 align-items: center;
                 border-right: #a0a0a0 solid;
-                padding-right:5px;
-                padding-left:5px;
-
+              
                 .math{
                     font-size:20px;
                     font-weight:bold;
@@ -374,9 +366,7 @@ const Wrapper = styled.div`
                 justify-content: center;
                 align-items: center;
                 border-right: #a0a0a0 solid;
-                padding-right:5px;
-                padding-left:5px;
-
+                
                 .algorithm{
                     font-size:20px;
                     font-weight:bold;
@@ -398,7 +388,7 @@ const Wrapper = styled.div`
                 justify-content: center;
                 align-items: center;
                 
-                padding-left:5px;
+               
                 
                 .string{
                     font-size:20px;
@@ -471,15 +461,14 @@ const Wrapper = styled.div`
         grid-area : B;
         font-size : 17px;
         padding-top : 20px;
-        padding-left : 100px;
         color : #a0a0a0;
-        //place-self: end end;
+        place-self: end end;
     }
     .PlusIcon{
         grid-area : D;
-        padding-top:15px;
-        padding-left:5px;
+        padding-top:7px;
         cursor:pointer;
+        place-self: start start;
 
     }
 `

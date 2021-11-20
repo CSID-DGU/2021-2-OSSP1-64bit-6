@@ -19,7 +19,7 @@
 }
 .Full_container{
     margin-left:150px;
-    margin-bottom:100px;
+    margin-bottom:300px;
     display:grid;
     grid-template-rows: 250px 380px 250px 250px;
     grid-template-columns: 300px 160px 235px 235px 160px 300px;
@@ -77,19 +77,21 @@
     .Correct_Rate_Card{
         grid-area: F;
         place-self: start start;
+       
      
     }
 
     .Wrong_Rate_Card{
         grid-area: H;
-        
+        place-self: start start;
+    
+
 
     }
    
     .Diffyculty_Graph_Card{
         grid-area: G;
-        
-
+        place-self: start end;
     }
 
 }

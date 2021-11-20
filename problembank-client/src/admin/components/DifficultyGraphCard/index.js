@@ -2,58 +2,92 @@ import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import {Pie, Doughnut} from 'react-chartjs-2';
 import {useState} from 'react';
-
-import {useSelector} from 'react-redux';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import {Chart} from 'chart.js';
-import {Link} from 'react-router-dom'
+
 
 function DifficultyGraphCard(props) {
-	const user = useSelector((state) => state.user);
-	const [stateDoughnut, setStateDoughnut] = useState({});
-    const [optionDoughnut, setOptionDoughnut] = useState({});
-
-    const [sub_programming, setStatesubP] = useState({});
-    const [sub_multiple, setStatesubM] = useState({});
-    const [sub_shortan, setStatesubS] = useState({});
-    const [option_sub, setOptionsub] = useState({});
-    const [option_sub1, setOptionsub1] = useState({});
-
-    
+    const [sub_upper, setStatesubU] = useState({});
+    const [sub_middle, setStatesubM] = useState({});
+    const [sub_lower, setStatesubL] = useState({});
+    const [option_upper, setOptionU] = useState({});
+    const [option_middle, setOptionM] = useState({});
+    const [option_lower, setOptionL] = useState({});
 
     Chart.register(ChartDataLabels);
 
 	useEffect(() => {
 		const fetchData = async () => {
-    
-
-            let sub_programming = {
-				labels: ['정답률', '오답률' ],
+            let sub_upper = {
+				labels: ['O', 'X' ],
 				datasets: [{
 					backgroundColor: [
                         '#74C9C6', 
                         '#FE88A0'
-                         
-                       
                     ],
+                    borderWidth:0,
                     hoverBackgroundColor: [
                         '#36A2EB',
                         '#FF6384'
                     ],
-					data: [1,4],
+					data: [3,4],
 					}
 				]
 			};
-			setStatesubP(sub_programming);
+			setStatesubU(sub_upper);
 
-            let sub_option = {
+            let sub_middle = {
+                labels: ['O', 'X' ],
+                datasets: [{
+                    backgroundColor: [
+                        '#74C9C6', 
+                        '#FE88A0'
+                    ],
+                    borderWidth:0,
+                    hoverBackgroundColor: [
+                        '#36A2EB',
+                        '#FF6384'
+                    ],
+                    data: [2,2],
+                    }
+                ]
+            };
+            setStatesubM(sub_middle);
+
+
+            let sub_lower = {
+                labels: ['O', 'X' ],
+                datasets: [{
+                    backgroundColor: [
+                        '#74C9C6', 
+                        '#FE88A0'
+                    ],
+                    borderWidth:0,
+                    hoverBackgroundColor: [
+                        '#36A2EB',
+                        '#FF6384'
+                    ],
+                    data: [4,1],
+                    }
+                ]
+            };
+            setStatesubL(sub_lower);
+
+            let sub_optU = {
                 responsive:false,
-                maintainAspectRatio: false,
                 plugins:{
+                    title: {
+                        display: true,
+                        text: '상',
+                        font:{
+                            size:20
+                        },
+                        padding:{
+                            top:15
+                        }
+                    },
                     legend:{
                         display : false,
-                        position : 'bottom',
-                        fontSize: 10
                       },
                     datalabels: {
                         display: true,
@@ -65,30 +99,36 @@ function DifficultyGraphCard(props) {
                               });
                               let percentage = (val*100 / sum).toFixed(0)+"%";
               
-                          return ctx.chart.data.labels[ctx.dataIndex] + ' (' +percentage +')';
-                          //return '(' +percentage +')';
+                          return  ctx.chart.data.labels[ctx.dataIndex] + ' (' +percentage +')';
                         },
-                        color: '#000',
-                       
+                        color:   ['#36A2EB','#FF6384'],
+                        backgroundColor: '#fff',
                         borderRadius: 5,
                         font:{
-                          size:10,
-                          color:'fff'
+                          size:15,
+                          wegiht:50
                         }
                       },
                 }
 
         };
-        setOptionsub(sub_option);
+        setOptionU(sub_optU);
 
-        let sub_option1 = {
+        let sub_optM = {
             responsive:false,
-            maintainAspectRatio: false,
             plugins:{
+                title: {
+                    display: true,
+                    text: '중',
+                    font:{
+                        size:20
+                    },
+                    padding:{
+                        top:15
+                    }
+                },
                 legend:{
-                    display : true,
-                    position : 'bottom',
-                    fontSize: 10
+                    display : false,
                   },
                 datalabels: {
                     display: true,
@@ -100,59 +140,63 @@ function DifficultyGraphCard(props) {
                           });
                           let percentage = (val*100 / sum).toFixed(0)+"%";
           
-                      return ctx.chart.data.labels[ctx.dataIndex] + ' (' +percentage +')';
-                      //return '(' +percentage +')';
+                      return ctx.chart.data.labels[ctx.dataIndex] + '(' +percentage +')';
                     },
-                    color: '#000',
+                    color: ['#36A2EB','#FF6384'],
                     backgroundColor: '#fff',
                     borderRadius: 5,
+                 
                     font:{
-                      size:14
+                      size:15,
+                      wegiht:30
                     }
                   },
             }
 
-    };
-    setOptionsub1(sub_option1);
-
-        let sub_mul = {
-            labels: ['정답률', '오답률' ],
-            datasets: [{
-                backgroundColor: [
-                    '#74C9C6', 
-                    '#FE88A0'
-                     
-                   
-                ],
-                hoverBackgroundColor: [
-                    '#36A2EB',
-                    '#FF6384'
-                ],
-                data: [2,2],
-                }
-            ]
         };
-        setStatesubM(sub_mul);
+        setOptionM(sub_optM);
 
-
-        let sub_short = {
-            labels: ['정답률', '오답률' ],
-            datasets: [{
-                backgroundColor: [
-                    '#74C9C6', 
-                    '#FE88A0'
-                     
-                   
-                ],
-                hoverBackgroundColor: [
-                    '#36A2EB',
-                    '#FF6384'
-                ],
-                data: [4,1],
-                }
-            ]
+        let sub_optL = {
+            responsive:false,
+            plugins:{
+                title: {
+                    display: true,
+                    text: '하',
+                    font:{
+                        size:20
+                    },
+                    padding:{
+                        top:15
+                    }
+                },
+                legend:{
+                    display : false,
+                },
+                datalabels: {
+                    display: true,
+                    formatter: (val, ctx) => {
+                    let sum = 0;
+                        let dataArr = ctx.chart.data.datasets[0].data;
+                        dataArr.map(data => {
+                            sum += data;
+                        });
+                        let percentage = (val*100 / sum).toFixed(0)+"%";
+        
+                    return ctx.chart.data.labels[ctx.dataIndex] + '(' +percentage +')';
+                    },
+                    color: ['#36A2EB','#FF6384'],
+                    backgroundColor: '#fff',
+                    borderRadius: 5,                
+                
+                    font:{
+                    size:15,
+                    wegiht:30
+                    }
+                },
+            }
         };
-        setStatesubS(sub_short);
+        setOptionL(sub_optL);
+
 
 		};
 		fetchData();
@@ -162,36 +206,35 @@ function DifficultyGraphCard(props) {
 	return (
 		<Wrapper>
 			<div className="container">
-                <div className ="chart-header">
-                <h2>난이도별 정답률</h2>
-                 </div>
+                <div className ="chart-header">난이도별 풀이 비율</div>
                 
                 <div className="chart-sub">
-                    <div className="sub">
-                        <h3>상</h3>
+                    <div className="upper">
                         <Pie
-                            data={sub_programming}
-                            options={option_sub}
-                           width={158}
-                           height={158}
+                            data={sub_upper}
+                            options={option_upper}
+                            width={220}
+                            height={220}
                         />
                     </div><br/>
-                    <div className="sub">
-                        <h3>중</h3>
+                    <div className="middle">
+                      
                         <Pie
-                            data={sub_multiple}
-                            options={option_sub}
-                            width={158}
-                            height={158}
+                            data={sub_middle}
+                            options={option_middle}
+                            width={220}
+                            height={220}
+                           
                         />
                     </div><br/>
-                    <div className="sub">
-                        <h3>하</h3>
+                    <div className="lower">
+                      
                         <Pie
-                            data={sub_shortan}
-                            options={option_sub}
-                            width={158}
-                            height={158}
+                            data={sub_lower}
+                            options={option_lower}
+                            width={220}
+                            height={220}
+                            
                         />
                     </div>
                 </div>   
@@ -202,38 +245,48 @@ function DifficultyGraphCard(props) {
 
 const Wrapper = styled.div`
     .container{
-        box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 1px;
+        width:450px;
+        height:490px;
         border-radius: 5px;
         border: 3px solid #a0a0a0;
         background-color:#fff;
         position:relative;
         top:10px;
         
-
         .chart-header{
-            padding: 5px 5px;
+            padding-left: 20px;
+            padding-top:10px;
+            font-size:27px;
+            font-weight:bold;
         }
 
-      
         }
         .chart-sub{
-            padding-top:5px;
-            padding-bottom:5px;
-            display:flex;
-            flex-wrap: wrap;
-           
-            justify-content: space-around;
+            
+            display:grid;
+            
+            grid-template-areas: 
+            ". . A A"
+            "B B A A"
+            "B B C C"
+            ". . C C";
+            
+            grid-template-rows: 109px 109px 109px 109px; 
+            grid-template-columns: 114px 114px 114px 114px; 
 
-            h3{
-                display:flex;
-                justify-content: space-around;
-                padding-bottom:5px;
+            .upper{
+                grid-area:A;
+                place-self: start start;
             }
-
-            .sub{
-                margin:0 auto;
-                flex : 0 0 50px;
+            .middle{
+                grid-area:B;
+                place-self: center start;
             }
+            .lower{
+                grid-area:C;
+                place-self: end start;
+            }
+            
           
         }
 
