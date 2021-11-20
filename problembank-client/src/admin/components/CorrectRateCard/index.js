@@ -49,7 +49,7 @@ function CorrectRateCard(props) {
                             <table className="Table">
                                 <thead className ="thead">
                                     <tr>
-                                        <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct Answer Rate</th> 
+                                        <th className='rank'>Rank</th><th className='userid'> problem ID </th><th className='problem'>Correct Answer Rate</th> 
                                     </tr>
                                 </thead>
                                 <tbody className="tbody">
