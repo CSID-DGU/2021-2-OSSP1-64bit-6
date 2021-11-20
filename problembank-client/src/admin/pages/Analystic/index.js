@@ -11,6 +11,9 @@ import ProblemGraphCard from '../../components/ProblemGraphCard';
 import UserRankCard from '../../components/UserRankCard';
 import VisitorNumCard from '../../components/VisitorNumCard';
 import TotalProblemCard from '../../components/TotalProblemCard';
+import CorrectRateCard from '../../components/CorrectRateCard';
+import WrongRateCard from '../../components/WrongRateCard';
+import DifficultyGraphCard from '../../components/DifficultyGraphCard';
 import {HiOutlineRefresh} from "react-icons/hi";
 
 function Analystic(props) {
@@ -75,9 +78,9 @@ function Analystic(props) {
                 <div className="User_Graph_Card"> <UserGraphCard/> </div>
                 <div className="Problem_Graph_Card"><ProblemGraphCard/></div>
                 <div className="User_Rank_Card"><UserRankCard/></div>
-                <div className="Correct_Rate_Card"></div>
-                <div className="Problem_Per_Day"></div>
-                <div className="Wrong_Rate_Card"></div>
+                <div className="Correct_Rate_Card"><CorrectRateCard/></div>
+                <div className="Diffyculty_Graph_Card"></div>
+                <div className="Wrong_Rate_Card"><WrongRateCard/></div>
             </div>
         </DashboardLayout>
 

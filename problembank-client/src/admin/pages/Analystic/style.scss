@@ -71,25 +71,24 @@
     .User_Rank_Card{
         grid-area: E;
         place-self: end start;
-        z-index : 1;
+        z-index: 1;
     }
 
     .Correct_Rate_Card{
         grid-area: F;
-        border:solid;
-
+        place-self: start start;
+     
     }
 
     .Wrong_Rate_Card{
         grid-area: H;
-        border:solid;
-
+        
 
     }
    
-    .Problem_Per_Day{
+    .Diffyculty_Graph_Card{
         grid-area: G;
-        border:solid;
+        
 
     }
 
