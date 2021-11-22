@@ -15,6 +15,8 @@ import CorrectRateCard from '../../components/CorrectRateCard';
 import WrongRateCard from '../../components/WrongRateCard';
 import DifficultyGraphCard from '../../components/DifficultyGraphCard';
 import {HiOutlineRefresh} from "react-icons/hi";
+import projectsAPI from '../../../apis/admin/problem';
+import problemBankAPI from '../../../apis/problemsBank';
 
 function Analystic(props) {
     const [timeState,setTime] = useState();
@@ -57,6 +59,12 @@ function Analystic(props) {
             //                 + ('0' + (present_date.getHours())).slice(-2) + ('0' + (present_date.getMinutes()+1)).slice(-2) + ('00');
             
             timeFunc(function(){window.location.reload()}, oneHourPlus);
+
+
+		const res = await problemBankAPI.getStatusProblem();
+                        const {data} = res;
+
+                        const {coding, multichoice, shortans, heatmap, proCate} = data;
         };
         fetchData();
     }, []);
