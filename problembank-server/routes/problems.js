@@ -626,12 +626,17 @@ router.get('/status-problems', async function (req, res){
         alg_short.map((item) => (proArray.push(item.problem_id),proDate.push(item.timstamp),proCategory.push("short"),proType.push("algo")))
         alg_prog.map((item) => (proArray.push(item.problem_id),proDate.push(item.timestamp),proCategory.push("prog"),proType.push("algo")))
 
-
         
-          
-	
+        //-----------rank
+        const [rank_All] = await db.query(sql.problems.getRankAll);
+        const [rank_Coding] = await db.query(sql.problems.getRankCoding);
+        const [rank_Mul] = await db.query(sql.problems.getRankMul);
+        const [rank_Short] = await db.query(sql.problems.getRankShort);
 
-        
+        //----------level별
+        const [isCorrect_Level] = await db.query(sql.problems.isCorrectLevel);
+        const [noCorrect_Level] = await db.query(sql.problems.noCorrectLevel);
+                
         
         
         
@@ -643,7 +648,9 @@ router.get('/status-problems', async function (req, res){
                 multichoice: {isCorrectArrayMul, noCorrectArrayMul, levelMul},
                 shortans: {isCorrectArrayShortans, noCorrectArrayShortans, levelShortans},
                 heatmap: {count_heat, con_heat},
-		proCate: {proArray,proDate,proCategory,proType},
+		        proCate: {proArray,proDate,proCategory,proType},
+                rank: {rank_All, rank_Coding, rank_Mul, rank_Short},
+                level: {isCorrect_Level, noCorrect_Level},
             },
             message: '자기 작업한 문제 현황'
         })
