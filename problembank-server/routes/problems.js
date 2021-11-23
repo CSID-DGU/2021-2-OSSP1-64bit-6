@@ -564,6 +564,33 @@ router.get('/status-problems', async function (req, res){
         const [count_heat] = await db.query(sql.problems.countTime, [id,id,id])
         const [con_heat] = await db.query(sql.problems.conTime, [id,id,id])
 
+
+
+                //정,오답률
+        const [cor_rank] = await db.query(sql.problems.selectCorr,[id])
+        const [inc_rank] = await db.query(sql.problems.selectInco,[id])
+
+        //implecation 정,오답률
+        const [cor_imp] = await db.query(sql.problems.selectCorrImp,[id])
+        const [inc_imp] = await db.query(sql.problems.selectIncoImp,[id])  
+        
+        //math 정,오답률
+        const [cor_mat] = await db.query(sql.problems.selectCorrMath,[id])
+        const [inc_mat] = await db.query(sql.problems.selectIncoMath,[id])
+
+        //string 정,오답률
+        const [cor_str] = await db.query(sql.problems.selectCorrStr,[id])
+        const [inc_str] = await db.query(sql.problems.selectIncoStr,[id])
+
+        //data structure 정,오답률
+        const [cor_dat] = await db.query(sql.problems.selectCorrData,[id])
+        const [inc_dat] = await db.query(sql.problems.selectIncoData,[id])
+
+        //algorithm 정,오답률
+        const [cor_alg] = await db.query(sql.problems.selectCorrAlgo,[id])
+        const [inc_alg] = await db.query(sql.problems.selectIncoAlgo,[id])
+
+	    
         let nothing;
         
         // ----------pro
@@ -680,6 +707,69 @@ router.get('/status-problems', async function (req, res){
                                       
         
         
+
+
+
+	            //정답률 Id, 제목, 정답률 퍼센트, 카테고리
+        let corrArray = [];
+        //오답률 Id, 제목, 오답률 퍼센트, 카테고리
+        let incoArray = [];
+
+
+        cor_rank.map((item) => (corrArray.push(item)))
+        inc_rank.map((item) => (incoArray.push(item)))
+
+
+        //정답률 Id, 제목, 정답률 퍼센트, 카테고리
+        let corrImpArray = [];
+        //오답률 Id, 제목, 오답률 퍼센트, 카테고리
+        let incoImpArray = [];
+
+
+        cor_imp.map((item) => (corrImpArray.push(item)))
+        inc_imp.map((item) => (incoImpArray.push(item)))
+
+
+        //정답률 Id, 제목, 정답률 퍼센트, 카테고리
+        let corrMathArray = [];
+        //오답률 Id, 제목, 오답률 퍼센트, 카테고리
+        let incoMathArray = [];
+
+
+        cor_mat.map((item) => (corrMathArray.push(item)))
+        inc_mat.map((item) => (incoMathArray.push(item)))
+
+
+
+        //정답률 Id, 제목, 정답률 퍼센트, 카테고리
+        let corrStrArray = [];
+        //오답률 Id, 제목, 오답률 퍼센트, 카테고리
+        let incoStrArray = [];
+
+
+        cor_str.map((item) => (corrStrArray.push(item)))
+        inc_str.map((item) => (incoStrArray.push(item)))
+
+
+
+        //정답률 Id, 제목, 정답률 퍼센트, 카테고리
+        let corrDataArray = [];
+        //오답률 Id, 제목, 오답률 퍼센트, 카테고리
+        let incoDataArray = [];
+
+
+        cor_dat.map((item) => (corrDataArray.push(item)))
+        inc_dat.map((item) => (incoDataArray.push(item)))
+
+
+        //정답률 Id, 제목, 정답률 퍼센트, 카테고리
+        let corrAlgoArray = [];
+        //오답률 Id, 제목, 오답률 퍼센트, 카테고리
+        let incoAlgoArray = [];
+
+
+        cor_alg.map((item) => (corrAlgoArray.push(item)))
+        inc_alg.map((item) => (incoAlgoArray.push(item)))
         
   
         res.status(200).send({
@@ -695,6 +785,12 @@ router.get('/status-problems', async function (req, res){
                 userCount: {user_Cnt, user_Lastday},
                 visitor: {visitor_All, visitor_Today, visitor_Lastday},
                 problemCount: {coding_Count, mul_Count, short_Count, all_Problem_Count},
+		 rankAll: {corrArray,incoArray},
+                rankImp: {corrImpArray,incoImpArray},
+                rankMath: {corrMathArray,incoMathArray},
+                rankStr: {corrStrArray,incoStrArray},
+                rankData: {corrDataArray,incoDataArray},
+                rankAlgo: {corrAlgoArray,incoAlgoArray},
             },
             message: '자기 작업한 문제 현황'
         })

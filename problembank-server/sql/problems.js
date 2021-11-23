@@ -77,6 +77,43 @@ module.exports = {
     selectAlgoProg : "select problem_id,timestamp from plass_problem_submit where (problem_id = 38)AND answer_status = 1 AND user_id = ? ",
     
 
+//전체 문제에 대한 정,오답률
+    selectCorr: "SELECT s.problem_id AS pp ,  p.name AS nn , AVG(s.answer_status)*100 AS aa FROM plass_problem_submit AS s JOIN plass_problems AS p WHERE (s.problem_id = p.id) GROUP BY s.problem_id order by AVG(answer_status) desc",
+    
+
+    selectInco: "SELECT s.problem_id AS pp ,  p.name AS nn , AVG(s.answer_status)*100 AS aa FROM plass_problem_submit AS s JOIN plass_problems AS p WHERE (s.problem_id = p.id) GROUP BY s.problem_id order by AVG(answer_status) asc",
+    
+    //implementation에 대한 정,오답률
+    selectCorrImp: "SELECT s.problem_id AS pp ,  p.name AS nn , AVG(s.answer_status)*100 AS aa FROM plass_problem_submit AS s JOIN plass_problems AS p WHERE (s.problem_id = p.id) AND ((s.problem_id BETWEEN 1 AND 4) OR (s.problem_id BETWEEN 11 AND 22) OR (s.problem_id BETWEEN 25 AND 26) OR (problem_id BETWEEN 29 AND 30 ) OR (s.problem_id = 33) OR (s.problem_id BETWEEN 39 AND 40) OR (s.problem_id = 43) OR  (s.problem_id BETWEEN 48 AND 50)) GROUP BY s.problem_id order by AVG(answer_status) desc",
+    
+
+    selectIncoImp: "SELECT s.problem_id AS pp ,  p.name AS nn , AVG(s.answer_status)*100 AS aa FROM plass_problem_submit AS s JOIN plass_problems AS p WHERE (s.problem_id = p.id) AND ((s.problem_id BETWEEN 1 AND 4) OR (s.problem_id BETWEEN 11 AND 22) OR (s.problem_id BETWEEN 25 AND 26) OR (problem_id BETWEEN 29 AND 30 ) OR (s.problem_id = 33) OR (s.problem_id BETWEEN 39 AND 40) OR (s.problem_id = 43) OR  (s.problem_id BETWEEN 48 AND 50)) GROUP BY s.problem_id order by AVG(answer_status) asc",
+    
+    //Math에 대한 정,오답률
+    selectCorrMath: "SELECT s.problem_id AS pp ,  p.name AS nn , AVG(s.answer_status)*100 AS aa FROM plass_problem_submit AS s JOIN plass_problems AS p WHERE (s.problem_id = p.id) AND ((s.problem_id = 24 ) OR (s.problem_id BETWEEN 27 AND 28) OR (s.problem_id BETWEEN 41 AND 42)OR (s.problem_id BETWEEN 44 AND 47)) GROUP BY s.problem_id order by AVG(answer_status) desc",
+     
+    
+    selectIncoMath: "SELECT s.problem_id AS pp ,  p.name AS nn , AVG(s.answer_status)*100 AS aa FROM plass_problem_submit AS s JOIN plass_problems AS p WHERE (s.problem_id = p.id) AND ((s.problem_id = 24 ) OR (s.problem_id BETWEEN 27 AND 28) OR (s.problem_id BETWEEN 41 AND 42)OR (s.problem_id BETWEEN 44 AND 47)) GROUP BY s.problem_id order by AVG(answer_status) asc",
+      
+    //Str에 대한 정,오답률
+    selectCorrStr: "SELECT s.problem_id AS pp ,  p.name AS nn , AVG(s.answer_status)*100 AS aa FROM plass_problem_submit AS s JOIN plass_problems AS p WHERE (s.problem_id = p.id) AND ((s.problem_id BETWEEN 9 AND 10) OR (s.problem_id = 32) OR (s.problem_id BETWEEN 36 AND 37)) GROUP BY s.problem_id order by AVG(answer_status) desc",
+    
+    
+    selectIncoStr: "SELECT s.problem_id AS pp ,  p.name AS nn , AVG(s.answer_status)*100 AS aa FROM plass_problem_submit AS s JOIN plass_problems AS p WHERE (s.problem_id = p.id) AND ((s.problem_id BETWEEN 9 AND 10) OR (s.problem_id = 32) OR (s.problem_id BETWEEN 36 AND 37))  GROUP BY s.problem_id order by AVG(answer_status) asc",
+    
+    //Data Structure에 대한 정,오답률
+    selectCorrData: "SELECT s.problem_id AS pp ,  p.name AS nn , AVG(s.answer_status)*100 AS aa FROM plass_problem_submit AS s JOIN plass_problems AS p WHERE (s.problem_id = p.id) AND ((s.problem_id BETWEEN 5 AND 8) OR (s.problem_id  = 32) OR (s.problem_id = 31) OR (s.problem_id BETWEEN 34 AND 35))  GROUP BY s.problem_id order by AVG(answer_status) desc",
+    
+    
+    selectIncoData: "SELECT s.problem_id AS pp ,  p.name AS nn , AVG(s.answer_status)*100 AS aa FROM plass_problem_submit AS s JOIN plass_problems AS p WHERE (s.problem_id = p.id) AND ((s.problem_id BETWEEN 5 AND 8) OR (s.problem_id  = 32) OR (s.problem_id = 31) OR (s.problem_id BETWEEN 34 AND 35))  GROUP BY s.problem_id order by AVG(answer_status) asc",
+    
+    //Algorithm에 대한 정,오답률
+    selectCorrAlgo: "SELECT s.problem_id AS pp ,  p.name AS nn , AVG(s.answer_status)*100 AS aa FROM plass_problem_submit AS s JOIN plass_problems AS p WHERE (s.problem_id = p.id) AND (s.problem_id = 38)  GROUP BY s.problem_id order by AVG(answer_status) desc",
+    
+    
+    selectIncoAlgo: "SELECT s.problem_id AS pp ,  p.name AS nn , AVG(s.answer_status)*100 AS aa FROM plass_problem_submit AS s JOIN plass_problems AS p WHERE (s.problem_id = p.id) AND (s.problem_id = 38)  GROUP BY s.problem_id order by AVG(answer_status) asc",
+
+
 
     //==================INSERT==================== 
     //PROBLEM
@@ -93,6 +130,7 @@ module.exports = {
     insertShortProblem: "insert into plass_problem_shortans(name, content, level) values(?, ?, ?)",
     insertShortProblemTag: "insert into plass_problem_shortanswer_category (problem_id, category_id) values(?, ?)",
     insertShortSubmit: "insert into plass_problem_shortans_submit(user_id, problem_id, answer_status, content) values(?,?,?,?)",
+
 
     //==================UPDATE====================
     //PROBLEM

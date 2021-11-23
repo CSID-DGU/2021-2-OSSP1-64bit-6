@@ -64,7 +64,8 @@ function Analystic(props) {
 		const res = await problemBankAPI.getStatusProblem();
                         const {data} = res;
 
-                        const {coding, multichoice, shortans, heatmap, proCate} = data;
+                        const {coding, multichoice, shortans, heatmap, proCate, rankAll, rankImp,rankMath,rankStr,rankData,rankAlgo} = data;
+		
         };
         fetchData();
     }, []);
