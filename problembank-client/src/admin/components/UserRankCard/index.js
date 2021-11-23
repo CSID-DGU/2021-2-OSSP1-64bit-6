@@ -1,28 +1,34 @@
 import React, {useEffect, useState} from 'react';
 import { BiListPlus, BiListMinus } from "react-icons/bi";
 import styled from 'styled-components';
-
+import projectsAPI from '../../../apis/admin/problem';
+import problemBankAPI from '../../../apis/problemsBank';
 
 function UserRankCard(props) {
     const [isActive, setAtive] = useState(true);
     const [userRank, setUserRank] = useState([]); 
-    useEffect(() => {
-        const fetchData = async () => {
-          let user_name = ['adsf', 'hsadf', 'grgd', 'qwegf', 'rhkswnd', 'bvkfb', 'ewjrhkg', 'gfhfg'];
-          let solved_num = [54, 48, 35, 33, 31, 22, 15, 7];
+    const [codingRank, setCodingRank] = useState([]);
+    const [multipleRank, setMultipleRank] = useState([]);
+    const [shortanRank, setShortanRank] = useState([]);
 
-          let temp_user = [];
-          for(let i = 1; i <= user_name.length; i++){
-            temp_user.push({rank:i, id:user_name[i-1], problem:solved_num[i-1]});
-          }
-          setUserRank(temp_user);
+    useEffect(() => {
+
+        const fetchData = async () => {
+            const res = await problemBankAPI.getStatusProblem();
+            const {data} = res;
+            const {rank} = data;
+            
+            setUserRank(rank.rank_All);
+            setCodingRank(rank.rank_Coding);
+            setMultipleRank(rank.rank_Mul);
+            setShortanRank(rank.rank_Short);
         };
         fetchData();
     }, []);
 
     const handleSize = async(act) => {
         setAtive(!act)
-    }
+    }   
 
 	return (
         <Wrapper>
@@ -54,10 +60,10 @@ function UserRankCard(props) {
                                 </thead>
                                 <tbody className="tbody">
                                     {
-                                        userRank.map((item)=>{
+                                        userRank.map((item,idx)=>{
                                             return(
                                                 <tr>
-                                                    <td className='lowRank'>{item.rank}</td><td>{item.id}</td><td className='lowProblem'>{item.problem}</td>
+                                                    <td className='lowRank'>{idx+1}</td><td>{item.username}</td><td className='lowProblem'>{item.count_ans_all}</td>
                                                 </tr>
                                             );
                                         })
@@ -76,10 +82,10 @@ function UserRankCard(props) {
                                     </thead>
                                     <tbody className="tbody">
                                         {
-                                            userRank.map((item)=>{
+                                            codingRank.map((item,idx)=>{
                                                 return(
                                                     <tr>
-                                                        <td>{item.rank}</td><td>{item.id}</td><td>{item.problem}</td>
+                                                        <td>{idx+1}</td><td>{item.username}</td><td>{item.count_ans_coding}</td>
                                                     </tr>
                                                 );
                                             })
@@ -97,10 +103,10 @@ function UserRankCard(props) {
                                     </thead>
                                     <tbody className="tbody">
                                         {
-                                            userRank.map((item)=>{
+                                            multipleRank.map((item,idx)=>{
                                                 return(
                                                     <tr>
-                                                        <td>{item.rank}</td><td>{item.id}</td><td>{item.problem}</td>
+                                                        <td>{idx+1}</td><td>{item.username}</td><td>{item.count_ans_mul}</td>
                                                     </tr>
                                                 );
                                             })
@@ -118,10 +124,10 @@ function UserRankCard(props) {
                                     </thead>
                                     <tbody className="tbody">
                                         {
-                                            userRank.map((item)=>{
+                                            shortanRank.map((item,idx)=>{
                                                 return(
                                                     <tr>
-                                                        <td>{item.rank}</td><td>{item.id}</td><td>{item.problem}</td>
+                                                        <td>{idx+1}</td><td>{item.username}</td><td>{item.count_ans_short}</td>
                                                     </tr>
                                                 );
                                             })

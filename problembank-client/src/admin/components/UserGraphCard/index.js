@@ -80,7 +80,7 @@ function UserGraphCard(props) {
 	return (
         <Wrapper>
             <div className='Card'>
-                <div className = 'Title'>Daily User Change</div>
+                <div className = 'Title'>Daily Visitor Change</div>
                 <div ClassName = 'Chart'>
                     <Line
                         data={LineState}
