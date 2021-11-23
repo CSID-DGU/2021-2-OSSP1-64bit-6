@@ -1,10 +1,34 @@
-import React from 'react';
-import { IoMdArrowRoundUp } from "react-icons/io";
+import React,{useEffect,useState} from 'react';
+import { IoMdArrowRoundUp ,IoMdArrowRoundDown} from "react-icons/io";
 import { GrUserAdd } from "react-icons/gr";
 import styled from 'styled-components';
+import projectsAPI from '../../../apis/admin/problem';
+import problemBankAPI from '../../../apis/problemsBank';
+
+
 
 function UserNumCard(props) {
-	
+    const [usercnt, setuserCnt] = useState();
+    const [userincrease,setuserInc] = useState();
+
+	useEffect(() => {
+        const fetchData = async () => {
+            const res = await problemBankAPI.getStatusProblem();
+            const {data} = res;
+            const {userCount} = data;
+           
+            setuserCnt(userCount.user_Cnt[0].user_cnt);
+           
+            let user_increase = userCount.user_Cnt[0].user_cnt - userCount.user_Lastday;
+            let increase_percentage = user_increase/userCount.user_Lastday * 100;
+            if(!Number.isInteger(increase_percentage)) increase_percentage = increase_percentage.toFixed(2);
+
+            setuserInc(increase_percentage);
+    
+        };
+        fetchData();
+    }, []);
+
 	return (
         <Wrapper>
             <div className='Card'>
@@ -13,12 +37,18 @@ function UserNumCard(props) {
                 <div className = "addIcon"><GrUserAdd size="50"/></div>
               
                 <div className='Card-body'>
-                    1,024
+                    {usercnt}
                 </div>
 
-                <div className='ArrowIcon'> <IoMdArrowRoundUp size= "30" color="red"/> </div>
-                <div className='percentage'> 7.68%</div>
-                <div className='sincefrom'> Since Last Month </div>
+                <div className='ArrowIcon'> 
+                    {
+                        userincrease > 0
+                        ?  <IoMdArrowRoundUp size= "30" color="red"/> 
+                        :  <IoMdArrowRoundDown size= "30" color="blue"/> 
+                    }
+                </div>
+                <div className='percentage'> {userincrease}%</div>
+                <div className='sincefrom'> Since Last Day </div>
             </div>
         </Wrapper>
 	);
