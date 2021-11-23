@@ -694,7 +694,7 @@ router.get('/status-problems', async function (req, res){
         const [visitor_Today_Tmp] = await db.query(sql.user.selectVisitorDay,today_DayLabel);
         const [visitor_Lastday_Tmp] = await db.query(sql.user.selectVisitorDay, last_DayLabel);
         var visitor_Today = visitor_Today_Tmp[0].visitor_cnt;
-        var visitor_Lastday = visitor_Lastday_Tmp[0].visitor_cnt;        
+        var visitor_Lastday = visitor_Lastday_Tmp[0].visitor_cnt;  
 
         //---------problem count
         const [get_Coding_Count] = await db.query(sql.problems.getCodingCount);

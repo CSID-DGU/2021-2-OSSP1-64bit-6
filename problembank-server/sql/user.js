@@ -7,5 +7,5 @@ module.exports = {
     //=======visitor count
     selectVisitorDay : 'select id, visitor_cnt, date_format(input_date, "%e") as day from plass_visitor_count where id = ?',
     updateVisitorCnt : 'update plass_visitor_count set visitor_cnt = ?, input_date=? where id=?',
-    selectVisitorAll : 'select * from plass_visitor_count order by input_date',
+    selectVisitorAll : 'SELECT id, visitor_cnt, date_add(input_date, INTERVAL 9 HOUR) as input_date FROM plass_visitor_count',
 }
