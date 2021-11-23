@@ -1,11 +1,33 @@
-import React from 'react';
-import { IoMdArrowRoundUp } from "react-icons/io";
-import { GrUserAdd } from "react-icons/gr";
+import React, {useEffect,useState} from 'react';
+import { IoMdArrowRoundUp, IoMdArrowRoundDown } from "react-icons/io";
 import { GrDocumentUser } from "react-icons/gr";
 import styled from 'styled-components';
+import projectsAPI from '../../../apis/admin/problem';
+import problemBankAPI from '../../../apis/problemsBank';
 
 function VisitorNumCard(props) {
-	
+
+    const [todayVisitor, setTodayVisitor] = useState();
+    const [visitorInc,setvisitorInc] = useState();
+
+	useEffect(() => {
+        const fetchData = async () => {
+            const res = await problemBankAPI.getStatusProblem();
+            const {data} = res;
+            const {visitor} = data;
+           
+            console.log(visitor);
+            setTodayVisitor(visitor.visitor_Today);
+
+            let visitor_increase = visitor.visitor_Today - visitor.visitor_Lastday;
+            let increase_percentage = visitor_increase / visitor.visitor_Lastday * 100;
+            if(!Number.isInteger(increase_percentage)) increase_percentage = increase_percentage.toFixed(2);
+
+            setvisitorInc(increase_percentage);
+        };
+        fetchData();
+    }, []);
+
 	return (
         <Wrapper>
             <div className='Card'>
@@ -14,11 +36,17 @@ function VisitorNumCard(props) {
                 <div className = "addIcon"><GrDocumentUser size="45"/></div>
               
                 <div className='Card-body'>
-                    168
+                    {todayVisitor}
                 </div>
 
-                <div className='ArrowIcon'> <IoMdArrowRoundUp size= "30" color="red"/> </div>
-                <div className='percentage'> 5.2%</div>
+                <div className='ArrowIcon'>   
+                    {
+                        visitorInc > 0
+                        ?  <IoMdArrowRoundUp size= "30" color="red"/> 
+                        :  <IoMdArrowRoundDown size= "30" color="blue"/> 
+                    } 
+                </div>
+                <div className='percentage'> {visitorInc}%</div>
                 <div className='sincefrom'> Since Last Day </div>
             </div>
         </Wrapper>
