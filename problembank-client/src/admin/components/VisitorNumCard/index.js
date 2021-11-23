@@ -16,7 +16,6 @@ function VisitorNumCard(props) {
             const {data} = res;
             const {visitor} = data;
            
-            console.log(visitor);
             setTodayVisitor(visitor.visitor_Today);
 
             let visitor_increase = visitor.visitor_Today - visitor.visitor_Lastday;

@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import {Line} from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import {Chart} from 'chart.js';
+import projectsAPI from '../../../apis/admin/problem';
+import problemBankAPI from '../../../apis/problemsBank';
 
 function UserGraphCard(props) {
     const [LineState,setLineState] = useState({});
@@ -14,21 +16,26 @@ function UserGraphCard(props) {
     useEffect(() => {
 
         const fetchData = async () => {
-          
-            var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            let months = [];
-            let today = new Date().getMonth();
-          
-            for(let i = 5; i >= 0; i--){
-                let temp = today - i;
-                if(temp < 0) temp = temp + 12; 
-                months.push(monthNames[temp]);
+            const res = await problemBankAPI.getStatusProblem();
+            const {data} = res;
+            const {visitor} = data;
+
+            console.log(visitor);
+
+            let days = [];
+            let visitor_num = [];
+            for(let i = 6; i >= 0; i--){
+                let day = new Date();
+                day.setDate(day.getDate()-i);
+                let dayString = ('0' + (day.getMonth() + 1)).slice(-2) +'/' + ('0' + day.getDate()).slice(-2);
+                days.push(dayString);
+                visitor_num.push(visitor.visitor_All[6-i].visitor_cnt);
             }
 
             let L_Date = {
-                labels : months,
+                labels : days,
                 datasets: [{
-                    data: [10, 23, 70, 77, 80, 89],
+                    data: visitor_num,
                     fill: true,
                     backgroundColor : 'rgb(255, 128, 0,0.1)',
                     borderColor: 'rgb(255, 128, 0 ,0.5)',
@@ -51,10 +58,10 @@ function UserGraphCard(props) {
                 scales: {
                     y: {
                         suggestedMin:0,
-                        suggestedMax:100,
+                        suggestedMax:200,
                         ticks: {
                             
-                            stepSize: 20
+                            stepSize: 40
                           }
                     },
 
@@ -75,7 +82,7 @@ function UserGraphCard(props) {
 	return (
         <Wrapper>
             <div className='Card'>
-                <div className = 'Title'>Monthly User Change</div>
+                <div className = 'Title'>Daily User Change</div>
                 <div ClassName = 'Chart'>
                     <Line
                         data={LineState}
