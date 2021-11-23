@@ -1,10 +1,30 @@
-import React from 'react';
-import { IoMdArrowRoundUp } from "react-icons/io";
-import { GrUserAdd } from "react-icons/gr";
+import React,{useEffect,useState} from 'react';
 import styled from 'styled-components';
 import { FcDataRecovery } from "react-icons/fc";
+import projectsAPI from '../../../apis/admin/problem';
+import problemBankAPI from '../../../apis/problemsBank';
+
 function TotalProblemCard(props) {
-	
+    const [problemCnt, setproblemCnt] = useState();
+    const [programmingCnt,setprogrammingCnt] = useState();
+    const [multipleCnt,setmultipleCnt] = useState();
+    const [shortanCnt,setshortanCnt] = useState();
+
+
+	useEffect(() => {
+        const fetchData = async () => {
+            const res = await problemBankAPI.getStatusProblem();
+            const {data} = res;
+            const {problemCount} = data;
+           
+            setproblemCnt(problemCount.all_Problem_Count);
+            setprogrammingCnt(problemCount.coding_Count);
+            setmultipleCnt(problemCount.mul_Count);
+            setshortanCnt(problemCount.short_Count);
+        };
+        fetchData();
+    }, []);
+
 	return (
         <Wrapper>
             <div className='Card'>
@@ -13,12 +33,9 @@ function TotalProblemCard(props) {
                 <div className = "addIcon"><FcDataRecovery size="48"/></div>
               
                 <div className='Card-body'>
-                    150
+                    {problemCnt}
                 </div>
-
-                {/* <div className='ArrowIcon'> <IoMdArrowRoundUp size= "30" color="red"/> </div> */}
-                <div className='percentage'> Programming(50) + Multiple(50) + Shortan(50)</div>
-                {/* <div className='sincefrom'> Since Last Month </div> */}
+                <div className='percentage'> Programming({programmingCnt}) + Multiple({multipleCnt}) + Shortan({shortanCnt})</div>
             </div>
         </Wrapper>
 	);

@@ -20,8 +20,6 @@ function UserGraphCard(props) {
             const {data} = res;
             const {visitor} = data;
 
-            console.log(visitor);
-
             let days = [];
             let visitor_num = [];
             for(let i = 6; i >= 0; i--){
