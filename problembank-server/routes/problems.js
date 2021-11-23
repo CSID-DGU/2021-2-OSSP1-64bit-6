@@ -290,6 +290,12 @@ router.get('/category', async function (req, res) {
 })
 router.get('/getproblemsinfor', async function (req, res) {
     try {
+        var today=new Date();
+        var today_dayLabel = today.getDay();
+        const [visitor_day] = await db.query(sql.user.selectVisitorDay, today_dayLabel);
+        let visitorCnt = visitor_day[0].visitor_cnt+1;
+        await db.query(sql.user.updateVisitorCnt, [visitorCnt, today, today_dayLabel]);
+
         let [row] = await db.query(sql.problems.getCountProblem)
         const { count: countProblem } = row[0];
 
@@ -636,7 +642,42 @@ router.get('/status-problems', async function (req, res){
         //----------level별
         const [isCorrect_Level] = await db.query(sql.problems.isCorrectLevel);
         const [noCorrect_Level] = await db.query(sql.problems.noCorrectLevel);
-                
+
+        //----------user count
+        var today = new Date();
+        var today_DayLabel = today.getDay();
+        var today_Date = today.getDate();
+        if(today_DayLabel === 1)
+            var last_DayLabel=7;
+        else
+            var last_DayLabel= today_DayLabel-1;
+        
+        const [user_Today] = await db.query(sql.user.selectUserDay, today_DayLabel);
+        const [user_Cnt] = await db.query(sql.user.selectUserCnt);
+        const [user_Lastday_Tmp] = await db.query(sql.user.selectUserDay, last_DayLabel);
+        var user_Lastday = user_Lastday_Tmp[0].user_cnt;
+        
+        if(today_Date !== Number(user_Today[0].day) || user_Cnt[0] !== Number(user_Today[0].user_cnt)){
+            let cnt_Tmp = Number(user_Cnt[0].user_cnt);
+            await db.query(sql.user.updateUserCnt, [cnt_Tmp, today, today_DayLabel]);
+        }
+       
+        //----------visitor count
+        const [visitor_All] = await db.query(sql.user.selectVisitorAll);
+        const [visitor_Today_Tmp] = await db.query(sql.user.selectVisitorDay,today_DayLabel);
+        const [visitor_Lastday_Tmp] = await db.query(sql.user.selectVisitorDay, last_DayLabel);
+        var visitor_Today = visitor_Today_Tmp[0].visitor_cnt;
+        var visitor_Lastday = visitor_Lastday_Tmp[0].visitor_cnt;        
+
+        //---------problem count
+        const [get_Coding_Count] = await db.query(sql.problems.getCodingCount);
+        const [get_Mul_Count] = await db.query(sql.problems.getMulCount);
+        const [get_Short_Count] = await db.query(sql.problems.getShortCount);
+        let coding_Count = get_Coding_Count[0].coding_cnt;
+        let mul_Count = get_Mul_Count[0].mul_cnt;
+        let short_Count = get_Short_Count[0].short_cnt;
+        let all_Problem_Count = coding_Count + mul_Count + short_Count;
+                                      
         
         
         
@@ -651,6 +692,9 @@ router.get('/status-problems', async function (req, res){
 		        proCate: {proArray,proDate,proCategory,proType},
                 rank: {rank_All, rank_Coding, rank_Mul, rank_Short},
                 level: {isCorrect_Level, noCorrect_Level},
+                userCount: {user_Cnt, user_Lastday},
+                visitor: {visitor_All, visitor_Today, visitor_Lastday},
+                problemCount: {coding_Count, mul_Count, short_Count, all_Problem_Count},
             },
             message: '자기 작업한 문제 현황'
         })

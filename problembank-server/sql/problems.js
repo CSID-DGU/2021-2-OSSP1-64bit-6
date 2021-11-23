@@ -150,7 +150,11 @@ module.exports = {
     
     //=================LEVEL================
     isCorrectLevel : "SELECT COUNT(*) AS iscorrect_cnt, LEVEL FROM(SELECT S.id, P.level from plass_problem_submit S left outer join plass_problems P ON S.problem_id = P.id WHERE answer_status=1 UNION ALL SELECT S.id, P.level from plass_problem_multiplechoice_submit S left outer join plass_problem_multiplechoice P ON S.problem_id = P.id WHERE answer_status='true' UNION ALL SELECT S.id, P.level from plass_problem_shortans_submit S left outer join plass_problem_shortans P ON S.problem_id = P.id WHERE answer_status=1) AS a GROUP BY LEVEL",
-    noCorrectLevel : "SELECT COUNT(*) AS iscorrect_cnt, LEVEL FROM(SELECT S.id, P.level from plass_problem_submit S left outer join plass_problems P ON S.problem_id = P.id WHERE answer_status=0 UNION ALL SELECT S.id, P.level from plass_problem_multiplechoice_submit S left outer join plass_problem_multiplechoice P ON S.problem_id = P.id WHERE answer_status='false' UNION ALL SELECT S.id, P.level from plass_problem_shortans_submit S left outer join plass_problem_shortans P ON S.problem_id = P.id WHERE answer_status=0) AS a GROUP BY LEVEL",
+    noCorrectLevel : "SELECT COUNT(*) AS nocorrect_cnt, LEVEL FROM(SELECT S.id, P.level from plass_problem_submit S left outer join plass_problems P ON S.problem_id = P.id WHERE answer_status=0 UNION ALL SELECT S.id, P.level from plass_problem_multiplechoice_submit S left outer join plass_problem_multiplechoice P ON S.problem_id = P.id WHERE answer_status='false' UNION ALL SELECT S.id, P.level from plass_problem_shortans_submit S left outer join plass_problem_shortans P ON S.problem_id = P.id WHERE answer_status=0) AS a GROUP BY LEVEL",
 
+    //================problem count=======
+    getCodingCount : "select count(*) as coding_cnt from plass_problems",
+    getMulCount : "select count(*) as mul_cnt from plass_problem_multiplechoice",
+    getShortCount : "select count(*) as short_cnt from plass_problem_shortans",
     
 }
