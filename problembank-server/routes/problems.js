@@ -590,7 +590,9 @@ router.get('/status-problems', async function (req, res){
         const [cor_alg] = await db.query(sql.problems.selectCorrAlgo,[id])
         const [inc_alg] = await db.query(sql.problems.selectIncoAlgo,[id])
 
-	    
+	   
+       const [pro_date] = await db.query(sql.problems.selectProblemDate,[id])
+	
         let nothing;
         
         // ----------pro
@@ -771,6 +773,16 @@ router.get('/status-problems', async function (req, res){
         cor_alg.map((item) => (corrAlgoArray.push(item)))
         inc_alg.map((item) => (incoAlgoArray.push(item)))
         
+
+
+	//날짜 별 문제풀이 수
+        let problemDateArray = [];
+
+        pro_date.map((item) => (problemDateArray.push(item)))
+
+
+
+        
   
         res.status(200).send({
             result: true,
@@ -791,6 +803,7 @@ router.get('/status-problems', async function (req, res){
                 rankStr: {corrStrArray,incoStrArray},
                 rankData: {corrDataArray,incoDataArray},
                 rankAlgo: {corrAlgoArray,incoAlgoArray},
+		     proDate: {problemDateArray },
             },
             message: '자기 작업한 문제 현황'
         })

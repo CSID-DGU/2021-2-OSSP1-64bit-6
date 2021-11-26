@@ -113,7 +113,8 @@ module.exports = {
     
     selectIncoAlgo: "SELECT s.problem_id AS pp ,  p.name AS nn , AVG(s.answer_status)*100 AS aa FROM plass_problem_submit AS s JOIN plass_problems AS p WHERE (s.problem_id = p.id) AND (s.problem_id = 38)  GROUP BY s.problem_id order by AVG(answer_status) asc",
 
-
+   
+    selectProblemDate: "SELECT a AS date , sum(b) AS problems from (SELECT Date_format(TIMESTAMP,'%Y-%m-%d') AS a , count(Date_format(TIMESTAMP,'%Y-%m-%d')) AS b FROM plass_problem_multiplechoice_submit GROUP BY a UNION ALL  SELECT Date_format(TIMSTAMP,'%Y-%m-%d'),count(Date_format(TIMSTAMP,'%Y-%m-%d')) FROM plass_problem_shortans_submit GROUP BY Date_format(TIMSTAMP,'%Y-%m-%d') UNION ALL  Select Date_format(TIMESTAMP,'%Y-%m-%d'),count(Date_format(TIMESTAMP,'%Y-%m-%d')) from plass_problem_submit GROUP BY Date_format(TIMESTAMP,'%Y-%m-%d')) bb GROUP BY a ORDER BY a desc ",	
 
     //==================INSERT==================== 
     //PROBLEM
