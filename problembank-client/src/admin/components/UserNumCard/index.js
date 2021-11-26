@@ -41,11 +41,7 @@ function UserNumCard(props) {
                 </div>
 
                 <div className='ArrowIcon'> 
-                    {
-                        userincrease > 0
-                        ?  <IoMdArrowRoundUp size= "30" color="red"/> 
-                        :  <IoMdArrowRoundDown size= "30" color="blue"/> 
-                    }
+                        <IoMdArrowRoundUp size= "30" color="red"/> 
                 </div>
                 <div className='percentage'> {userincrease}%</div>
                 <div className='sincefrom'> Since Last Day </div>
@@ -105,7 +101,7 @@ const Wrapper = styled.div`
             color:red;
             font-weight:bold;
             padding-top:5px;
-            padding-left:20px;
+            padding-left:15px;
         }
 
         .sincefrom{

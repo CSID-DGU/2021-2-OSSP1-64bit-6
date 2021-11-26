@@ -9,6 +9,7 @@ function VisitorNumCard(props) {
 
     const [todayVisitor, setTodayVisitor] = useState();
     const [visitorInc,setvisitorInc] = useState();
+    const [isPlus, setisPlus] = useState();
 
 	useEffect(() => {
         const fetchData = async () => {
@@ -20,9 +21,12 @@ function VisitorNumCard(props) {
 
             let visitor_increase = visitor.visitor_Today - visitor.visitor_Lastday;
             let increase_percentage = visitor_increase / visitor.visitor_Lastday * 100;
-            if(!Number.isInteger(increase_percentage)) increase_percentage = increase_percentage.toFixed(2);
 
-            setvisitorInc(increase_percentage);
+            if (increase_percentage >= 0) setisPlus(true);
+            else setisPlus(false);
+
+            if(!Number.isInteger(increase_percentage)) increase_percentage = increase_percentage.toFixed(2);
+            setvisitorInc(Math.abs(increase_percentage));
         };
         fetchData();
     }, []);
@@ -40,12 +44,12 @@ function VisitorNumCard(props) {
 
                 <div className='ArrowIcon'>   
                     {
-                        visitorInc > 0
+                        isPlus
                         ?  <IoMdArrowRoundUp size= "30" color="red"/> 
                         :  <IoMdArrowRoundDown size= "30" color="blue"/> 
                     } 
                 </div>
-                <div className='percentage'> {visitorInc}%</div>
+                <div className={isPlus? 'Plus-percentage':'Minus-percentage'}> {visitorInc}%</div>
                 <div className='sincefrom'> Since Last Day </div>
             </div>
         </Wrapper>
@@ -98,12 +102,20 @@ const Wrapper = styled.div`
             padding-left:30px;
         }
 
-        .percentage{
+        .Plus-percentage{
             grid-area: E;
             color:red;
             font-weight:bold;
             padding-top:5px;
-            padding-left:20px;
+            padding-left:15px;
+        }
+
+        .Minus-percentage{
+            grid-area: E;
+            color:blue;
+            font-weight:bold;
+            padding-top:5px;
+            padding-left:15px;
         }
 
         .sincefrom{

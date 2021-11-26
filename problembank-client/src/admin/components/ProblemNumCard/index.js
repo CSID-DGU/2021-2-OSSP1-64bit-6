@@ -1,11 +1,36 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { IoMdArrowRoundUp, IoMdArrowRoundDown } from "react-icons/io";
 import { GrUserAdd } from "react-icons/gr";
 import { FcOk } from "react-icons/fc";
 import styled from 'styled-components';
+import projectsAPI from '../../../apis/admin/problem';
+import problemBankAPI from '../../../apis/problemsBank';
 
 function ProblemNumCard(props) {
-	
+        const [solvedProbNum, setProbNum] = useState();
+        const [probInc, setProbInc] = useState();
+        const [isPlus, setisPlus] = useState();    
+        useEffect(() => {
+            const fetchData = async () => {
+                const res = await problemBankAPI.getStatusProblem();
+                const {data} = res;
+                const {proDate} = data;
+               
+                setProbNum(proDate.problemDateArray[0].problems);
+
+                let prob_increase = proDate.problemDateArray[0].problems - proDate.problemDateArray[1].problems;
+                let increase_percentage = prob_increase/proDate.problemDateArray[1].problems *100;
+
+                if (increase_percentage >= 0) setisPlus(true);
+                else setisPlus(false);
+
+                if(!Number.isInteger(increase_percentage)) increase_percentage = increase_percentage.toFixed(2);
+                setProbInc(Math.abs(increase_percentage));
+
+            };
+            fetchData();
+        }, []);
+
 	return (
         <Wrapper>
             <div className='Card'>
@@ -13,12 +38,18 @@ function ProblemNumCard(props) {
                 <div className = "Title">Solved Problem</div> 
                 <div className = "solvedIcon"><FcOk size="45"/></div>
               
-                <div className='Card-body1'>234 </div>
+                <div className='Card-body1'>{solvedProbNum} </div>
                 <div className='Card-body2'>today</div>
 
-                <div className='ArrowIcon'> <IoMdArrowRoundDown size= "30" color="blue"/> </div>
-                <div className='percentage'> 5.24%</div>
-                <div className='sincefrom'> Since Last Month </div>
+                <div className='ArrowIcon'> 
+                {
+                    isPlus
+                    ?  <IoMdArrowRoundUp size= "30" color="red"/>
+                    :  <IoMdArrowRoundDown size= "30" color="blue"/>
+                }
+                 </div>
+                <div className={isPlus? 'Plus-percentage':'Minus-percentage'}> {probInc}%</div>
+                <div className='sincefrom'> Since Last Day </div>
             </div>
         </Wrapper>
 	);
@@ -75,12 +106,20 @@ const Wrapper = styled.div`
             padding-left:30px;
         }
 
-        .percentage{
+        .Plus-percentage{
+            grid-area: E;
+            color:red;
+            font-weight:bold;
+            padding-top:5px;
+            padding-left:15px;
+        }
+
+        .Minus-percentage{
             grid-area: E;
             color:blue;
             font-weight:bold;
             padding-top:5px;
-            padding-left:20px;
+            padding-left:15px;
         }
 
         .sincefrom{
