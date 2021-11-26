@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import { IoMdArrowRoundUp } from "react-icons/io";
-import { GrUserAdd } from "react-icons/gr";
 import styled from 'styled-components';
 import {Line} from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import {Chart} from 'chart.js';
+import projectsAPI from '../../../apis/admin/problem';
+import problemBankAPI from '../../../apis/problemsBank';
 
 function ProblemGraphCard(props) {
     const [LineState,setLineState] = useState({});
@@ -14,19 +14,25 @@ function ProblemGraphCard(props) {
     useEffect(() => {
 
         const fetchData = async () => {
-          
+            const res = await problemBankAPI.getStatusProblem();
+            const {data} = res;
+            const {proDate} = data;
+
+            let problem_num = [];
+
             let days = [];
             for(let i = 5; i >= 0; i--){
                 let day = new Date();
                 day.setDate(day.getDate()-i);
                 let dayString = ('0' + (day.getMonth() + 1)).slice(-2) +'/' + ('0' + day.getDate()).slice(-2);
                 days.push(dayString);
+                problem_num.push(proDate.problemDateArray[i].problems)
             }
 
             let L_Date = {
                 labels : days,
                 datasets: [{
-                    data: [10, 70, 60, 90, 50, 30],
+                    data: problem_num,
                     fill: true,
                     backgroundColor : 'rgb(250, 166, 0,0.1)',
                     borderColor: 'rgb(250, 219, 15 ,0.5)',
@@ -49,10 +55,9 @@ function ProblemGraphCard(props) {
                 scales: {
                     y: {
                         suggestedMin:0,
-                        suggestedMax:100,
+                        suggestedMax:50,
                         ticks: {
-                            
-                            stepSize: 20
+                            stepSize: 10
                           }
                     },
 

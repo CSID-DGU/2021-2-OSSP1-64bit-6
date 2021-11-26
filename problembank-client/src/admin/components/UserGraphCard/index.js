@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import { IoMdArrowRoundUp } from "react-icons/io";
-import { GrUserAdd } from "react-icons/gr";
 import styled from 'styled-components';
 import {Line} from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
