@@ -1,21 +1,31 @@
 import React, {useEffect, useState} from 'react';
 import { BiListPlus, BiListMinus } from "react-icons/bi";
 import styled from 'styled-components';
+import problemBankAPI from '../../../apis/problemsBank';
 
 
 function WrongRateCard(props) {
     const [isActive, setAtive] = useState(true);
-    const [userRank, setUserRank] = useState([]); 
+    const [incorectRank, setIncorrectRank] = useState([]); 
+    const [impRank, setImpRank] = useState([]);
+    const [dataRank, setDataRank] = useState([]);
+    const [mathRank, setMathRank] = useState([]);
+    const [algoRank, setAlgoRank] = useState([]);
+    const [strRank, setStrRank] = useState([]); 
     useEffect(() => {
         const fetchData = async () => {
-          let problem_id = ['adsf', 'hsadf', 'grgd', 'qwegf', 'rhkswnd', 'bvkfb', 'ewjrhkg', 'gfhfg'];
-          let solved_num = [54, 48, 35, 33, 31, 22, 15, 7];
-
-          let temp_user = [];
-          for(let i = 1; i <= 8; i++){
-            temp_user.push({rank:i, id:problem_id[i-1], problem:solved_num[i-1]});
-          }
-          setUserRank(temp_user);
+            const fetchData = async () => {
+                const res = await problemBankAPI.getStatusProblem();
+                const {data} = res;
+                const {rankAll,rankImp,rankStr,rankData,rankMath,rankAlgo} = data;
+                setIncorrectRank(rankAll.incoArray);
+                setImpRank(rankImp.incoImpArray);
+                setDataRank(rankData.incoDataArray);
+                setMathRank(rankMath.incoMathArray);
+                setAlgoRank(rankAlgo.incoAlgoArray);
+                setStrRank(rankStr.incoStrArray);
+                };
+                fetchData();
         };
         fetchData();
     }, []);
@@ -49,21 +59,21 @@ function WrongRateCard(props) {
                             <table className="Table">
                                 <thead className ="thead">
                                     <tr>
-                                        <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Wrong Answer Rate</th> 
+                                        <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct Answer Rate(%)</th> 
                                     </tr>
                                 </thead>
                                 <tbody className="tbody">
                                     {
-                                        userRank.map((item,idx)=>{
-                                            if(idx<4)
-                                            {
-                                            return(
-                                                <tr>
-                                                    <td className='lowRank'>{item.rank}</td><td>{item.id}</td><td className='lowProblem'>{item.problem}</td>
-                                                </tr>
-                                            );
-                                            }
-                                        })
+                                       incorectRank.map((item,idx)=>{
+                                        if(idx<4)
+                                        {
+                                        return(
+                                            <tr>
+                                                <td className='lowRank'>{idx+1}</td><td>{item.nn}</td><td className='lowProblem'>{item.aa}</td>
+                                            </tr>
+                                        );
+                                        }
+                                    })
                                     }
                                 </tbody>
                             </table>
@@ -74,17 +84,20 @@ function WrongRateCard(props) {
                                 <table className ='table1'>
                                     <thead className ="thead">
                                         <tr>
-                                             <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Wrong<br/> Answer Rate</th>
+                                             <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct<br/> Answer Rate(%)</th>
                                         </tr>
                                     </thead>
                                     <tbody className="tbody">
                                         {
-                                            userRank.map((item)=>{
+                                             impRank.map((item,idx)=>{
+                                                if(idx<8)
+                                                {
                                                 return(
                                                     <tr>
-                                                        <td>{item.rank}</td><td>{item.id}</td><td>{item.problem}</td>
+                                                        <td className='lowRank'>{idx+1}</td><td>{item.pp}</td><td className='lowProblem'>{item.aa}</td>
                                                     </tr>
                                                 );
+                                                }
                                             })
                                         }
                                     </tbody>
@@ -95,18 +108,21 @@ function WrongRateCard(props) {
                                 <table className ='table2'>
                                     <thead className ="thead">
                                         <tr>
-                                          <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Wrong<br/> Answer Rate</th>
+                                          <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct<br/> Answer Rate(%)</th>
                                         </tr>
                                     </thead>
                                     <tbody className="tbody">
                                         {
-                                            userRank.map((item)=>{
-                                                return(
-                                                    <tr>
-                                                        <td>{item.rank}</td><td>{item.id}</td><td>{item.problem}</td>
-                                                    </tr>
-                                                );
-                                            })
+                                           dataRank.map((item,idx)=>{
+                                            if(idx<8)
+                                            {
+                                            return(
+                                                <tr>
+                                                    <td className='lowRank'>{idx+1}</td><td>{item.pp}</td><td className='lowProblem'>{item.aa}</td>
+                                                </tr>
+                                            );
+                                            }
+                                        })
                                         }
                                     </tbody>
                                 </table>
@@ -116,18 +132,21 @@ function WrongRateCard(props) {
                                 <table className ='table3'>
                                     <thead className ="thead">
                                         <tr>
-                                            <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Wrong<br/> Answer Rate</th>
+                                            <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct<br/> Answer Rate(%)</th>
                                         </tr>
                                     </thead>
                                     <tbody className="tbody">
                                         {
-                                            userRank.map((item)=>{
-                                                return(
-                                                    <tr>
-                                                        <td>{item.rank}</td><td>{item.id}</td><td>{item.problem}</td>
-                                                    </tr>
-                                                );
-                                            })
+                                          mathRank.map((item,idx)=>{
+                                            if(idx<8)
+                                            {
+                                            return(
+                                                <tr>
+                                                    <td className='lowRank'>{idx+1}</td><td>{item.pp}</td><td className='lowProblem'>{item.aa}</td>
+                                                </tr>
+                                            );
+                                            }
+                                        })
                                         }
                                     </tbody>
                                 </table>
@@ -137,18 +156,21 @@ function WrongRateCard(props) {
                                 <table className ='table4'>
                                     <thead className ="thead">
                                         <tr>
-                                             <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Wrong<br/> Answer Rate</th>
+                                             <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct<br/> Answer Rate(%)</th>
                                         </tr>
                                     </thead>
                                     <tbody className="tbody">
                                         {
-                                            userRank.map((item)=>{
-                                                return(
-                                                    <tr>
-                                                        <td>{item.rank}</td><td>{item.id}</td><td>{item.problem}</td>
-                                                    </tr>
-                                                );
-                                            })
+                                           algoRank.map((item,idx)=>{
+                                            if(idx<8)
+                                            {
+                                            return(
+                                                <tr>
+                                                    <td className='lowRank'>{idx+1}</td><td>{item.pp}</td><td className='lowProblem'>{item.aa}</td>
+                                                </tr>
+                                            );
+                                            }
+                                        })
                                         }
                                     </tbody>
                                 </table>
@@ -158,18 +180,21 @@ function WrongRateCard(props) {
                                 <table className ='table5'>
                                     <thead className ="thead">
                                         <tr>
-                                             <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Wrong<br/> Answer Rate</th>
+                                             <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct<br/> Answer Rate(%)</th>
                                         </tr>
                                     </thead>
                                     <tbody className="tbody">
                                         {
-                                            userRank.map((item)=>{
-                                                return(
-                                                    <tr>
-                                                        <td>{item.rank}</td><td>{item.id}</td><td>{item.problem}</td>
-                                                    </tr>
-                                                );
-                                            })
+                                           strRank.map((item,idx)=>{
+                                            if(idx<8)
+                                            {
+                                            return(
+                                                <tr>
+                                                    <td className='lowRank'>{idx+1}</td><td>{item.pp}</td><td className='lowProblem'>{item.aa}</td>
+                                                </tr>
+                                            );
+                                            }
+                                        })
                                         }
                                     </tbody>
                                 </table>
