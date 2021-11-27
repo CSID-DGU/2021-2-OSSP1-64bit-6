@@ -29,6 +29,7 @@ function UserRankCard(props) {
     const handleSize = async(act) => {
         setAtive(!act)
     }   
+    
 
 	return (
         <Wrapper>

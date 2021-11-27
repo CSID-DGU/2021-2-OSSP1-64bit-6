@@ -18,12 +18,106 @@ function WrongRateCard(props) {
                 const res = await problemBankAPI.getStatusProblem();
                 const {data} = res;
                 const {rankAll,rankImp,rankStr,rankData,rankMath,rankAlgo} = data;
+
                 setIncorrectRank(rankAll.incoArray);
-                setImpRank(rankImp.incoImpArray);
-                setDataRank(rankData.incoDataArray);
-                setMathRank(rankMath.incoMathArray);
-                setAlgoRank(rankAlgo.incoAlgoArray);
-                setStrRank(rankStr.incoStrArray);
+                
+                let emptyArr = {};
+        let newIncoImpArray = [];
+        let newIncoStrArray = [];
+        let newIncoDataArray = [];
+        let newIncoMathArray = [];
+        let newIncoAlgoArray = [];
+
+        
+        if(rankImp.incoImpArray.length < 8)
+        {
+            let length = rankImp.incoImpArray.length
+            emptyArr.pp = 'X';
+            emptyArr.nn = 'X';
+            emptyArr.aa = 'X';
+            newIncoImpArray = rankImp.incoImpArray;
+            for(let i = 0; i< (8 - length); i++)
+            {
+                newIncoImpArray.push(emptyArr);
+            }
+            setImpRank(newIncoImpArray);
+        }
+        else
+        {
+            setImpRank(rankImp.incoImpArray);
+        }
+
+        if(rankStr.incoStrArray.length < 8)
+        {
+            let length = rankStr.incoStrArray.length
+            emptyArr.pp = 'X';
+            emptyArr.nn = 'X';
+            emptyArr.aa = 'X';
+            newIncoStrArray = rankStr.incoStrArray;
+            for(let i = 0; i< (8 - length); i++)
+            {
+                newIncoStrArray.push(emptyArr);
+            }
+            setStrRank(newIncoStrArray);
+        }
+        else
+        {
+            setStrRank(rankStr.incoStrArray);
+        }
+
+        if(rankData.incoDataArray.length < 8)
+        {
+            let length = rankData.incoDataArray.length
+            emptyArr.pp = 'X';
+            emptyArr.nn = 'X';
+            emptyArr.aa = 'X';
+            newIncoDataArray = rankData.incoDataArray;
+            for(let i = 0; i< (8 - length); i++)
+            {
+                newIncoDataArray.push(emptyArr);
+            }
+            setDataRank(newIncoDataArray);
+        }
+        else
+        {
+            setDataRank(rankData.incoDataArray);
+        }
+
+        if(rankMath.incoMathArray.length < 8)
+        {
+            let length = rankMath.incoMathArray.length
+            emptyArr.pp = 'X';
+            emptyArr.nn = 'X';
+            emptyArr.aa = 'X';
+            newIncoMathArray = rankMath.incoMathArray;
+            for(let i = 0; i< (8 - length); i++)
+            {
+                newIncoMathArray.push(emptyArr);
+            }
+            setMathRank(newIncoMathArray);
+        }
+        else
+        {
+            setMathRank(rankMath.incoMathArray);
+        }
+
+        if(rankAlgo.incoAlgoArray.length < 8)
+        {
+            let length = rankAlgo.incoAlgoArray.length
+            emptyArr.pp = 'X';
+            emptyArr.nn = 'X';
+            emptyArr.aa = 'X';
+            newIncoAlgoArray = rankAlgo.incoAlgoArray;
+            for(let i = 0; i< (8 - length); i++)
+            {
+                newIncoAlgoArray.push(emptyArr);
+            }
+            setAlgoRank(newIncoAlgoArray);
+        }
+        else
+        {
+            setAlgoRank(rankAlgo.incoAlgoArray);
+        }
                 };
                 fetchData();
         };

@@ -4,6 +4,7 @@ import {Pie, Doughnut} from 'react-chartjs-2';
 import {useState} from 'react';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import {Chart} from 'chart.js';
+import problemBankAPI from '../../../apis/problemsBank';
 
 
 function DifficultyGraphCard(props) {
@@ -18,6 +19,13 @@ function DifficultyGraphCard(props) {
 
 	useEffect(() => {
 		const fetchData = async () => {
+
+            const res = await problemBankAPI.getStatusProblem();
+            const {data} = res;
+			const {level} = data;
+
+          
+
             let sub_upper = {
 				labels: ['O', 'X' ],
 				datasets: [{
@@ -30,7 +38,7 @@ function DifficultyGraphCard(props) {
                         '#36A2EB',
                         '#FF6384'
                     ],
-					data: [3,4],
+					data: [level.isCorrect_Level[2].iscorrect_cnt,level.noCorrect_Level[2].nocorrect_cnt],
 					}
 				]
 			};
@@ -48,7 +56,7 @@ function DifficultyGraphCard(props) {
                         '#36A2EB',
                         '#FF6384'
                     ],
-                    data: [2,2],
+                    data: [level.isCorrect_Level[1].iscorrect_cnt,level.noCorrect_Level[1].nocorrect_cnt],
                     }
                 ]
             };
@@ -67,7 +75,7 @@ function DifficultyGraphCard(props) {
                         '#36A2EB',
                         '#FF6384'
                     ],
-                    data: [4,1],
+                    data: [level.isCorrect_Level[0].iscorrect_cnt,level.noCorrect_Level[0].nocorrect_cnt],
                     }
                 ]
             };

@@ -18,18 +18,112 @@ function CorrectRateCard(props) {
         const res = await problemBankAPI.getStatusProblem();
         const {data} = res;
         const {rankAll,rankImp,rankStr,rankData,rankMath,rankAlgo} = data;
+         
+        let emptyArr = {};
+        let newCorrImpArray = [];
+        let newCorrStrArray = [];
+        let newCorrDataArray = [];
+        let newCorrMathArray = [];
+        let newCorrAlgoArray = [];
+
         setCorrectRank(rankAll.corrArray);
-        setImpRank(rankImp.corrImpArray);
-        setDataRank(rankData.corrDataArray);
-        setMathRank(rankMath.corrMathArray);
-        setAlgoRank(rankAlgo.corrAlgoArray);
-        setStrRank(rankStr.corrStrArray);
+        
+        if(rankImp.corrImpArray.length < 8)
+        {
+            let length = rankImp.corrImpArray.length
+            emptyArr.pp = 'X';
+            emptyArr.nn = 'X';
+            emptyArr.aa = 'X';
+            newCorrImpArray = rankImp.corrImpArray;
+            for(let i = 0; i< (8 - length); i++)
+            {
+                newCorrImpArray.push(emptyArr);
+            }
+            setImpRank(newCorrImpArray);
+        }
+        else
+        {
+            setImpRank(rankImp.corrImpArray);
+        }
+
+        if(rankStr.corrStrArray.length < 8)
+        {
+            let length = rankStr.corrStrArray.length
+            emptyArr.pp = 'X';
+            emptyArr.nn = 'X';
+            emptyArr.aa = 'X';
+            newCorrStrArray = rankStr.corrStrArray;
+            for(let i = 0; i< (8 - length); i++)
+            {
+                newCorrStrArray.push(emptyArr);
+            }
+            setStrRank(newCorrStrArray);
+        }
+        else
+        {
+            setStrRank(rankStr.corrStrArray);
+        }
+
+        if(rankData.corrDataArray.length < 8)
+        {
+            let length = rankData.corrDataArray.length
+            emptyArr.pp = 'X';
+            emptyArr.nn = 'X';
+            emptyArr.aa = 'X';
+            newCorrDataArray = rankData.corrDataArray;
+            for(let i = 0; i< (8 - length); i++)
+            {
+                newCorrDataArray.push(emptyArr);
+            }
+            setDataRank(newCorrDataArray);
+        }
+        else
+        {
+            setDataRank(rankData.corrDataArray);
+        }
+
+        if(rankMath.corrMathArray.length < 8)
+        {
+            let length = rankMath.corrMathArray.length
+            emptyArr.pp = 'X';
+            emptyArr.nn = 'X';
+            emptyArr.aa = 'X';
+            newCorrMathArray = rankMath.corrMathArray;
+            for(let i = 0; i< (8 - length); i++)
+            {
+                newCorrMathArray.push(emptyArr);
+            }
+            setMathRank(newCorrMathArray);
+        }
+        else
+        {
+            setMathRank(rankMath.corrMathArray);
+        }
+
+        if(rankAlgo.corrAlgoArray.length < 8)
+        {
+            let length = rankAlgo.corrAlgoArray.length
+            emptyArr.pp = 'X';
+            emptyArr.nn = 'X';
+            emptyArr.aa = 'X';
+            newCorrAlgoArray = rankAlgo.corrAlgoArray;
+            for(let i = 0; i< (8 - length); i++)
+            {
+                newCorrAlgoArray.push(emptyArr);
+            }
+            setAlgoRank(newCorrAlgoArray);
+        }
+        else
+        {
+            setAlgoRank(rankAlgo.corrAlgoArray);
+        }
+        
         };
         fetchData();
     }, []);
 
    
-    
+   
     
     const handleSize = async(act) => {
         setAtive(!act)
