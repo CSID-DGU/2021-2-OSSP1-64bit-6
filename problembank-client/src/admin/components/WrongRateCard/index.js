@@ -35,6 +35,10 @@ function WrongRateCard(props) {
             emptyArr.pp = 'X';
             emptyArr.nn = 'X';
             emptyArr.aa = 'X';
+            for(let i  = 0; i< length; i++)
+            {
+                rankImp.incoImpArray[i].aa = 100 - Math.floor(rankImp.incoImpArray[i].aa)+ '(%)';
+            }
             newIncoImpArray = rankImp.incoImpArray;
             for(let i = 0; i< (8 - length); i++)
             {
@@ -44,6 +48,10 @@ function WrongRateCard(props) {
         }
         else
         {
+            for(let i  = 0; i< rankImp.incoImpArray.length; i++)
+            {
+                rankImp.incoImpArray[i].aa = 100 - Math.floor(rankImp.incoImpArray[i].aa)+ '(%)';
+            }
             setImpRank(rankImp.incoImpArray);
         }
 
@@ -53,6 +61,10 @@ function WrongRateCard(props) {
             emptyArr.pp = 'X';
             emptyArr.nn = 'X';
             emptyArr.aa = 'X';
+            for(let i  = 0; i< length; i++)
+            {
+                rankStr.incoStrArray[i].aa = 100 - Math.floor(rankStr.incoStrArray[i].aa)+ '(%)';
+            }
             newIncoStrArray = rankStr.incoStrArray;
             for(let i = 0; i< (8 - length); i++)
             {
@@ -62,6 +74,10 @@ function WrongRateCard(props) {
         }
         else
         {
+            for(let i  = 0; i< rankStr.incoStrArray.length; i++)
+            {
+                rankStr.incoStrArray[i].aa = 100 - Math.floor(rankStr.incoStrArray[i].aa)+ '(%)';
+            }
             setStrRank(rankStr.incoStrArray);
         }
 
@@ -71,6 +87,10 @@ function WrongRateCard(props) {
             emptyArr.pp = 'X';
             emptyArr.nn = 'X';
             emptyArr.aa = 'X';
+            for(let i  = 0; i< length; i++)
+            {
+                rankData.incoDataArray[i].aa = 100 - Math.floor(rankData.incoDataArray[i].aa)+ '(%)';
+            }
             newIncoDataArray = rankData.incoDataArray;
             for(let i = 0; i< (8 - length); i++)
             {
@@ -80,6 +100,10 @@ function WrongRateCard(props) {
         }
         else
         {
+            for(let i  = 0; i< rankData.incoDataArray.length; i++)
+            {
+                rankData.incoDataArray[i].aa = 100 - Math.floor(rankData.incoDataArray[i].aa)+ '(%)';
+            }
             setDataRank(rankData.incoDataArray);
         }
 
@@ -89,6 +113,10 @@ function WrongRateCard(props) {
             emptyArr.pp = 'X';
             emptyArr.nn = 'X';
             emptyArr.aa = 'X';
+            for(let i  = 0; i< length; i++)
+            {
+                rankMath.incoMathArray[i].aa = 100 - Math.floor(rankMath.incoMathArray[i].aa)+ '(%)';
+            }
             newIncoMathArray = rankMath.incoMathArray;
             for(let i = 0; i< (8 - length); i++)
             {
@@ -98,6 +126,10 @@ function WrongRateCard(props) {
         }
         else
         {
+            for(let i  = 0; i< rankStr.incoMathArray.length; i++)
+            {
+                rankMath.incoMathArray[i].aa = 100 - Math.floor(rankMath.incoStrArray[i].aa)+ '(%)';
+            }
             setMathRank(rankMath.incoMathArray);
         }
 
@@ -107,6 +139,10 @@ function WrongRateCard(props) {
             emptyArr.pp = 'X';
             emptyArr.nn = 'X';
             emptyArr.aa = 'X';
+            for(let i  = 0; i< length; i++)
+            {
+                rankAlgo.incoAlgoArray[i].aa = 100 - Math.floor(rankAlgo.incoAlgoArray[i].aa)+ '(%)';
+            }
             newIncoAlgoArray = rankAlgo.incoAlgoArray;
             for(let i = 0; i< (8 - length); i++)
             {
@@ -116,6 +152,10 @@ function WrongRateCard(props) {
         }
         else
         {
+            for(let i  = 0; i< rankAlgo.incoAlgoArray.length; i++)
+            {
+                rankAlgo.incoAlgoArray[i].aa = 100 - Math.floor(rankAlgo.incoAlgoArray[i].aa)+ '(%)';
+            }
             setAlgoRank(rankAlgo.incoAlgoArray);
         }
                 };
@@ -153,7 +193,7 @@ function WrongRateCard(props) {
                             <table className="Table">
                                 <thead className ="thead">
                                     <tr>
-                                        <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct Answer Rate(%)</th> 
+                                        <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Wrong Answer Rate</th> 
                                     </tr>
                                 </thead>
                                 <tbody className="tbody">
@@ -163,7 +203,7 @@ function WrongRateCard(props) {
                                         {
                                         return(
                                             <tr>
-                                                <td className='lowRank'>{idx+1}</td><td>{item.nn}</td><td className='lowProblem'>{item.aa}</td>
+                                                <td className='lowRank'>{idx+1}</td><td>{item.nn}</td><td className='lowProblem'>{100 -Math.floor(item.aa)} (%)</td>
                                             </tr>
                                         );
                                         }
@@ -178,7 +218,7 @@ function WrongRateCard(props) {
                                 <table className ='table1'>
                                     <thead className ="thead">
                                         <tr>
-                                             <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct<br/> Answer Rate(%)</th>
+                                             <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Wrong<br/> Answer Rate</th>
                                         </tr>
                                     </thead>
                                     <tbody className="tbody">
@@ -202,7 +242,7 @@ function WrongRateCard(props) {
                                 <table className ='table2'>
                                     <thead className ="thead">
                                         <tr>
-                                          <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct<br/> Answer Rate(%)</th>
+                                          <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Wrong<br/> Answer Rate</th>
                                         </tr>
                                     </thead>
                                     <tbody className="tbody">
@@ -210,11 +250,13 @@ function WrongRateCard(props) {
                                            dataRank.map((item,idx)=>{
                                             if(idx<8)
                                             {
-                                            return(
-                                                <tr>
-                                                    <td className='lowRank'>{idx+1}</td><td>{item.pp}</td><td className='lowProblem'>{item.aa}</td>
-                                                </tr>
-                                            );
+                                               
+                                                    return(
+                                                    <tr>
+                                                        <td className='lowRank'>{idx+1}</td><td>{item.pp}</td><td className='lowProblem'>{item.aa}</td>
+                                                    </tr>
+                                                    );
+                                                
                                             }
                                         })
                                         }
@@ -226,7 +268,7 @@ function WrongRateCard(props) {
                                 <table className ='table3'>
                                     <thead className ="thead">
                                         <tr>
-                                            <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct<br/> Answer Rate(%)</th>
+                                            <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Wrong<br/> Answer Rate</th>
                                         </tr>
                                     </thead>
                                     <tbody className="tbody">
@@ -250,7 +292,7 @@ function WrongRateCard(props) {
                                 <table className ='table4'>
                                     <thead className ="thead">
                                         <tr>
-                                             <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct<br/> Answer Rate(%)</th>
+                                             <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Wrong<br/> Answer Rate</th>
                                         </tr>
                                     </thead>
                                     <tbody className="tbody">
@@ -274,7 +316,7 @@ function WrongRateCard(props) {
                                 <table className ='table5'>
                                     <thead className ="thead">
                                         <tr>
-                                             <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct<br/> Answer Rate(%)</th>
+                                             <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Wrong<br/> Answer Rate</th>
                                         </tr>
                                     </thead>
                                     <tbody className="tbody">

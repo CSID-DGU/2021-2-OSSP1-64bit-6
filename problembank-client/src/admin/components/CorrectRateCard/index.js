@@ -34,6 +34,10 @@ function CorrectRateCard(props) {
             emptyArr.pp = 'X';
             emptyArr.nn = 'X';
             emptyArr.aa = 'X';
+            for(let i  = 0; i< length; i++)
+            {
+                rankImp.corrImpArray[i].aa = 100 - Math.floor(rankImp.corrImpArray[i].aa)+ '(%)';
+            }
             newCorrImpArray = rankImp.corrImpArray;
             for(let i = 0; i< (8 - length); i++)
             {
@@ -43,6 +47,10 @@ function CorrectRateCard(props) {
         }
         else
         {
+            for(let i  = 0; i< rankImp.corrImpArray.length; i++)
+            {
+                rankImp.corrImpArray[i].aa = 100 - Math.floor(rankImp.corrImpArray[i].aa)+ '(%)';
+            }
             setImpRank(rankImp.corrImpArray);
         }
 
@@ -52,6 +60,10 @@ function CorrectRateCard(props) {
             emptyArr.pp = 'X';
             emptyArr.nn = 'X';
             emptyArr.aa = 'X';
+            for(let i  = 0; i< length; i++)
+            {
+                rankStr.corrStrArray[i].aa = 100 - Math.floor(rankStr.corrStrArray[i].aa) + '(%)';
+            }
             newCorrStrArray = rankStr.corrStrArray;
             for(let i = 0; i< (8 - length); i++)
             {
@@ -61,6 +73,10 @@ function CorrectRateCard(props) {
         }
         else
         {
+            for(let i  = 0; i< rankStr.corrStrArray.length; i++)
+            {
+                rankStr.corrStrArray[i].aa = 100 - Math.floor(rankStr.corrStrArray[i].aa) + '(%)';
+            }
             setStrRank(rankStr.corrStrArray);
         }
 
@@ -70,6 +86,10 @@ function CorrectRateCard(props) {
             emptyArr.pp = 'X';
             emptyArr.nn = 'X';
             emptyArr.aa = 'X';
+            for(let i  = 0; i< length; i++)
+            {
+                rankData.corrDataArray[i].aa = 100 - Math.floor(rankData.corrDataArray[i].aa)+ '(%)';
+            }
             newCorrDataArray = rankData.corrDataArray;
             for(let i = 0; i< (8 - length); i++)
             {
@@ -79,6 +99,10 @@ function CorrectRateCard(props) {
         }
         else
         {
+            for(let i  = 0; i< rankData.corrDataArray.length; i++)
+            {
+                rankData.corrDataArray[i].aa = 100 - Math.floor(rankData.corrDataArray[i].aa)+ '(%)';
+            }
             setDataRank(rankData.corrDataArray);
         }
 
@@ -88,6 +112,10 @@ function CorrectRateCard(props) {
             emptyArr.pp = 'X';
             emptyArr.nn = 'X';
             emptyArr.aa = 'X';
+            for(let i  = 0; i< length; i++)
+            {
+                rankMath.corrMathArray[i].aa = 100 - Math.floor(rankMath.corrMathArray[i].aa)+ '(%)';
+            }
             newCorrMathArray = rankMath.corrMathArray;
             for(let i = 0; i< (8 - length); i++)
             {
@@ -97,6 +125,10 @@ function CorrectRateCard(props) {
         }
         else
         {
+            for(let i  = 0; i< rankMath.corrMathArray.length; i++)
+            {
+                rankMath.corrMathArray[i].aa = 100 - Math.floor(rankMath.corrMathArray[i].aa)+ '(%)';
+            }
             setMathRank(rankMath.corrMathArray);
         }
 
@@ -106,6 +138,10 @@ function CorrectRateCard(props) {
             emptyArr.pp = 'X';
             emptyArr.nn = 'X';
             emptyArr.aa = 'X';
+            for(let i  = 0; i< length; i++)
+            {
+                rankAlgo.corrAlgoArray[i].aa = 100 - Math.floor(rankAlgo.corrAlgoArray[i].aa)+ '(%)';
+            }
             newCorrAlgoArray = rankAlgo.corrAlgoArray;
             for(let i = 0; i< (8 - length); i++)
             {
@@ -115,6 +151,10 @@ function CorrectRateCard(props) {
         }
         else
         {
+            for(let i  = 0; i< rankAlgo.corrAlgoArray.length; i++)
+            {
+                rankAlgo.corrAlgoArray[i].aa = 100 - Math.floor(rankAlgo.corrAlgoArray[i].aa)+ '(%)';
+            }
             setAlgoRank(rankAlgo.corrAlgoArray);
         }
         
@@ -154,7 +194,7 @@ function CorrectRateCard(props) {
                             <table className="Table">
                                 <thead className ="thead">
                                     <tr>
-                                        <th className='rank'>Rank</th><th className='userid'> problem ID </th><th className='problem'>Correct Answer Rate(%)</th> 
+                                        <th className='rank'>Rank</th><th className='userid'> problem ID </th><th className='problem'>Correct Answer Rate</th> 
                                     </tr>
                                 </thead>
                                 <tbody className="tbody">
@@ -164,7 +204,7 @@ function CorrectRateCard(props) {
                                             {
                                             return(
                                                 <tr>
-                                                    <td className='lowRank'>{idx+1}</td><td>{item.nn}</td><td className='lowProblem'>{item.aa}</td>
+                                                    <td className='lowRank'>{idx+1}</td><td>{item.nn}</td><td className='lowProblem'>{100 -Math.floor(item.aa)}(%)</td>
                                                 </tr>
                                             );
                                             }
@@ -179,7 +219,7 @@ function CorrectRateCard(props) {
                                 <table className ='table1'>
                                     <thead className ="thead">
                                         <tr>
-                                             <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct Answer Rate(%)</th>
+                                             <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct Answer Rate</th>
                                         </tr>
                                     </thead>
                                     <tbody className="tbody">
@@ -203,7 +243,7 @@ function CorrectRateCard(props) {
                                 <table className ='table2'>
                                     <thead className ="thead">
                                         <tr>
-                                          <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct Answer Rate(%)</th>
+                                          <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct Answer Rate</th>
                                         </tr>
                                     </thead>
                                     <tbody className="tbody">
@@ -227,7 +267,7 @@ function CorrectRateCard(props) {
                                 <table className ='table3'>
                                     <thead className ="thead">
                                         <tr>
-                                            <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct Answer Rate(%)</th>
+                                            <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct Answer Rate</th>
                                         </tr>
                                     </thead>
                                     <tbody className="tbody">
@@ -251,7 +291,7 @@ function CorrectRateCard(props) {
                                 <table className ='table4'>
                                     <thead className ="thead">
                                         <tr>
-                                             <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct Answer Rate(%)</th>
+                                             <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct Answer Rate</th>
                                         </tr>
                                     </thead>
                                     <tbody className="tbody">
@@ -275,7 +315,7 @@ function CorrectRateCard(props) {
                                 <table className ='table5'>
                                     <thead className ="thead">
                                         <tr>
-                                             <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct Answer Rate(%)</th>
+                                             <th className='rank'>Rank</th><th className='userid'>problem ID</th><th className='problem'>Correct Answer Rate</th>
                                         </tr>
                                     </thead>
                                     <tbody className="tbody">
