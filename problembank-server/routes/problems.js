@@ -676,10 +676,13 @@ router.get('/status-problems', async function (req, res){
         var today = new Date();
         var today_DayLabel = today.getDay();
         var today_Date = today.getDate();
-        if(today_DayLabel === 1)
-            var last_DayLabel=7;
+        if(today_DayLabel === 0)
+            var last_DayLabel=6;
         else
             var last_DayLabel= today_DayLabel-1;
+
+        today_DayLabel = today_DayLabel + 1;
+        last_DayLabel = last_DayLabel + 1;
         
         const [user_Today] = await db.query(sql.user.selectUserDay, today_DayLabel);
         const [user_Cnt] = await db.query(sql.user.selectUserCnt);
