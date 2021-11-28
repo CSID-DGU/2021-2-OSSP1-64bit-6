@@ -202,12 +202,16 @@ function CorrectRateCard(props) {
                                         correctRank.map((item,idx)=>{
                                             if(idx<4)
                                             {
+                                                
                                             return(
+                                                
                                                 <tr>
-                                                    <td className='lowRank'>{idx+1}</td><td>{item.nn}</td><td className='lowProblem'>{100 -Math.floor(item.aa)}(%)</td>
+                                                    <td className='lowRank'>{idx+1}</td><td>{item.nn} </td><td className='lowProblem'>{100 -Math.floor(item.aa)}(%)</td>
                                                 </tr>
                                             );
-                                            }
+                                                }
+                                                
+                                            
                                         })
                                     }
                                 </tbody>
@@ -382,6 +386,15 @@ const Wrapper = styled.div`
                     
                 }
 
+                td{
+                    
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    width: 135px;
+                    height: 35px;
+                }
+
                 .thead{
                     font-size:15px;
                     tr{
@@ -402,6 +415,9 @@ const Wrapper = styled.div`
     
                 .tbody{
                     height:100px;
+                    .td{
+                        text-overflow: ellipsis;
+                    }
                 }
                 .tbody tr:nth-child(2n){
                     background-color:#f7f7f7;
@@ -417,6 +433,9 @@ const Wrapper = styled.div`
                 .tbody tr:nth-child(8) .lowPank {
                     border-bottom-right-radius:5px;
                 }
+                
+
+                
             }
         }
     }
@@ -491,7 +510,7 @@ const Wrapper = styled.div`
                 .table2{
                     width:250px;
                     border-collapse: collapse;
-    
+                    
                 }
             }
            
@@ -570,6 +589,15 @@ const Wrapper = styled.div`
                 background-color:#1A1351;
                 border-bottom:3px solid #1A1351;
             }
+
+            
+            td{
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 135px;
+                height: 35px;
+            }
         
             .thead{
                 height:30px;
@@ -593,6 +621,7 @@ const Wrapper = styled.div`
             .tbody tr:nth-child(2n){
                 background-color:#f7f7f7;
                 cursor:default;
+                
             }
             .tbody tr:nth-child(2n+1){
                 background-color:#fff;

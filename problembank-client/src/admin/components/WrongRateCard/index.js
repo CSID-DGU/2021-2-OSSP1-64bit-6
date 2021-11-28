@@ -382,6 +382,15 @@ const Wrapper = styled.div`
                     border-bottom:3px solid #1A1351;
                 }
 
+                td{
+                    
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    width: 135px;
+                    height: 35px;
+                }
+
                 .thead{
                     font-size:15px;
                     tr{
@@ -567,6 +576,15 @@ const Wrapper = styled.div`
                 border-top:none;
                 background-color:#1A1351;
                 border-bottom:3px solid #1A1351;
+            }
+
+            td{
+                    
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 135px;
+                height: 35px;
             }
         
             .thead{
