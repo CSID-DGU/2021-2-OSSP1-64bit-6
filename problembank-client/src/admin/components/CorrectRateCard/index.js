@@ -36,7 +36,7 @@ function CorrectRateCard(props) {
             emptyArr.aa = 'X';
             for(let i  = 0; i< length; i++)
             {
-                rankImp.corrImpArray[i].aa = 100 - Math.floor(rankImp.corrImpArray[i].aa)+ '(%)';
+                rankImp.corrImpArray[i].aa = Math.floor(rankImp.corrImpArray[i].aa)+ '(%)';
             }
             newCorrImpArray = rankImp.corrImpArray;
             for(let i = 0; i< (8 - length); i++)
@@ -49,7 +49,7 @@ function CorrectRateCard(props) {
         {
             for(let i  = 0; i< rankImp.corrImpArray.length; i++)
             {
-                rankImp.corrImpArray[i].aa = 100 - Math.floor(rankImp.corrImpArray[i].aa)+ '(%)';
+                rankImp.corrImpArray[i].aa = Math.floor(rankImp.corrImpArray[i].aa)+ '(%)';
             }
             setImpRank(rankImp.corrImpArray);
         }
@@ -62,7 +62,7 @@ function CorrectRateCard(props) {
             emptyArr.aa = 'X';
             for(let i  = 0; i< length; i++)
             {
-                rankStr.corrStrArray[i].aa = 100 - Math.floor(rankStr.corrStrArray[i].aa) + '(%)';
+                rankStr.corrStrArray[i].aa = Math.floor(rankStr.corrStrArray[i].aa) + '(%)';
             }
             newCorrStrArray = rankStr.corrStrArray;
             for(let i = 0; i< (8 - length); i++)
@@ -75,7 +75,7 @@ function CorrectRateCard(props) {
         {
             for(let i  = 0; i< rankStr.corrStrArray.length; i++)
             {
-                rankStr.corrStrArray[i].aa = 100 - Math.floor(rankStr.corrStrArray[i].aa) + '(%)';
+                rankStr.corrStrArray[i].aa =  Math.floor(rankStr.corrStrArray[i].aa) + '(%)';
             }
             setStrRank(rankStr.corrStrArray);
         }
@@ -88,7 +88,7 @@ function CorrectRateCard(props) {
             emptyArr.aa = 'X';
             for(let i  = 0; i< length; i++)
             {
-                rankData.corrDataArray[i].aa = 100 - Math.floor(rankData.corrDataArray[i].aa)+ '(%)';
+                rankData.corrDataArray[i].aa =  Math.floor(rankData.corrDataArray[i].aa)+ '(%)';
             }
             newCorrDataArray = rankData.corrDataArray;
             for(let i = 0; i< (8 - length); i++)
@@ -101,7 +101,7 @@ function CorrectRateCard(props) {
         {
             for(let i  = 0; i< rankData.corrDataArray.length; i++)
             {
-                rankData.corrDataArray[i].aa = 100 - Math.floor(rankData.corrDataArray[i].aa)+ '(%)';
+                rankData.corrDataArray[i].aa =  Math.floor(rankData.corrDataArray[i].aa)+ '(%)';
             }
             setDataRank(rankData.corrDataArray);
         }
@@ -114,7 +114,7 @@ function CorrectRateCard(props) {
             emptyArr.aa = 'X';
             for(let i  = 0; i< length; i++)
             {
-                rankMath.corrMathArray[i].aa = 100 - Math.floor(rankMath.corrMathArray[i].aa)+ '(%)';
+                rankMath.corrMathArray[i].aa =  Math.floor(rankMath.corrMathArray[i].aa)+ '(%)';
             }
             newCorrMathArray = rankMath.corrMathArray;
             for(let i = 0; i< (8 - length); i++)
@@ -127,7 +127,7 @@ function CorrectRateCard(props) {
         {
             for(let i  = 0; i< rankMath.corrMathArray.length; i++)
             {
-                rankMath.corrMathArray[i].aa = 100 - Math.floor(rankMath.corrMathArray[i].aa)+ '(%)';
+                rankMath.corrMathArray[i].aa =  Math.floor(rankMath.corrMathArray[i].aa)+ '(%)';
             }
             setMathRank(rankMath.corrMathArray);
         }
@@ -140,7 +140,7 @@ function CorrectRateCard(props) {
             emptyArr.aa = 'X';
             for(let i  = 0; i< length; i++)
             {
-                rankAlgo.corrAlgoArray[i].aa = 100 - Math.floor(rankAlgo.corrAlgoArray[i].aa)+ '(%)';
+                rankAlgo.corrAlgoArray[i].aa =  Math.floor(rankAlgo.corrAlgoArray[i].aa)+ '(%)';
             }
             newCorrAlgoArray = rankAlgo.corrAlgoArray;
             for(let i = 0; i< (8 - length); i++)
@@ -153,7 +153,7 @@ function CorrectRateCard(props) {
         {
             for(let i  = 0; i< rankAlgo.corrAlgoArray.length; i++)
             {
-                rankAlgo.corrAlgoArray[i].aa = 100 - Math.floor(rankAlgo.corrAlgoArray[i].aa)+ '(%)';
+                rankAlgo.corrAlgoArray[i].aa = Math.floor(rankAlgo.corrAlgoArray[i].aa)+ '(%)';
             }
             setAlgoRank(rankAlgo.corrAlgoArray);
         }
@@ -206,7 +206,7 @@ function CorrectRateCard(props) {
                                             return(
                                                 
                                                 <tr>
-                                                    <td className='lowRank'>{idx+1}</td><td>{item.nn} </td><td className='lowProblem'>{100 -Math.floor(item.aa)}(%)</td>
+                                                    <td className='lowRank'>{idx+1}</td><td>{item.nn} </td><td className='lowProblem'>{Math.floor(item.aa)}(%)</td>
                                                 </tr>
                                             );
                                                 }
@@ -387,7 +387,6 @@ const Wrapper = styled.div`
                 }
 
                 td{
-                    
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
