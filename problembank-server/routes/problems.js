@@ -291,9 +291,15 @@ router.get('/category', async function (req, res) {
 router.get('/getproblemsinfor', async function (req, res) {
     try {
         var today=new Date();
-        var today_dayLabel = today.getDay();
+        var today_dayLabel = today.getDay() + 1;
+        var today_Date = today.getDate();
         const [visitor_day] = await db.query(sql.user.selectVisitorDay, today_dayLabel);
-        let visitorCnt = visitor_day[0].visitor_cnt+1;
+
+        if(today_Date !== Number(visitor_day[0].day))
+            var visitorCnt = 1;
+        else
+            var visitorCnt = visitor_day[0].visitor_cnt+1;
+        
         await db.query(sql.user.updateVisitorCnt, [visitorCnt, today, today_dayLabel]);
 
         let [row] = await db.query(sql.problems.getCountProblem)
