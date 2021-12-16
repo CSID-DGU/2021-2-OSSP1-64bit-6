@@ -3,19 +3,14 @@
 문제은행 서버부분입니다.
 
 ## 개발 환경
-> Node.js
-
+> Node.js   
 > MySql
 
 ## 설치
 ```bash
-
-# 프로젝트 github에서 받음
-git clone `` 
 cd problembank-server
 
-# 필요한 packge 설치
-npm start
+npm install --unsafe-perm
 
 # .env 파일을 만들어서 환경변수를 추가함
 vim .env
@@ -43,6 +38,11 @@ PORT=3003
 TOKEN= 
 ======
 
+# 필요한 packge 설치
+npm i nodemon -g
+
+# 실행
+nodemon
 
 ```
 ## License
