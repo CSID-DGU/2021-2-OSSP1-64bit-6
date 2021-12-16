@@ -1,8 +1,8 @@
 # 문제은행 채점 서버
 
-해당 프로젝트 프로그래밍 문제은행이라며 동국대학교 PLASS 연구실 연구원들이 개발하는 프로젝트입니다.
+문제은행 채점 서버 부분입니다.
 
-## 개발 화경
+## 개발 환경
 > Node.js
 
 ## 설치
@@ -12,22 +12,31 @@
 git clone `` 
 cd problem-score-server/server
 
-# 필요하는 packge 설치
+# 필요한 packge 설치
 npm start
 
 # 컴파일 할때 소스코드 저장할 Folder를 만들 
 mkdir DEBUG_TEMP_PATH
+
+# C언어 채점용 컴파일러 설치
+apt-get install clang-7
+
+# C++ 채점용 컴파일러 설치
+apt-get install g++
+
+# Java 채점용 컴파일러 설치
+apt-get install javac
 
 # .env 파일을 만들어서 환경변수를 추가함
 vim .env
 ======= 
 # .env 파일 내용을 다음과 같음.
 # DB연결하기 위한 정보
-MYSQL_HOST=
-MYSQL_PORT=
-MYSQL_ID=
-MYSQL_PASS=
-MYSQL_DB=problems_test
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_ID= [db id]
+MYSQL_PASS= [db password]
+MYSQL_DB= [db 이름]
 
 
 BOILERPLATE_PATH=boilerplates
