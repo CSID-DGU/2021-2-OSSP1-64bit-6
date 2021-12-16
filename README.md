@@ -60,7 +60,17 @@ vim mysqld.cnf
 
 ## 실행 화면
 + Mypage   
-![image](https://user-images.githubusercontent.com/90669873/146289437-b47a19f1-adf3-48f8-a118-959ca853c890.png)
+  + Heatmap calender   
+![image](https://user-images.githubusercontent.com/90669873/146338140-603c8b60-7a3d-45b5-b536-3bda2ab9d590.png)   
+  + 문제 유형/난이도별 해결 비율   
+![image](https://user-images.githubusercontent.com/90669873/146338198-2c192d32-134f-4739-a553-c603db0d798c.png)   
+  + 카테고리별 해결 비율   
+![image](https://user-images.githubusercontent.com/90669873/146338272-5f3d3fc1-bca8-4c8d-8be5-dbd341569db5.png)   
+  + 틀린 문제   
+![image](https://user-images.githubusercontent.com/90669873/146338286-8ef0b248-9fd9-426f-8a3a-ef6491e52928.png)   
+  + 다시 볼 문제   
+![image](https://user-images.githubusercontent.com/90669873/146338295-ab00cd0f-7bde-41f0-8b7c-afa714eff6a6.png)   
+
 + Admin Dashboard   
 ![image](https://user-images.githubusercontent.com/90669873/146289454-30be5a17-5a4b-4d2d-8d52-cb0945b51f41.png)
 
